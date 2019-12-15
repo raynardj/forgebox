@@ -14,11 +14,17 @@ class DF_Node(object):
         self.pipe = list()
 
     def __str__(self):
-        return "<forge pipeline node>"
+        return "<forge pipeline node>"+"|".join(self.pipenames)
 
-    def __or__(self, process_step):
-        self.pipe.append(process_step)
-        self.pipenames.append(process_step.edge_name)
+    def __or__(self, edge):
+        """
+        use it as:
+        node|edge|edge
+        :param process_step:
+        :return:
+        """
+        self.pipe.append(edge)
+        self.pipenames.append(edge.edge_name)
         return self
 
     def run(self):
