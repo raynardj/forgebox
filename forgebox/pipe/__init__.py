@@ -5,9 +5,9 @@ import nltk
 tweet_tk =nltk.tokenize.TweetTokenizer()
 
 
-class DF_Node(object):
+class Node(object):
     def __init__(self, df, verbose=1):
-        super().__init__()
+        super(Node,self).__init__()
         self.df = df
         self.verbose = verbose
         self.pipenames = list()
@@ -35,7 +35,7 @@ class DF_Node(object):
         return self.df
 
 
-class DF_Chunk_Node(DF_Node):
+class chunkNode(Node):
     def __init__(self, df, verbose=1):
         super().__init__(df, verbose)
 
@@ -65,9 +65,9 @@ class DF_Chunk_Node(DF_Node):
         return testdf
 
 
-class DF_Edge(object):
+class frameEdge(object):
     def __init__(self, edge_name=None):
-        super().__init__()
+        super(frameEdge, self).__init__()
         if edge_name == None:
             edge_name = "DataFrame_Processing_Edge"
         self.edge_name = edge_name
@@ -83,7 +83,7 @@ class DF_Edge(object):
         return wraper
 
 
-class Col_Edge(object):
+class colEdge(object):
     def __init__(self, edge_name=None):
         super().__init__()
         if edge_name == None:
@@ -93,6 +93,10 @@ class Col_Edge(object):
 
     def __mul__(self, cols):
         self.cols = cols
+        return self
+
+    def __mod__(self,col):
+        self.cols = [col]
         return self
 
     def define(self, f):
@@ -108,9 +112,7 @@ class Col_Edge(object):
             df[c] = self.colpro(df[c])
         return df
 
-
-nothing = DF_Edge("ept_process")
-
+nothing = frameEdge("empety_process")
 
 @nothing.define
 def donothing(df):
