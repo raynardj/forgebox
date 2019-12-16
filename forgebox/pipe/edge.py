@@ -1,4 +1,4 @@
-from . import Col_Edge,DF_Edge
+from . import colEdge,frameEdge
 from nltk.tokenize import TweetTokenizer
 import numpy as np
 import pandas as pd
@@ -6,7 +6,7 @@ import pandas as pd
 from itertools import chain
 from collections import Counter
 
-class FillNa_Edge(Col_Edge):
+class fillNaEdge(colEdge):
     def __init__(self, fill=0.):
         super().__init__("fillna")
         self.fill = fill
@@ -15,7 +15,7 @@ class FillNa_Edge(Col_Edge):
         return col.fillna(self.fill)
 
 
-class EngTok_Edge(Col_Edge):
+class engTokEdge(colEdge):
     def __init__(self, tokenizer, max_len=None):
         super().__init__("En")
         self.tokenizer = tokenizer
@@ -24,9 +24,9 @@ class EngTok_Edge(Col_Edge):
     def colpro(self, c):
         return c.apply(lambda x: self.tokenizer.tokenize(x)[:self.max_len])
 
-eng_twt_tk = EngTok_Edge(TweetTokenizer())
+eng_twt_tk = engTokEdge(TweetTokenizer())
 
-class CNTok(Col_Edge):
+class CNTok(colEdge):
     def __init__(self):
         """
         cntok = CNTok()
@@ -41,7 +41,7 @@ class CNTok(Col_Edge):
         col = col.apply(lambda x:list(self.cut(str(x))))
         return col
 
-class MinMax(Col_Edge):
+class capMinMaxEdge(colEdge):
     def __init__(self, min_ = None, max_ = None):
         super().__init__("minmax")
         self.min_ = min_
@@ -51,7 +51,7 @@ class MinMax(Col_Edge):
         col.values = np.clip(col.values,a_min = self.min_, a_max = self.max_)
         return col
 
-class TrackVocab(Col_Edge):
+class trackVocabEdge(colEdge):
     """
     Col_Edge
     input column should contain python list
@@ -87,7 +87,7 @@ class TrackVocab(Col_Edge):
         self.vocab.to_json(json_url)
 
 
-class SaveCSV(DF_Edge):
+class saveCSV(frameEdge):
     """
     DataFrame Edge
     SaveCsv("/path/to/file.csv")
@@ -101,7 +101,7 @@ class SaveCSV(DF_Edge):
         df.to_csv(self.csvpath, mode="a", **self.tocsv_conf)
         return df
 
-class SaveSQL(DF_Edge):
+class saveSQL(frameEdge):
     """
     DataFrame Edge
     SaveSQL("table_name", con)
