@@ -48,12 +48,12 @@ class capMinMaxEdge(colEdge):
         self.max_ = max_
 
     def colpro(self,col):
-        col.values = np.clip(col.values,a_min = self.min_, a_max = self.max_)
+        col = np.clip(col.values,a_min = self.min_, a_max = self.max_)
         return col
 
 class trackVocabEdge(colEdge):
     """
-    Col_Edge
+    a colEdge
     input column should contain python list
     This edge will keep track a vocabulary pandas DataFrame
     tck_vcb = TrackVocab()
