@@ -8,7 +8,7 @@ from collections import Counter
 
 class fillNaEdge(colEdge):
     def __init__(self, fill=0.):
-        super().__init__("fillna")
+        super().__init__("fillna_%s"%(fill))
         self.fill = fill
 
     def colpro(self, col):
@@ -17,7 +17,7 @@ class fillNaEdge(colEdge):
 
 class engTokEdge(colEdge):
     def __init__(self, tokenizer, max_len=None):
-        super().__init__("En")
+        super().__init__("En Tokenization")
         self.tokenizer = tokenizer
         self.max_len = max_len
 
@@ -43,7 +43,7 @@ class CNTok(colEdge):
 
 class capMinMaxEdge(colEdge):
     def __init__(self, min_ = None, max_ = None):
-        super().__init__("minmax")
+        super().__init__("cap min:%s max:%s"%(min_,max_))
         self.min_ = min_
         self.max_ = max_
 

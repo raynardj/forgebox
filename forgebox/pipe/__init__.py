@@ -11,7 +11,7 @@ class Node(object):
         self.pipenames = list()
         self.pipe = list()
 
-    def __str__(self):
+    def __repr__(self):
         return "<forge pipeline node>"+"|".join(self.pipenames)
 
     def __or__(self, edge):
