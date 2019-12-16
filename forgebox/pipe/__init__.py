@@ -1,5 +1,3 @@
-import pandas as pd
-import numpy as np
 import nltk
 
 tweet_tk =nltk.tokenize.TweetTokenizer()
@@ -73,7 +71,7 @@ class frameEdge(object):
         self.edge_name = edge_name
 
     def __mul__(self, cols):
-        assert 0, "Only Col_Edge support * columns operation"
+        assert 0, "Only colEdge support * columns operation"
 
     def define(self, f):
         def wraper(df):
