@@ -12,7 +12,7 @@ class Node(object):
         self.pipe = list()
 
     def __repr__(self):
-        return "<forge pipeline node>"+"|".join(self.pipenames)
+        return "<forge pipeline node>\n\t|"+"\n\t|".join(self.pipenames)
 
     def __or__(self, edge):
         """
@@ -34,8 +34,15 @@ class Node(object):
 
 
 class chunkNode(Node):
-    def __init__(self, df, verbose=1):
-        super().__init__(df, verbose)
+    def __init__(self, df_chunk, verbose=1):
+        """
+        Use this class instead of Node class, for huge data sourse like big csv or huge SQL table
+        chunkNode(pd.read_csv("xxx.csv",chunksize = 1000), verbose =1)
+        :param df_chunk: pandas dataframe with chunksize parameter
+        :param verbose:
+        """
+        super(chunkNode, self).__init__(df = df_chunk, verbose = verbose)
+        self.df_chunk = self.df
 
     def run(self):
         """
