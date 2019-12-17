@@ -189,31 +189,16 @@ fill_na_edge = fillNaEdge("")
 
 ### Nodes/Edges relationship mapping
 * node1 ==edge1==> node2 : 
-    * 
-    ```python
-    node2 = node1 | edge1
-    ```
+    * node2 = node1 | edge1
 * node1 ==edge1==>edge2==> node2 : 
-    * 
-    ```python
-    node2 = node1 | edge1 | edge2
-    ```
-    * 
-    ```python
-    node3 = node2 | edge3
-    ```
+    * node2 = node1 | edge1 | edge2
+    * node3 = node2 | edge3
     
 ### Relationship mapping with **columns specified**
 * Specifying 1 column
-    * 
-    ```python
-    node2 = node1 | edge1%"column_1"
-    ```
+    * node2 = node1 | edge1%"column_1"
 * Specifying multiple columns
-    * 
-    ```python
-    node2 = node1 | edge1*["column_2","column_3","column_4"]
-    ```
+    * node2 = node1 | edge1*["column_2","column_3","column_4"]
 
 Setting the node/edge pipeline
 
