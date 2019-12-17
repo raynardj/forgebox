@@ -1,4 +1,9 @@
-# The coding add-on for mananging AI tasks
+# Better hacking on the data science
+
+## Installation
+```
+python -m pip install --force-resinstall  https://github.com/raynardj/forgebox
+```
 
 ## This module should run independently from forge web UI
 
