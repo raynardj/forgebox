@@ -92,13 +92,15 @@ class saveCSV(frameEdge):
     DataFrame Edge
     SaveCsv("/path/to/file.csv")
     """
-    def __init__(self, csvpath, tocsv_conf={"sep": "\t", "header": False}):
+    def __init__(self, csvpath, tocsv_conf={"sep": "\t", "index":False}):
         super().__init__("save to csv")
         self.csvpath = csvpath
         self.tocsv_conf = tocsv_conf
+        self.header = True
 
     def pro(self, df):
         df.to_csv(self.csvpath, mode="a", **self.tocsv_conf)
+        self.header = False
         return df
 
 class saveSQL(frameEdge):

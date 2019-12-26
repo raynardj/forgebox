@@ -76,6 +76,7 @@ class frameEdge(object):
         if edge_name == None:
             edge_name = "DataFrame_Processing_Edge"
         self.edge_name = edge_name
+        self.i = None
 
     def __mul__(self, cols):
         assert 0, "Only colEdge support * columns operation"
