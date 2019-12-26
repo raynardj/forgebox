@@ -99,7 +99,7 @@ class saveCSV(frameEdge):
         self.header = True
 
     def pro(self, df):
-        df.to_csv(self.csvpath, mode="a", **self.tocsv_conf)
+        df.to_csv(self.csvpath,header=self.header, mode="a", **self.tocsv_conf)
         self.header = False
         return df
 
