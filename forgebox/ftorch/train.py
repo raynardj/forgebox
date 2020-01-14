@@ -52,9 +52,11 @@ class Trainer(Universal_Trainer):
 
                 conn: a sql table connection, (sqlalchemy). if assigned value, save the record in the designated sql database;
                 """
-        train_data = DataLoader(dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
-        val_data = DataLoader(val_dataset, batch_size=batch_size, shuffle=shuffle,
-                              num_workers=num_workers) if val_dataset else None
+        self.batch_size = batch_size
+        self.shuffle = shuffle
+        self.num_workers = num_workers
+        train_data = self.ds_to_dl(dataset)
+        val_data = self.ds_to_dl(val_dataset) if val_dataset else None
         train_len = len(train_data)
         val_len = len(val_data) if val_data else None
         super().__init__(train_data, train_len=train_len, val_data=val_data, val_len=val_len,
@@ -62,3 +64,8 @@ class Trainer(Universal_Trainer):
                          is_log=is_log, conn=conn, modelName=modelName,
                          tryName=tryName, callbacks=callbacks, val_callbacks=val_callbacks
                          )
+
+    def ds_to_dl(self,ds):
+        return DataLoader(ds, batch_size=self.batch_size, shuffle=self.shuffle, num_workers=self.num_workers)
+
+

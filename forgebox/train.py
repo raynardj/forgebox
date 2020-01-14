@@ -76,6 +76,16 @@ class Trainer:
         self.fields = fields
         self.is_log = is_log
 
+    def one_batch(self):
+        if hasattr(self, "testgen") == False:
+            self.testgen = iter(self.train_data)
+        try:
+            return next(self.testgen)
+        except StopAsyncIteration:
+            self.testgen = iter(self.train_data)
+            return next(self.testgen)
+
+
     def get_time(self):
         return datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
 
