@@ -19,7 +19,7 @@ TrainerBatch = namedtuple("TrainerBatch", ("epoch", "i", "data", "trainer"))
 class Trainer:
     def __init__(self, train_data, train_len, val_data=None, val_len=None,  batch_size=16, fg=None,
                  print_on=20, fields=None, is_log=True,
-                 conn=None, modelName="model", tryName="try", callbacks=[], val_callbacks=[]):
+                 conn=None, modelName="model", tryName="try", callbacks=[], val_callbacks=[],jupyter = JUPYTER):
         """
         A training iteration wraper
         fields: the fields you choose to print out
