@@ -9,7 +9,7 @@ class CudaDevice(object):
         print(d)
         """
         self.idx = idx
-        self.device = torch.cuda.device(idx)
+        self.device = torch.device(idx)
         if hasattr(self, "used") == False:
             self.get_gpu_stats()
 
