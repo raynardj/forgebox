@@ -11,7 +11,7 @@ class CudaDevice(object):
         self.idx = idx
         self.device = torch.device(idx)
         if hasattr(self, "used") == False:
-            self.get_gpu_stats()
+            self.refresh()
 
     def __repr__(self):
         return f"Device {self.idx}: \n\tname:{self.prop.name}\n\tused:{self.used}MB\tfree:{self.free}MB"
@@ -33,7 +33,7 @@ class CudaDevice(object):
     def __int__(self):
         return int(self.idx)
 
-    def get_gpu_stats(self):
+    def refresh(self):
         gpu_stats = subprocess.check_output(["nvidia-smi", "--format=csv", "--query-gpu=memory.used,memory.free"])
         stat = list(
             int(v) for v in str(gpu_stats).split("\\n")[1 + self.idx].replace(" MiB", "").replace(" ", "").split(","))
