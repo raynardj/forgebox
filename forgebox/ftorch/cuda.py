@@ -45,7 +45,7 @@ class CudaDevice(object):
         return self.device
 
 
-class CudaHander(object):
+class CudaHandler(object):
     def __init__(self):
         """
         ch = CudaHander()
