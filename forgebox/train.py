@@ -241,10 +241,9 @@ class Trainer:
 
         return pd.DataFrame(tracks)
 
-    def step_train(self):
-        def assign(f):
-            setattr(self, "action", MethodType(f, self))
-        return assign
+    def step_train(self,f):
+        setattr(self, "action", MethodType(f, self))
+        return f
 
     def step_val(self):
         def assign(f):
