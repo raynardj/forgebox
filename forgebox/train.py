@@ -128,7 +128,7 @@ class Trainer:
 
     def train_iteration(self, i, t):
         self.i = i
-        self.data = next(self.train_data)
+        self.data = next(self.train_gen)
         if self.using_gpu:
             self.data_to_gpu()
 
