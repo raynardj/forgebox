@@ -90,7 +90,8 @@ class Trainer(Universal_Trainer):
             ....
         """
         def wrapper(f):
-            self.before_train_batch_list.append(func_name, MethodType(f, self))
+            setattr(self,func_name, MethodType(f, self))
+            self.before_train_batch_list.append(getattr(self,func_name))
         return wrapper
 
     def before_val_batch(self, func_name):
@@ -100,7 +101,8 @@ class Trainer(Universal_Trainer):
             ....
         """
         def wrapper(f):
-            self.before_val_batch_list.append(func_name, MethodType(f, self))
+            setattr(self, func_name, MethodType(f, self))
+            self.before_val_batch_list.append(getattr(self,func_name))
         return wrapper
 
     def data_to_dev(self,device ="cuda:0"):
