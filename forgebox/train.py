@@ -129,8 +129,6 @@ class Trainer:
     def train_iteration(self, i, t):
         self.i = i
         self.data = next(self.train_gen)
-        if self.using_gpu:
-            self.data_to_gpu()
 
         for f in self.before_train_batch_list: f()
 
@@ -261,29 +259,3 @@ class Trainer:
             setattr(self,func_name, MethodType(f, self))
         return assign
 
-    # def step_train(self, f):
-    #
-    #     """
-    #     A decorator: @trainer.step_train, following the training step function
-    #     :param f:
-    #     :return:
-    #     """
-    #
-    #     def wraper(batch):
-    #         return f(batch)
-    #
-    #     self.action = wraper
-    #     return wraper
-    #
-    # def step_val(self, f):
-    #     """
-    #     A decorator: @trainer.step_val, following the validation step function
-    #     :param f:
-    #     :return:
-    #     """
-    #
-    #     def wraper(batch):
-    #         return f(batch)
-    #
-    #     self.val_action = wraper
-    #     return wraper
