@@ -245,10 +245,9 @@ class Trainer:
         setattr(self, "action", MethodType(f, self))
         return f
 
-    def step_val(self):
-        def assign(f):
-            setattr(self, "val_action", MethodType(f, self))
-        return assign
+    def step_val(self,f):
+        setattr(self, "val_action", MethodType(f, self))
+        return f
 
     def step_extra(self, func_name):
         """
