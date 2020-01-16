@@ -1,6 +1,7 @@
 import __main__ as main
 from torch.utils.data import DataLoader
 from collections import namedtuple
+from types import MethodType
 import torch
 
 try:
@@ -12,12 +13,13 @@ if JUPYTER: from tqdm import tqdm_notebook as tn
 
 TrainerBatch = namedtuple("TrainerBatch", ("epoch", "i", "data", "trainer"))
 from forgebox.train import Trainer as Universal_Trainer
+from .cuda import CudaHandler
 
 
 class Trainer(Universal_Trainer):
     def __init__(self, dataset, val_dataset=None, batch_size=16, fg=None,
                  print_on=20, fields=None, is_log=True, shuffle=True, num_workers=4,
-                 conn=None, modelName="model", tryName="try", callbacks=[], val_callbacks=[], jupyter = JUPYTER):
+                 conn=None, modelName="model", tryName="try", callbacks=[], val_callbacks=[], jupyter = JUPYTER, using_gpu = True):
         """
                 Pytorch trainer
                 fields: the fields you choose to print out
@@ -60,28 +62,49 @@ class Trainer(Universal_Trainer):
         val_data = self.ds_to_dl(val_dataset) if val_dataset else None
         train_len = len(train_data)
         val_len = len(val_data) if val_data else None
+        self.before_train_batch_list = []
+        self.before_val_batch_list = []
         super().__init__(train_data, train_len=train_len, val_data=val_data, val_len=val_len,
                          fg=fg, print_on=print_on, fields=fields,
                          is_log=is_log, conn=conn, modelName=modelName,
                          tryName=tryName, callbacks=callbacks, val_callbacks=val_callbacks,
                          jupyter = JUPYTER
                          )
+        self.using_gpu = False
+        if (using_gpu == True) and (torch.cuda.is_available()):
+            self.using_gpu = True
+        if self.using_gpu:
+            self.data_to_dev()
 
     def ds_to_dl(self,ds):
         return DataLoader(ds, batch_size=self.batch_size, shuffle=self.shuffle, num_workers=self.num_workers)
 
-    def step_val(self, f):
+    def val_action_wrap(self):
+        with torch.no_grad():
+            return self.val_action()
+
+    def before_train_batch(self, func_name):
         """
-        A decorator: @trainer.step_val, following the validation step function
-        The function will run under a torch.no_grad() session
-        :param f: A function taking in the parameter: batch
-        :return:
+        @t.before_train_batch("process_data1")
+        def pd1(self):
+            ....
         """
-        def wraper(batch):
-            with torch.no_grad():
-                return f(batch)
+        def wrapper(f):
+            self.before_train_batach_list.append(func_name, MethodType(f, self))
+        return wrapper
 
-        self.val_action = wraper
-        return wraper
+    def before_val_batch(self, func_name):
+        """
+        @t.before_val_batch("process_data1")
+        def pd1(self):
+            ....
+        """
+        def wrapper(f):
+            self.before_val_batach_list.append(func_name, MethodType(f, self))
+        return wrapper
 
-
+    def data_to_dev(self,device ="cuda:0"):
+        def to_dev(self):
+            self.data = tuple(dt.to(device) for dt in self.data)
+        self.step_extra("data_to_device")(to_dev)
+        self.step_extra("val_data_to_device")(to_dev)

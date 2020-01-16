@@ -5,6 +5,7 @@ from tqdm import trange
 from functools import reduce
 import pandas as pd
 from collections import namedtuple
+from types import MethodType
 
 
 try:
@@ -69,6 +70,9 @@ class Trainer:
         self.callbacks = callbacks
         self.val_callbacks = val_callbacks
 
+        self.before_train_batch_list = []
+        self.before_val_batch_list = []
+
         if self.val_data:
             self.val_track = dict()
 
@@ -85,6 +89,8 @@ class Trainer:
             self.testgen = iter(self.train_data)
             return next(self.testgen)
 
+    def progress(self, l):
+        return tn(range(l)) if JUPYTER else trange(l)
 
     def get_time(self):
         return datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
@@ -96,17 +102,20 @@ class Trainer:
         if self.fg:
             self.fg.new_train()
 
-        if name == None:
-            name = "torch_train_" + datetime.now().strftime("%y%m%d_%H%M%S")
-        if log_addr == None:
-            log_addr = ".log_%s" % (name)
-
-        if log_addr[-1] != "/": log_addr += "/"
-
         for epoch in range(epochs):
             self.track[epoch] = list()
             self.run(epoch)
+        self.log(name = name,log_addr=log_addr)
+
+
+    def log(self, name, log_addr):
         if self.is_log:
+            if name == None:
+                name = "torch_train_" + datetime.now().strftime("%y%m%d_%H%M%S")
+            if log_addr == None:
+                log_addr = ".log_%s" % (name)
+
+            if log_addr[-1] != "/": log_addr += "/"
             os.system("mkdir -p %s" % (log_addr))
             trn_track = pd.DataFrame(reduce((lambda x, y: x + y), list(self.track.values())))
             trn_track.to_csv(log_addr + "trn_" + datetime.now().strftime("%y_%m_%d__%H_%M_%S") + ".csv",
@@ -117,48 +126,67 @@ class Trainer:
                 val_track.to_csv(log_addr + "val_" + datetime.now().strftime("%y_%m_%d__%H_%M_%S") + ".csv",
                                  index=False)
 
+    def train_iteration(self, i, t):
+        self.i = i
+        self.data = next(self.train_data)
+        if self.using_gpu:
+            self.data_to_gpu()
+
+        for f in self.before_train_batch_list: f()
+
+        if hasattr(self,"data_to_device"): self.data_to_device()
+
+        ret = self.action()
+        ret.update({"epoch": self.epoch,
+                    "iter": i,
+                    "ts": self.get_time()})
+        self.track[self.epoch].append(ret)
+
+        if i % self.print_on == self.print_on - 1:
+            self.update_descrition(self.epoch, i, t)
+
+    def val_action_wrap(self):
+        return self.val_action()
+
+    def val_iteration(self, i ,val_t):
+        self.i = i
+        self.data = next(self.val_gen)
+        for f in self.before_val_batch_list: f()
+
+        if hasattr(self, "val_data_to_device"): self.val_data_to_device()
+
+        ret = self.val_action_wrap()
+        ret.update({"epoch": self.epoch,
+                    "iter": i,
+                    "ts": self.get_time()})
+        self.val_track[self.epoch].append(ret)
+        self.update_descrition_val(self.epoch, i, val_t)
+
     def run(self, epoch):
         """
         run for a single epoch
         :param epoch: the epoch index
         :return:
         """
-        if JUPYTER:
-            t = tn(range(self.train_len))
-        else:
-            t = trange(self.train_len)
+        t = self.progress(self.train_len)
+
         self.train_gen = iter(self.train_data)
+        self.epoch = epoch
 
         for i in t:
-            batch = TrainerBatch(epoch, i, next(self.train_gen), self)
-            ret = self.action(batch)
-            ret.update({"epoch": epoch,
-                        "iter": i,
-                        "ts": self.get_time()})
-            self.track[epoch].append(ret)
+            self.train_iteration(i,t)
 
-            if i % self.print_on == self.print_on - 1:
-                self.update_descrition(epoch, i, t)
         for cb_func in self.callbacks:
             cb_func(record=self.track[epoch])
 
         if self.val_len:
-
+            self.epoch = epoch
             self.val_track[epoch] = list()
             self.val_gen = iter(self.val_data)
-            if JUPYTER:
-                val_t = tn(range(self.val_len))
-            else:
-                val_t = trange(self.val_len)
 
+            val_t = self.progress(self.val_len)
             for i in val_t:
-                batch = TrainerBatch(epoch, i, next(self.val_gen), self)
-                ret = self.val_action(batch)
-                ret.update({"epoch": epoch,
-                            "iter": i,
-                            "ts": self.get_time()})
-                self.val_track[epoch].append(ret)
-                self.update_descrition_val(epoch, i, val_t)
+                self.val_iteration(i, val_t)
 
             for v_cb_func in self.val_callbacks:
                 v_cb_func(record=self.val_track[epoch] )
@@ -213,29 +241,51 @@ class Trainer:
 
         return pd.DataFrame(tracks)
 
-    def step_train(self, f):
+    def step_train(self):
+        def assign(f):
+            setattr(self, "action", MethodType(f, self))
+        return assign
 
+    def step_val(self):
+        def assign(f):
+            setattr(self, "val_action", MethodType(f, self))
+        return assign
+
+    def step_extra(self, func_name):
         """
-        A decorator: @trainer.step_train, following the training step function
-        :param f:
-        :return:
+        @t.step_extra("forward_pass")
+        def fp(self):
+            self.x = self.data.x.float()
+            self.y = self.datay.long()
+            self.y_ = model(self.x)
         """
+        def assign(f):
+            setattr(self,func_name, MethodType(f, self))
+        return assign
 
-        def wraper(batch):
-            return f(batch)
-
-        self.action = wraper
-        return wraper
-
-    def step_val(self, f):
-        """
-        A decorator: @trainer.step_val, following the validation step function
-        :param f:
-        :return:
-        """
-
-        def wraper(batch):
-            return f(batch)
-
-        self.val_action = wraper
-        return wraper
+    # def step_train(self, f):
+    #
+    #     """
+    #     A decorator: @trainer.step_train, following the training step function
+    #     :param f:
+    #     :return:
+    #     """
+    #
+    #     def wraper(batch):
+    #         return f(batch)
+    #
+    #     self.action = wraper
+    #     return wraper
+    #
+    # def step_val(self, f):
+    #     """
+    #     A decorator: @trainer.step_val, following the validation step function
+    #     :param f:
+    #     :return:
+    #     """
+    #
+    #     def wraper(batch):
+    #         return f(batch)
+    #
+    #     self.val_action = wraper
+    #     return wraper
