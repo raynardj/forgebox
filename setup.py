@@ -15,7 +15,6 @@ setup(
     # scripts = ['forge/bin/forge', 'forge/bin/forge_db',],
     # package_data={'forge':['./forge/templates/*','./forge/static/*']},
     install_requires = [
-        "pandas>=0.18.0",
         "tqdm>=4.25.0",
     ],
 )
