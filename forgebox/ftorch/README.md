@@ -22,29 +22,28 @@ we can use it like ```x,y = next(iter(train_ds))```
 ### Trainer
 ```python
 from forgebox.ftorch.train import Trainer
-from forgebox.ftorch.metrics import accuracy,recall,precision
 
 trainer=Trainer(train_ds, val_dataset = valid_ds ,batch_size=1,print_on=2)
+trainer.opt["adm1"] = torch.opt.Adam(model.parameters())
 ```
 
 #### A training step
 we use the step_train decorator to define a training step
 ```python
+from forgebox.ftorch.metrics import metric4_bi
+
 @trainer.step_train
-def action(*args,**kwargs):
-    x,y = args[0]
+def action(self):
+    x,y = self.data
     x = x.squeeze(0)
     y = y.float()
     opt.zero_grad()
     y_ = model(x)
     loss = loss_func(y_,y)
-    acc = accuracy(y_,y.long())
-    rec = recall(y_,y.long())
-    prec = precision(y_,y.long().squeeze(0))
-    f1 = (rec*prec)/(rec+prec)
+    acc, rec, prec, f1 = metric4_bi(y_,y)
     loss.backward()
-    opt.step()
-    return {"loss":loss.item(),"acc":acc,"rec":rec,"prec":prec,"f1":f1}
+    self.opt.adm.step()
+    return {"loss":loss.item(),"acc":acc.item(),"rec":rec.item(),"prec":prec.item(),"f1":f1.item()}
 ```
 The above is only an example, you can define the training step as you like.
 
@@ -55,8 +54,8 @@ Very similar to the train step, minus any code relate to updating weights
 
 ```python
 @trainer.step_val # step_val decorator
-def val_action(*args,**kwargs)
-    x,y = args[0]
+def val_action(self)
+    x,y = self.data
     x = x.squeeze(0)
     y = y.float()
     y_ = model(x)

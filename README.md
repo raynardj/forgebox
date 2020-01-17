@@ -108,8 +108,8 @@ def action(*args,**kwargs):
 And the validation step is like following, almost the same with training action, without any backward calc/model updating code
 ```python
 @trainer.step_val # step_val decorator
-def val_action(*args,**kwargs)
-    x,y = args[0]
+def val_action(self)
+    x,y = self.data
     x = x.squeeze(0)
     y = y.float()
     y_ = model1(x)
