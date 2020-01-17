@@ -1,6 +1,5 @@
 import torch
 
-
 class Opts(object):
     def __init__(self, *args, **kwargs):
         """
@@ -27,6 +26,10 @@ class Opts(object):
             range(len(self.optnames))))
 
     def get_pg(self, opt):
+        """
+        Get paramgroups dictionary,
+        opt:torch.optim.optimizer
+        """
         return dict.copy(opt.param_groups[0])
 
     def read_opt(self, opt):
