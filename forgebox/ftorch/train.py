@@ -3,8 +3,8 @@ from torch.utils.data import DataLoader
 from collections import namedtuple
 from types import MethodType
 import torch
-from .optimizer import Opts
-from .utils import stty_size
+from forgebox.ftorch.optimizer import Opts
+from forgebox.ftorch.utils import stty_size
 
 try:
     JUPYTER = True if main.get_ipython else False
