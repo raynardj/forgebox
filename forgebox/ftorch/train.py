@@ -1,4 +1,3 @@
-import __main__ as main
 from torch.utils.data import DataLoader
 from collections import namedtuple
 from types import MethodType
@@ -6,12 +5,7 @@ import torch
 from forgebox.ftorch.optimizer import Opts
 from forgebox.ftorch.utils import stty_size
 
-try:
-    JUPYTER = True if main.get_ipython else False
-except:
-    JUPYTER = False
-
-if JUPYTER: from tqdm import tqdm_notebook as tn
+from forgebox.utils import JUPYTER
 
 TrainerBatch = namedtuple("TrainerBatch", ("epoch", "i", "data", "trainer"))
 from forgebox.train import Trainer as Universal_Trainer
@@ -74,7 +68,7 @@ class Trainer(Universal_Trainer):
                          fg=fg, print_on=print_on, fields=fields,batch_start_zg = batch_start_zg,
                          is_log=is_log, conn=conn, modelName=modelName,
                          tryName=tryName, callbacks=callbacks, val_callbacks=val_callbacks,
-                         jupyter = JUPYTER
+                         jupyter = jupyter
                          )
         self.initialize_gpu(using_gpu)
         self.initialize_opt(opts)

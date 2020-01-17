@@ -1,17 +1,11 @@
 import os
 from datetime import datetime
-import __main__ as main
 from tqdm import trange
 from functools import reduce
 import pandas as pd
 from collections import namedtuple
 from types import MethodType
-
-
-try:
-    JUPYTER = True if main.get_ipython else False
-except:
-    JUPYTER = False
+from forgebox.utils import JUPYTER
 
 if JUPYTER: from tqdm import tqdm_notebook as tn
 

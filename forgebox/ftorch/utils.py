@@ -1,4 +1,4 @@
-from .train import JUPYTER
+from forgebox.utils import JUPYTER
 if JUPYTER: from IPython.display import display
 import torch
 import os
