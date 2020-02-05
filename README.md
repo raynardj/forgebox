@@ -134,7 +134,7 @@ Layers are mostly pytorch modules, examples:
 
 GELU:
 ```python
-from forgebox.ftorch.layers import GELU
+from forgebox.layers import GELU
 
 gelu = GELU()
 x = gelu(x)
