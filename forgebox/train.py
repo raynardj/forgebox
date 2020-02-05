@@ -1,17 +1,11 @@
 import os
 from datetime import datetime
-import __main__ as main
 from tqdm import trange
 from functools import reduce
 import pandas as pd
 from collections import namedtuple
 from types import MethodType
-
-
-try:
-    JUPYTER = True if main.get_ipython else False
-except:
-    JUPYTER = False
+from forgebox.utils import JUPYTER
 
 if JUPYTER: from tqdm import tqdm_notebook as tn
 
@@ -19,7 +13,7 @@ TrainerBatch = namedtuple("TrainerBatch", ("epoch", "i", "data", "trainer"))
 
 class Trainer:
     def __init__(self, train_data, train_len, val_data=None, val_len=None,  batch_size=16, fg=None,
-                 print_on=20, fields=None, is_log=True,
+                 print_on=20, fields=None, is_log=True,batch_start_zg = True,
                  conn=None, modelName="model", tryName="try", callbacks=[], val_callbacks=[],jupyter = JUPYTER):
         """
         A training iteration wraper
@@ -69,6 +63,7 @@ class Trainer:
 
         self.callbacks = callbacks
         self.val_callbacks = val_callbacks
+        self.batch_start_zg = batch_start_zg
 
         self.before_train_batch_list = []
         self.before_val_batch_list = []
@@ -131,6 +126,8 @@ class Trainer:
         self.data = next(self.train_gen)
 
         for f in self.before_train_batch_list: f()
+
+        if self.batch_start_zg: self.opt.zero_all()
 
         if hasattr(self,"data_to_device"): self.data_to_device()
 
