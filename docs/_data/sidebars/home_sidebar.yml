@@ -10,8 +10,8 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
-      title: Title
-      url: /forgebox_test
+      title: DataFrame PipeLine
+      url: /dataframe_pipeline
     output: web
     title: forgebox
   output: web

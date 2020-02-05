@@ -2,9 +2,22 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {}
+index = {"Node": "dataframe_pipeline.ipynb",
+         "chunkNode": "dataframe_pipeline.ipynb",
+         "frameEdge": "dataframe_pipeline.ipynb",
+         "colEdge": "dataframe_pipeline.ipynb",
+         "donothing": "dataframe_pipeline.ipynb",
+         "nothing": "dataframe_pipeline.ipynb",
+         "fillNaEdge": "dataframe_pipeline.ipynb",
+         "engTokEdge": "dataframe_pipeline.ipynb",
+         "CNTok": "dataframe_pipeline.ipynb",
+         "capMinMaxEdge": "dataframe_pipeline.ipynb",
+         "trackVocabEdge": "dataframe_pipeline.ipynb",
+         "saveCSV": "dataframe_pipeline.ipynb",
+         "saveSQL": "dataframe_pipeline.ipynb",
+         "eng_twt_tk": "dataframe_pipeline.ipynb"}
 
-modules = []
+modules = ["pipe.py"]
 
 doc_url = "https://raynardj.github.io/forgebox/"
 
