@@ -1,1 +1,6 @@
-nbs/*
+nbs/
+*.backup
+.idea
+Makefile
+*.pyc
+__pycache__
