@@ -15,9 +15,11 @@ index = {"Node": "dataframe_pipeline.ipynb",
          "trackVocabEdge": "dataframe_pipeline.ipynb",
          "saveCSV": "dataframe_pipeline.ipynb",
          "saveSQL": "dataframe_pipeline.ipynb",
-         "eng_twt_tk": "dataframe_pipeline.ipynb"}
+         "eng_twt_tk": "dataframe_pipeline.ipynb",
+         "Opts": "optimizers.ipynb"}
 
-modules = ["pipe.py"]
+modules = ["pipe.py",
+           "ftorch/optimizer.py"]
 
 doc_url = "https://raynardj.github.io/forgebox/"
 

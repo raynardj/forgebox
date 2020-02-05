@@ -5,7 +5,7 @@ from setuptools import find_packages
 
 setup(
     name="forgebox",
-    version="0.1.0",
+    version="0.1.1",
     author="raynardj",
     author_email="raynard@rasenn.com",
     description="Tools for managing machine learning",

@@ -1,6 +1,7 @@
 {
   "forgebox": {
     "Overview": "/",
-    "DataFrame PipeLine": "/dataframe_pipeline"
+    "DataFrame PipeLine": "/dataframe_pipeline",
+    "Optimizer Mangement": "/optimizers"
   }
 }
