@@ -4,5 +4,5 @@
 
 ## Installation
 ```
-pip install --force-resinstall  https://github.com/raynardj/forgebox
+pip install forgebox
 ```

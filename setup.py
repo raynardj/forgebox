@@ -4,7 +4,7 @@ from setuptools import find_packages
 # data_files = [('etc', ['etc/forgebox.cfg'])]
 
 setup(
-    name="ai-forge",
+    name="forgebox",
     version="0.1.0",
     author="raynardj",
     author_email="raynard@rasenn.com",
