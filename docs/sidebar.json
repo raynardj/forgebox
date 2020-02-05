@@ -1,6 +1,7 @@
 {
   "forgebox": {
     "Overview": "/",
+    "CUDA GPU Management": "/CUDA_GPU_Management",
     "DataFrame PipeLine": "/dataframe_pipeline",
     "Optimizer Mangement": "/optimizers"
   }

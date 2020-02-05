@@ -2,7 +2,9 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"Node": "dataframe_pipeline.ipynb",
+index = {"CudaDevice": "CUDA_GPU_Management.ipynb",
+         "CudaHandler": "CUDA_GPU_Management.ipynb",
+         "Node": "dataframe_pipeline.ipynb",
          "chunkNode": "dataframe_pipeline.ipynb",
          "frameEdge": "dataframe_pipeline.ipynb",
          "colEdge": "dataframe_pipeline.ipynb",
@@ -18,7 +20,8 @@ index = {"Node": "dataframe_pipeline.ipynb",
          "eng_twt_tk": "dataframe_pipeline.ipynb",
          "Opts": "optimizers.ipynb"}
 
-modules = ["pipe.py",
+modules = ["ftorch/cuda.py",
+           "pipe.py",
            "ftorch/optimizer.py"]
 
 doc_url = "https://raynardj.github.io/forgebox/"
