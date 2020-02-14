@@ -18,11 +18,15 @@ index = {"CudaDevice": "CUDA_GPU_Management.ipynb",
          "saveCSV": "dataframe_pipeline.ipynb",
          "saveSQL": "dataframe_pipeline.ipynb",
          "eng_twt_tk": "dataframe_pipeline.ipynb",
-         "Opts": "optimizers.ipynb"}
+         "Opts": "optimizers.ipynb",
+         "test_nbdev_func": "test_nbdev.ipynb",
+         "different_file_func": "test_nbdev.ipynb"}
 
 modules = ["ftorch/cuda.py",
            "pipe.py",
-           "ftorch/optimizer.py"]
+           "ftorch/optimizer.py",
+           "test_nbdev.py",
+           "different_file.py"]
 
 doc_url = "https://raynardj.github.io/forgebox/"
 
