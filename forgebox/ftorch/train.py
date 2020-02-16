@@ -120,6 +120,9 @@ class Trainer(Universal_Trainer):
             self.opt = Opts(opts)
 
     def initialize_gpu(self,using_gpu):
+        """
+        decide whether to use cuda device
+        """
         self.using_gpu = False
         if (using_gpu == True) and (torch.cuda.is_available()):
             self.using_gpu = True
