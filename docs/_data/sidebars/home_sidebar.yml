@@ -13,7 +13,7 @@ entries:
       title: CUDA GPU Management
       url: /CUDA_GPU_Management
     - output: web,pdf
-      title: Netflix Dataset
+      title: NLP data
       url: /bilstm-based-search-on-netflix-data
     - output: web,pdf
       title: create different file

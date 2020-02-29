@@ -2,7 +2,7 @@
   "forgebox": {
     "Overview": "/",
     "CUDA GPU Management": "/CUDA_GPU_Management",
-    "Netflix Dataset": "/bilstm-based-search-on-netflix-data",
+    "NLP data": "/bilstm-based-search-on-netflix-data",
     "create different file": "/create_different",
     "DataFrame PipeLine": "/dataframe_pipeline",
     "Optimizer Mangement": "/optimizers"
