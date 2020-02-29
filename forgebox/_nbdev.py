@@ -4,6 +4,11 @@ __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
 index = {"CudaDevice": "CUDA_GPU_Management.ipynb",
          "CudaHandler": "CUDA_GPU_Management.ipynb",
+         "split_df": "bilstm-based-search-on-netflix-data.ipynb",
+         "Vocab": "bilstm-based-search-on-netflix-data.ipynb",
+         "seqData": "bilstm-based-search-on-netflix-data.ipynb",
+         "arrData": "bilstm-based-search-on-netflix-data.ipynb",
+         "fuse": "bilstm-based-search-on-netflix-data.ipynb",
          "Node": "dataframe_pipeline.ipynb",
          "chunkNode": "dataframe_pipeline.ipynb",
          "frameEdge": "dataframe_pipeline.ipynb",
@@ -18,15 +23,12 @@ index = {"CudaDevice": "CUDA_GPU_Management.ipynb",
          "saveCSV": "dataframe_pipeline.ipynb",
          "saveSQL": "dataframe_pipeline.ipynb",
          "eng_twt_tk": "dataframe_pipeline.ipynb",
-         "Opts": "optimizers.ipynb",
-         "test_nbdev_func": "test_nbdev.ipynb",
-         "different_file_func": "test_nbdev.ipynb"}
+         "Opts": "optimizers.ipynb"}
 
 modules = ["ftorch/cuda.py",
+           "data/nlp.py",
            "pipe.py",
-           "ftorch/optimizer.py",
-           "test_nbdev.py",
-           "different_file.py"]
+           "ftorch/optimizer.py"]
 
 doc_url = "https://raynardj.github.io/forgebox/"
 

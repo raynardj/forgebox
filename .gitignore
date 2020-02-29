@@ -1,4 +1,3 @@
-nbs/
 *.backup
 .idea
 Makefile
@@ -7,3 +6,4 @@ __pycache__
 build/
 dist/
 *.egg-info
+nbs/data
