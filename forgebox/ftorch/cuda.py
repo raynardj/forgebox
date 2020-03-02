@@ -53,7 +53,10 @@ class CudaHandler(object):
         some_torch_tensor.to(dev)
         """
         if torch.cuda.is_available() == False:
+            self.has_cuda =False
             return None
+        else:
+            self.has_cuda = True
         self.counts = torch.cuda.device_count()
         print(f">>> {self.counts} cuda devices found >>>")
         self.devices = list()
@@ -62,6 +65,9 @@ class CudaHandler(object):
             self.devices.append(d)
             print(f"{d}")
             setattr(self, f"gpu{i}", d)
+
+    def __bool__(self):
+        return self.has_cuda
 
     def __len__(self):
         """
