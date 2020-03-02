@@ -59,9 +59,10 @@ class Trainer(Universal_Trainer):
         self.shuffle = shuffle
         self.num_workers = num_workers
         train_data = self.ds_to_dl(dataset)
-        val_data = self.ds_to_dl(val_dataset) if val_dataset else None
+        val = (len(val_dataset)>0)
+        val_data = self.ds_to_dl(val_dataset) if val else None
         train_len = len(train_data)
-        val_len = len(val_data) if val_data else None
+        val_len = len(val_data) if val else None
         self.before_train_batch_list = []
         self.before_val_batch_list = []
         super().__init__(train_data, train_len=train_len, val_data=val_data, val_len=val_len,
@@ -119,6 +120,9 @@ class Trainer(Universal_Trainer):
             self.opt = Opts(opts)
 
     def initialize_gpu(self,using_gpu):
+        """
+        decide whether to use cuda device
+        """
         self.using_gpu = False
         if (using_gpu == True) and (torch.cuda.is_available()):
             self.using_gpu = True

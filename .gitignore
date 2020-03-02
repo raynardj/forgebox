@@ -1,2 +1,10 @@
 nbs/*
+*.backup
+.idea
+Makefile
 *.pyc
+__pycache__
+build/
+dist/
+*.egg-info
+nbs/data

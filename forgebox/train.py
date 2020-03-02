@@ -60,6 +60,7 @@ class Trainer:
         self.val_data = val_data
         self.val_len = val_len
         self.print_on = print_on
+        self.jupyter = jupyter
 
         self.callbacks = callbacks
         self.val_callbacks = val_callbacks
@@ -85,7 +86,7 @@ class Trainer:
             return next(self.testgen)
 
     def progress(self, l):
-        return tn(range(l)) if JUPYTER else trange(l)
+        return tn(range(l)) if self.jupyter else trange(l)
 
     def get_time(self):
         return datetime.now().strftime("%Y-%m-%d %H:%M:%S.%f")
@@ -198,7 +199,7 @@ class Trainer:
         del window_dict["iter"]
 
         desc = "⭐[ep_%s_i_%s]" % (epoch, i)
-        if JUPYTER:
+        if self.jupyter:
             t.set_postfix(window_dict)
         else:
             if self.fields != None:
