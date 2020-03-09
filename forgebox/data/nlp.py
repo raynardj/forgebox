@@ -59,7 +59,9 @@ class Vocab(object):
 
     def counter(self):
         vals = np.array(list((k,v) for k,v in dict(Counter(self.word_beads)).items()))
-        self.words = pd.DataFrame({"tok":vals[:,0],"ct":vals[:,1]}).sort_values(by= "ct",ascending=False)\
+        self.words = pd.DataFrame({"tok":vals[:,0],"ct":vals[:,1]})
+        self.words["ct"] = self.words["ct"].apply(int)
+        self.words = self.words.sort_values(by= "ct",ascending=False)\
         .reset_index().drop("index",axis=1).head(self.max_vocab-2)
         self.words["idx"] = (np.arange(len(self.words))+2)
         self.words=pd.concat([self.words,pd.DataFrame({"tok":["<eos>","<mtk>"],"ct":[-1,-1],"idx":[0,1]})])
