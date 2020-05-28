@@ -22,6 +22,9 @@ entries:
       title: DataFrame PipeLine
       url: /dataframe_pipeline
     - output: web,pdf
+      title: 03 Imports
+      url: /imports
+    - output: web,pdf
       title: Optimizer Mangement
       url: /optimizers
     output: web
