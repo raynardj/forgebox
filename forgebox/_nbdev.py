@@ -23,7 +23,10 @@ index = {"CudaDevice": "CUDA_GPU_Management.ipynb",
          "saveCSV": "dataframe_pipeline.ipynb",
          "saveSQL": "dataframe_pipeline.ipynb",
          "eng_twt_tk": "dataframe_pipeline.ipynb",
+         "to_optim": "imports.ipynb",
+         "__all__": "imports.ipynb",
          "Path.ls": "imports.ipynb",
+         "torch.nn.Module.to_optim": "imports.ipynb",
          "Opts": "optimizers.ipynb"}
 
 modules = ["ftorch/cuda.py",
