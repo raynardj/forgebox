@@ -10,6 +10,12 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
+      title: Controllable loop process
+      url: /loop
+    - output: web,pdf
+      title: Title
+      url: /train
+    - output: web,pdf
       title: CUDA GPU Management
       url: /CUDA_GPU_Management
     - output: web,pdf

@@ -6,6 +6,9 @@ __all__ = ['to_optim', '__all__']
 
 __all__ = ["pd","np","partial","Path","json","Counter","plt","os","sys","glob","Image"]
 import pandas as pd
+
+pd.DataFrame.vc = lambda self,col:pd.DataFrame(self[col].value_counts())
+
 import numpy as np
 from pathlib import Path
 import json

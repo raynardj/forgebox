@@ -2,7 +2,15 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"CudaDevice": "CUDA_GPU_Management.ipynb",
+index = {"method4all": "10_loop.ipynb",
+         "StorageCore": "10_loop.ipynb",
+         "Loop": "10_loop.ipynb",
+         "ProgressBar": "10_loop.ipynb",
+         "Event": "10_loop.ipynb",
+         "DataLoop": "11_train.ipynb",
+         "BeforeBatch": "11_train.ipynb",
+         "BeforeForward": "11_train.ipynb",
+         "CudaDevice": "CUDA_GPU_Management.ipynb",
          "CudaHandler": "CUDA_GPU_Management.ipynb",
          "split_df": "bilstm-based-search-on-netflix-data.ipynb",
          "Vocab": "bilstm-based-search-on-netflix-data.ipynb",
@@ -25,11 +33,14 @@ index = {"CudaDevice": "CUDA_GPU_Management.ipynb",
          "eng_twt_tk": "dataframe_pipeline.ipynb",
          "to_optim": "imports.ipynb",
          "__all__": "imports.ipynb",
+         "pd.DataFrame.vc": "imports.ipynb",
          "Path.ls": "imports.ipynb",
          "torch.nn.Module.to_optim": "imports.ipynb",
          "Opts": "optimizers.ipynb"}
 
-modules = ["ftorch/cuda.py",
+modules = ["loop.py",
+           "loops.py",
+           "ftorch/cuda.py",
            "data/nlp.py",
            "pipe.py",
            "imports.py",
