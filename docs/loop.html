@@ -80,7 +80,7 @@ The decorated function under Loop class can be used on outer layer</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Loop" class="doc_header"><code>class</code> <code>Loop</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L58" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Loop</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>name</code></strong>=<em><code>None</code></em>)</p>
+<h2 id="Loop" class="doc_header"><code>class</code> <code>Loop</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L67" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Loop</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>name</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -120,7 +120,7 @@ The decorated function under Loop class can be used on outer layer</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>layer:hahahha</pre>
+<pre>layer:&gt;&gt;&gt;hahahha</pre>
 </div>
 
 </div>
@@ -136,12 +136,28 @@ The decorated function under Loop class can be used on outer layer</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Printer</span><span class="p">(</span><span class="n">Loop</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;epoch_</span><span class="si">{self.core.epoch}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;i_</span><span class="si">{self.core.i}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
         
+    <span class="k">def</span> <span class="nf">start_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;start of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">end_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;end of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">l2</span> <span class="o">=</span> <span class="n">Printer</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
-<span class="n">l2</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">l2</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -154,11 +170,13 @@ The decorated function under Loop class can be used on outer layer</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>epoch_0	i_0	5
-epoch_0	i_1	6
-epoch_0	i_2	7
-epoch_0	i_3	8
-epoch_0	i_4	9
+<pre>start of epoch 0
+i_0	5
+i_1	6
+i_2	7
+i_3	8
+i_4	9
+end of epoch 0
 </pre>
 </div>
 </div>
@@ -185,7 +203,7 @@ epoch_0	i_4	9
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProgressBar" class="doc_header"><code>class</code> <code>ProgressBar</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L130" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProgressBar</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>jupyter</code></strong>=<em><code>True</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="ProgressBar" class="doc_header"><code>class</code> <code>ProgressBar</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L198" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProgressBar</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>jupyter</code></strong>=<em><code>True</code></em>, <strong><code>mininterval</code></strong>=<em><code>0.1</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -202,7 +220,21 @@ epoch_0	i_4	9
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ProgressBar</span><span class="p">(</span><span class="n">Loop</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span><span class="n">jupyter</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="k">import</span> <span class="n">tqdm</span><span class="p">,</span><span class="n">tqdm_notebook</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pb</span> <span class="o">=</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="n">Loop</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">)),</span><span class="n">jupyter</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">pb</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -216,6 +248,276 @@ epoch_0	i_4	9
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Error-Handling">Error Handling<a class="anchor-link" href="#Error-Handling">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In cases you don't want error stop the iteration, meanwhile taking down all the error message</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="Tolerate" class="doc_header"><code>class</code> <code>Tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L241" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Tolerate</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+</blockquote>
+<p>Tolerate any error happened downstream
+layer2 = Tolerate(upstream_iterable)</p>
+<h1 id="build-downstream-tasks">build downstream tasks<a class="anchor-link" href="#build-downstream-tasks">&#182;</a></h1><p>layer3 = OtherApplication(layer2)
+layer3.run()</p>
+<h1 id="show-the-happened-error-message">show the happened error message<a class="anchor-link" href="#show-the-happened-error-message">&#182;</a></h1><p>layer3.error_list()</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="LambdaCall" class="doc_header"><code>class</code> <code>LambdaCall</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L284" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LambdaCall</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+</blockquote>
+<p>Basic loop class</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">l1</span> <span class="o">=</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="n">Loop</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)))</span>
+<span class="n">error_loop</span> <span class="o">=</span> <span class="n">LambdaCall</span><span class="p">(</span><span class="n">l1</span><span class="p">,</span><span class="n">func</span><span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:(</span><span class="mi">5</span><span class="o">-</span><span class="n">x</span><span class="o">.</span><span class="n">element</span><span class="p">)</span><span class="o">**</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Running this will yield error</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="highlight"><pre><span></span><span class="n">error_loop</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">error_on_purpose</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">element</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;value too small, </span><span class="si">{x.element}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="n">l1</span> <span class="o">=</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="n">Loop</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)))</span>
+<span class="c1"># add the tolerate layer in between</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="n">Tolerate</span><span class="p">(</span><span class="n">l1</span><span class="p">)</span>
+<span class="n">tolerated_loop</span> <span class="o">=</span> <span class="n">LambdaCall</span><span class="p">(</span><span class="n">l2</span><span class="p">,</span><span class="n">func</span><span class="o">=</span><span class="n">error_on_purpose</span><span class="p">)</span>
+<span class="n">l2</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">l2</span><span class="o">.</span><span class="n">error_list</span><span class="p">())</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>stage</th>
+      <th>i</th>
+      <th>epoch</th>
+      <th>error</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>middle</td>
+      <td>5</td>
+      <td>0</td>
+      <td>value too small, 6</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>middle</td>
+      <td>6</td>
+      <td>0</td>
+      <td>value too small, 7</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>middle</td>
+      <td>7</td>
+      <td>0</td>
+      <td>value too small, 8</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>middle</td>
+      <td>8</td>
+      <td>0</td>
+      <td>value too small, 9</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">l2</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Loop layer Tolerate summary:
+==================================================
+🍰layer0.0	layer:&gt;&gt;&gt;Loop
+--------------------------------------------------
+🍰layer1.0	layer:&gt;&gt;&gt;Progressb Bar
+	[🐍func_name]	pgbar_data
+	[⛰doc]	
+        update progress bar with python dictionary
+        data: python dictionary
+        
+	[😝var]	self,data
+	[😜names]	t,set_postfix
+	...................................
+	[🐍func_name]	pgbar_description
+	[⛰doc]	
+        update progress bar prefix with text string
+        
+	[😝var]	self,text
+	[😜names]	t,set_description_str
+	...................................
+--------------------------------------------------
+🍰layer2.0	layer:&gt;&gt;&gt;Tolerate
+	[🐍func_name]	error_list
+	[⛰doc]	
+        A list of errors happend so far
+        
+	[😝var]	self
+	[😜names]	errors
+	...................................
+--------------------------------------------------
+🍰layer3.0	layer:&gt;&gt;&gt;Lambda&lt;0x112cbd690&gt;
+--------------------------------------------------
+==================================================
+
 </pre>
 </div>
 </div>
@@ -295,22 +597,26 @@ epoch_0	i_4	9
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Loop layer Application summary:
 ==================================================
-🍰layer0.0	layer:Loop
+🍰layer0.0	layer:&gt;&gt;&gt;Loop
 --------------------------------------------------
-🍰layer1.0	layer:Progressb Bar
-	[🐍Function:pgbar_data]	
+🍰layer1.0	layer:&gt;&gt;&gt;Progressb Bar
+	[🐍func_name]	pgbar_data
+	[⛰doc]	
         update progress bar with python dictionary
         data: python dictionary
         
-	 (&#39;self&#39;, &#39;data&#39;, &#39;t&#39;, &#39;set_postfix&#39;)
+	[😝var]	self,data
+	[😜names]	t,set_postfix
 	...................................
-	[🐍Function:pgbar_description]	
+	[🐍func_name]	pgbar_description
+	[⛰doc]	
         update progress bar prefix with text string
         
-	 (&#39;self&#39;, &#39;text&#39;, &#39;t&#39;, &#39;set_description_str&#39;)
+	[😝var]	self,text
+	[😜names]	t,set_description_str
 	...................................
 --------------------------------------------------
-🍰layer2.0	layer:Application
+🍰layer2.0	layer:&gt;&gt;&gt;Application
 --------------------------------------------------
 ==================================================
 
@@ -368,7 +674,7 @@ epoch_0	i_4	9
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Event" class="doc_header"><code>class</code> <code>Event</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L175" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Event</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>event_name</code></strong>=<em><code>None</code></em>, <strong><code>cbs</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="Event" class="doc_header"><code>class</code> <code>Event</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L293" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Event</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>event_name</code></strong>=<em><code>None</code></em>, <strong><code>cbs</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>An event is the landmark with in 1 iteration</p>
 
@@ -459,140 +765,48 @@ epoch_0	i_4	9
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Loop layer after_to_string summary:
 ==================================================
-🍰layer0.0	layer:base
+🍰layer0.0	layer:&gt;&gt;&gt;base
 --------------------------------------------------
-🍰layer1.0	layer:Progressb Bar
-	[🐍Function:pgbar_data]	
+🍰layer1.0	layer:&gt;&gt;&gt;Progressb Bar
+	[🐍func_name]	pgbar_data
+	[⛰doc]	
         update progress bar with python dictionary
         data: python dictionary
         
-	 (&#39;self&#39;, &#39;data&#39;, &#39;t&#39;, &#39;set_postfix&#39;)
+	[😝var]	self,data
+	[😜names]	t,set_postfix
 	...................................
-	[🐍Function:pgbar_description]	
+	[🐍func_name]	pgbar_description
+	[⛰doc]	
         update progress bar prefix with text string
         
-	 (&#39;self&#39;, &#39;text&#39;, &#39;t&#39;, &#39;set_description_str&#39;)
+	[😝var]	self,text
+	[😜names]	t,set_description_str
 	...................................
 --------------------------------------------------
-🍰layer2.0	layer:ToString
+🍰layer2.0	layer:&gt;&gt;&gt;ToString
 --------------------------------------------------
-🍰layer3.0	layer:after_to_string
-	[🐍Function:on_after_to_string]	
+🍰layer3.0	layer:&gt;&gt;&gt;after_to_string
+	[🐍func_name]	on_after_to_string
+	[⛰doc]	
             Excute callback for event:after_to_string
         
-	 (&#39;self&#39;, &#39;__call__&#39;)
+	[😝var]	self
+	[😜names]	__call__
 	...................................
-	[🐍Function:set_after_to_string]	
+	[🐍func_name]	set_after_to_string
+	[⛰doc]	
             Append new callback for event:after_to_string
             Use this function as decorator
         
-	 (&#39;self&#39;, &#39;f&#39;, &#39;on&#39;)
+	[😝var]	self,f
+	[😜names]	on
 	...................................
 --------------------------------------------------
 ==================================================
 
 </pre>
 </div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">code</span><span class="o">=</span> <span class="n">l</span><span class="o">.</span><span class="n">pgbar_data</span><span class="o">.</span><span class="vm">__code__</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">code</span><span class="o">.</span><span class="n">co_varnames</span><span class="o">+</span><span class="n">code</span><span class="o">.</span><span class="n">co_names</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(&#39;self&#39;, &#39;data&#39;, &#39;t&#39;, &#39;set_postfix&#39;)</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">code</span><span class="o">.</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>2</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">code</span><span class="o">.</span><span class="n">co_varnames</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(&#39;self&#39;, &#39;f&#39;)</pre>
-</div>
-
 </div>
 
 </div>
