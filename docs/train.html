@@ -41,7 +41,7 @@ summary: "summary"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DataLoop" class="doc_header"><code>class</code> <code>DataLoop</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataLoop</code>(<strong><code>dataloader</code></strong>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="DataLoop" class="doc_header"><code>class</code> <code>DataLoop</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataLoop</code>(<strong><code>dataloader</code></strong>=<em><code>None</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -62,7 +62,7 @@ summary: "summary"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="BeforeForward" class="doc_header"><code>class</code> <code>BeforeForward</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BeforeForward</code>() :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
+<h2 id="BeforeForward" class="doc_header"><code>class</code> <code>BeforeForward</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BeforeForward</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
 </blockquote>
 <p>An event is the landmark with in 1 iteration</p>
 
@@ -83,7 +83,7 @@ summary: "summary"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Forward" class="doc_header"><code>class</code> <code>Forward</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Forward</code>() :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
+<h2 id="EvalForward" class="doc_header"><code>class</code> <code>EvalForward</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EvalForward</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
 </blockquote>
 <p>An event is the landmark with in 1 iteration</p>
 
@@ -104,7 +104,7 @@ summary: "summary"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="BeforeLoss" class="doc_header"><code>class</code> <code>BeforeLoss</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BeforeLoss</code>() :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
+<h2 id="Forward" class="doc_header"><code>class</code> <code>Forward</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Forward</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
 </blockquote>
 <p>An event is the landmark with in 1 iteration</p>
 
@@ -125,12 +125,853 @@ summary: "summary"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="BeforeLoss" class="doc_header"><code>class</code> <code>BeforeLoss</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>BeforeLoss</code>() :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
+<h2 id="CalcLoss" class="doc_header"><code>class</code> <code>CalcLoss</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>CalcLoss</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
 </blockquote>
 <p>An event is the landmark with in 1 iteration</p>
 
 </div>
 
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="Backward" class="doc_header"><code>class</code> <code>Backward</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Backward</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
+</blockquote>
+<p>An event is the landmark with in 1 iteration</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="OptStep" class="doc_header"><code>class</code> <code>OptStep</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>OptStep</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Event"><code>Event</code></a></p>
+</blockquote>
+<p>An event is the landmark with in 1 iteration</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">types</span> <span class="k">import</span> <span class="n">MethodType</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">LoopStack</span><span class="p">:</span>
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_Loops</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="o">*</span><span class="n">Loops</span><span class="p">):</span>
+        <span class="bp">cls</span><span class="o">.</span><span class="n">Loops</span> <span class="o">=</span> <span class="n">Loops</span>
+        <span class="k">def</span> <span class="nf">init</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">iterable</span><span class="o">=</span><span class="p">[]):</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">iterable</span>
+            <span class="k">for</span> <span class="n">L</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Loops</span><span class="p">:</span>
+                <span class="n">layer</span> <span class="o">=</span> <span class="n">L</span><span class="p">(</span><span class="n">last</span><span class="p">)</span> 
+                <span class="n">last</span> <span class="o">=</span> <span class="n">layer</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">layer</span> <span class="o">=</span> <span class="n">last</span>
+        
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="s2">&quot;__init__&quot;</span><span class="p">,</span><span class="n">MethodType</span><span class="p">(</span><span class="n">init</span><span class="p">,</span><span class="bp">cls</span><span class="p">))</span>
+        <span class="k">return</span> <span class="bp">cls</span>
+    
+    <span class="k">def</span> <span class="nf">__getattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">f</span><span class="s2">&quot;LoopStack with</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="o">+</span><span class="s2">&quot;</span><span class="se">\n\t</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">STANDARD_TRAIN_PROCESS</span> <span class="o">=</span> <span class="p">[</span><span class="n">BeforeForward</span><span class="p">,</span><span class="n">Forward</span><span class="p">,</span><span class="n">CalcLoss</span><span class="p">,</span><span class="n">Backward</span><span class="p">,</span><span class="n">OptStep</span><span class="p">]</span>
+<span class="n">STANDARD_EVAL_PROCESS</span> <span class="o">=</span> <span class="p">[</span><span class="n">BeforeForward</span><span class="p">,</span><span class="n">EvalForward</span><span class="p">,</span><span class="n">CalcLoss</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">TrainLoop</span> <span class="o">=</span> <span class="n">LoopStack</span><span class="o">.</span><span class="n">from_Loops</span><span class="p">(</span><span class="n">DataLoop</span><span class="p">,</span>
+                                 <span class="n">ProgressBar</span><span class="p">,</span>
+                                 <span class="n">Tolerate</span><span class="p">,</span>
+                                 <span class="o">*</span><span class="n">STANDARD_TRAIN_PROCESS</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_loop</span> <span class="o">=</span> <span class="n">TrainLoop</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_loop</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_loop</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Loop layer opt_step summary:
+==================================================
+🍰layer0.0	layer:&gt;&gt;&gt;DataLoop
+--------------------------------------------------
+🍰layer1.0	layer:&gt;&gt;&gt;Progressb Bar
+	[🐍func_name]	pgbar_data
+	[⛰doc]	
+        update progress bar with python dictionary
+        data: python dictionary
+        
+	[😝var]	self,data
+	[😜names]	t,set_postfix
+	...................................
+	[🐍func_name]	pgbar_description
+	[⛰doc]	
+        update progress bar prefix with text string
+        
+	[😝var]	self,text
+	[😜names]	t,set_description_str
+	...................................
+--------------------------------------------------
+🍰layer2.0	layer:&gt;&gt;&gt;Tolerate
+	[🐍func_name]	error_list
+	[⛰doc]	
+        A list of errors happend so far
+        
+	[😝var]	self
+	[😜names]	errors
+	...................................
+--------------------------------------------------
+🍰layer3.0	layer:&gt;&gt;&gt;before_forward
+	[🐍func_name]	on_before_forward
+	[⛰doc]	
+            Excute callback for event:before_forward
+        
+	[😝var]	self
+	[😜names]	__call__
+	...................................
+	[🐍func_name]	set_before_forward
+	[⛰doc]	
+            Append new callback for event:before_forward
+            Use this function as decorator
+        
+	[😝var]	self,f
+	[😜names]	on
+	...................................
+--------------------------------------------------
+🍰layer4.0	layer:&gt;&gt;&gt;forward
+	[🐍func_name]	on_forward
+	[⛰doc]	
+            Excute callback for event:forward
+        
+	[😝var]	self
+	[😜names]	__call__
+	...................................
+	[🐍func_name]	set_forward
+	[⛰doc]	
+            Append new callback for event:forward
+            Use this function as decorator
+        
+	[😝var]	self,f
+	[😜names]	on
+	...................................
+--------------------------------------------------
+🍰layer5.0	layer:&gt;&gt;&gt;calc_loss
+	[🐍func_name]	on_calc_loss
+	[⛰doc]	
+            Excute callback for event:calc_loss
+        
+	[😝var]	self
+	[😜names]	__call__
+	...................................
+	[🐍func_name]	set_calc_loss
+	[⛰doc]	
+            Append new callback for event:calc_loss
+            Use this function as decorator
+        
+	[😝var]	self,f
+	[😜names]	on
+	...................................
+--------------------------------------------------
+🍰layer6.0	layer:&gt;&gt;&gt;backward
+	[🐍func_name]	on_backward
+	[⛰doc]	
+            Excute callback for event:backward
+        
+	[😝var]	self
+	[😜names]	__call__
+	...................................
+	[🐍func_name]	set_backward
+	[⛰doc]	
+            Append new callback for event:backward
+            Use this function as decorator
+        
+	[😝var]	self,f
+	[😜names]	on
+	...................................
+--------------------------------------------------
+🍰layer7.0	layer:&gt;&gt;&gt;opt_step
+	[🐍func_name]	on_opt_step
+	[⛰doc]	
+            Excute callback for event:opt_step
+        
+	[😝var]	self
+	[😜names]	__call__
+	...................................
+	[🐍func_name]	set_opt_step
+	[⛰doc]	
+            Append new callback for event:opt_step
+            Use this function as decorator
+        
+	[😝var]	self,f
+	[😜names]	on
+	...................................
+--------------------------------------------------
+==================================================
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@train_loop</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">set_opt_step</span>
+<span class="k">def</span> <span class="nf">opt_step</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;step&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_loop</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+step
+
+</pre>
+</div>
 </div>
 
 </div>
