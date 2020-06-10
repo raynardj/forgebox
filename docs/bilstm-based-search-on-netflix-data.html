@@ -409,7 +409,7 @@ Name: rating, dtype: int64</pre>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;Total genre: {len(genre)}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total genre: {len(genre)}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">genre</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -518,7 +518,7 @@ return train_df, valid_df</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_df</span><span class="p">,</span><span class="n">val_df</span> <span class="o">=</span> <span class="n">split_df</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">valid</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;train:{len(train_df)}</span><span class="se">\t</span><span class="s2">valid:{len(val_df)}&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;train:{len(train_df)}</span><span class="se">\t</span><span class="s2">valid:{len(val_df)}&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -545,7 +545,7 @@ return train_df, valid_df</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="k">import</span> <span class="n">TweetTokenizer</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">TweetTokenizer</span>
 <span class="n">tkz</span> <span class="o">=</span> <span class="n">TweetTokenizer</span><span class="p">()</span>
 <span class="k">def</span> <span class="nf">tokenize</span><span class="p">(</span><span class="n">txt</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">tkz</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">txt</span><span class="p">)</span>
@@ -770,7 +770,7 @@ return train_df, valid_df</p>
 </blockquote>
 <p>An abstract class representing a :class:<code>Dataset</code>.</p>
 <p>All datasets that represent a map from keys to data samples should subclass
-it. All subclasses should overrite :meth:<code>__getitem__</code>, supporting fetching a
+it. All subclasses should overwrite :meth:<code>__getitem__</code>, supporting fetching a
 data sample for a given key. Subclasses could also optionally overwrite
 :meth:<code>__len__</code>, which is expected to return the size of the dataset by many
 :class:<code>~torch.utils.data.Sampler</code> implementations and the default options
@@ -801,7 +801,7 @@ of :class:<code>~torch.utils.data.DataLoader</code>.</p>
 </blockquote>
 <p>An abstract class representing a :class:<code>Dataset</code>.</p>
 <p>All datasets that represent a map from keys to data samples should subclass
-it. All subclasses should overrite :meth:<code>__getitem__</code>, supporting fetching a
+it. All subclasses should overwrite :meth:<code>__getitem__</code>, supporting fetching a
 data sample for a given key. Subclasses could also optionally overwrite
 :meth:<code>__len__</code>, which is expected to return the size of the dataset by many
 :class:<code>~torch.utils.data.Sampler</code> implementations and the default options
@@ -1009,7 +1009,7 @@ of :class:<code>~torch.utils.data.DataLoader</code>.</p>
 </blockquote>
 <p>An abstract class representing a :class:<code>Dataset</code>.</p>
 <p>All datasets that represent a map from keys to data samples should subclass
-it. All subclasses should overrite :meth:<code>__getitem__</code>, supporting fetching a
+it. All subclasses should overwrite :meth:<code>__getitem__</code>, supporting fetching a
 data sample for a given key. Subclasses could also optionally overwrite
 :meth:<code>__len__</code>, which is expected to return the size of the dataset by many
 :class:<code>~torch.utils.data.Sampler</code> implementations and the default options
@@ -1093,7 +1093,7 @@ of :class:<code>~torch.utils.data.DataLoader</code>.</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="k">import</span> <span class="n">nn</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
 <span class="kn">import</span> <span class="nn">torch</span>
 </pre></div>
 
@@ -1108,7 +1108,7 @@ of :class:<code>~torch.utils.data.DataLoader</code>.</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">basicNLP</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hs</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">hs</span> <span class="o">=</span> <span class="n">hs</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">emb</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">vocab</span><span class="p">),</span><span class="n">hs</span><span class="p">)</span>
@@ -1437,9 +1437,9 @@ Wall time: 6.44 µs
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.ftorch.train</span> <span class="k">import</span> <span class="n">Trainer</span>
-<span class="kn">from</span> <span class="nn">forgebox.ftorch.callbacks</span> <span class="k">import</span> <span class="n">stat</span>
-<span class="kn">from</span> <span class="nn">forgebox.ftorch.metrics</span> <span class="k">import</span> <span class="n">metric4_bi</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.ftorch.train</span> <span class="kn">import</span> <span class="n">Trainer</span>
+<span class="kn">from</span> <span class="nn">forgebox.ftorch.callbacks</span> <span class="kn">import</span> <span class="n">stat</span>
+<span class="kn">from</span> <span class="nn">forgebox.ftorch.metrics</span> <span class="kn">import</span> <span class="n">metric4_bi</span>
 </pre></div>
 
     </div>
