@@ -244,7 +244,7 @@ class Loop:
 # Cell
 class ProgressBar(Loop):
     def __init__(self,iterable=[],jupyter = True,mininterval = 1e-1):
-        super().__init__(iterable,"Progressb Bar")
+        super().__init__(iterable,"ProgressBar")
 
         if jupyter: # jupyter widget
             from tqdm.notebook import tqdm
@@ -344,11 +344,13 @@ class LambdaCall(Loop):
         self.end_func(self)
 
 # Cell
+
 class Event(Loop):
     """
     An event is the landmark with in 1 iteration
     """
-    def __init__(self,iterable=[],event_name = None):
+    def __init__(self,iterable=[]):
+        event_name = self.__class__.__name__
         super().__init__(iterable,event_name)
         self.event_name = event_name
         self.cbs = []
@@ -358,7 +360,7 @@ class Event(Loop):
 
     def create_cb_deco(self,moment):
         event_name = self.event_name
-        wraper = getattr(self,moment).__func__
+        def wraper(cls,f):return getattr(self,moment)(f)
         wraper.__name__ = f"{moment}_{event_name}"
         wraper.__doc__ = f"""
             Append new {moment} callback for event:{event_name}
@@ -379,41 +381,41 @@ class Event(Loop):
             self.cbs[0].end_callon()
 
     def on(self,f):
-        class EventCB1(Loop):
+        class EventCB(Loop):
             def __init__(self_,iterable=[]):
                 super().__init__(iterable=iterable,
                                  name = f"ON_{self.event_name}_{self.cbs.__len__()+1}_{f.__name__}")
                 self_.f = f
 
-            def __call__(self_):
-                self_.f(self)
-        new_cb = EventCB1()
+            def __call__(self_): self_.f(self)
+
+        new_cb = EventCB()
         self.new_event_cb(new_cb)
         return f
 
     def before_1st(self,f):
-        class EventCB2(Loop):
+        class EventCbBefore(Loop):
             def __init__(self_,iterable=[]):
                 super().__init__(iterable=iterable,
                                  name = f"BEFORE_1ST_{self.event_name}_{self.cbs.__len__()+1}_{f.__name__}")
                 self_.f = f
 
-            def start_call(self_):
-                self_.f(self)
-        new_cb = EventCB2()
+            def start_call(self_): self_.f(self)
+
+        new_cb = EventCbBefore()
         self.new_event_cb(new_cb)
         return f
 
     def after_last(self,f):
-        class EventCB3(Loop):
+        class EventCbAfter(Loop):
             def __init__(self_,iterable=[]):
                 super().__init__(iterable=iterable,
                                  name = f"AFTER_LAST_{self.event_name}_{self.cbs.__len__()+1}_{f.__name__}")
                 self_.f = f
 
-            def end_call(self_):
-                self_.f(self)
-        new_cb = EventCB3()
+            def end_call(self_): self_.f(self)
+
+        new_cb = EventCbAfter()
         self.new_event_cb(new_cb)
         return f
 

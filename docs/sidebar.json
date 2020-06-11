@@ -2,12 +2,12 @@
   "forgebox": {
     "Overview": "/",
     "Controllable loop process": "/loop",
+    "Title": "/train",
     "CUDA GPU Management": "/CUDA_GPU_Management",
     "NLP data": "/bilstm-based-search-on-netflix-data",
     "create different file": "/create_different",
     "DataFrame PipeLine": "/dataframe_pipeline",
     "03 Imports": "/imports",
-    "Optimizer Mangement": "/optimizers",
-    "Turbo ": "/turbo"
+    "Optimizer Mangement": "/optimizers"
   }
 }

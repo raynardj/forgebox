@@ -92,35 +92,6 @@ The decorated function under Loop class can be used on outer layer</p>
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Loop</span><span class="o">.</span><span class="n">from_preset</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;bound method ? of &lt;class &#39;__main__.Loop&#39;&gt;&gt;</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Loop-in-loop-concept">Loop-in-loop concept<a class="anchor-link" href="#Loop-in-loop-concept">&#182;</a></h2><p>Loop and its inheriting descendants runs on iterable, incuding other <code>[`Loop`](/forgebox/loop#Loop)</code></p>
@@ -164,15 +135,15 @@ The decorated function under Loop class can be used on outer layer</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Printer</span><span class="p">(</span><span class="n">Loop</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i_</span><span class="si">{self.core.i}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;i_</span><span class="si">{self.core.i}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">start_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;start of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">end_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;end of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;end of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">l2</span> <span class="o">=</span> <span class="n">Printer</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
 </pre></div>
 
@@ -249,7 +220,7 @@ end of epoch 0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span><span class="p">,</span><span class="n">tqdm_notebook</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="k">import</span> <span class="n">tqdm</span><span class="p">,</span><span class="n">tqdm_notebook</span>
 </pre></div>
 
     </div>
@@ -406,7 +377,7 @@ layer3.run()</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">error_on_purpose</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">element</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;value too small, </span><span class="si">{x.element}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;value too small, </span><span class="si">{x.element}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">l1</span> <span class="o">=</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="n">Loop</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)))</span>
 <span class="c1"># add the tolerate layer in between</span>
@@ -488,42 +459,42 @@ layer3.run()</p>
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>start_cb</td>
       <td>-1</td>
       <td>0</td>
       <td>'StorageCore' object has no attribute 'element'</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>iter_cb</td>
       <td>5</td>
       <td>0</td>
       <td>value too small, 6</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>iter_cb</td>
       <td>6</td>
       <td>0</td>
       <td>value too small, 7</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>iter_cb</td>
       <td>7</td>
       <td>0</td>
       <td>value too small, 8</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>iter_cb</td>
       <td>8</td>
       <td>0</td>
       <td>value too small, 9</td>
     </tr>
     <tr>
-      <th>5</th>
+      <td>5</td>
       <td>end_cb</td>
       <td>8</td>
       <td>0</td>
@@ -562,7 +533,7 @@ layer3.run()</p>
 ==================================================
 🍰layer0.0	layer:&gt;&gt;&gt;Loop
 --------------------------------------------------
-🍰layer1.0	layer:&gt;&gt;&gt;Progressb Bar
+🍰layer1.0	layer:&gt;&gt;&gt;ProgressBar
 	[🐍func_name]	pgbar_data
 	[⛰doc]	
         update progress bar with python dictionary
@@ -588,7 +559,7 @@ layer3.run()</p>
 	[😜names]	errors
 	...................................
 --------------------------------------------------
-🍰layer3.0	layer:&gt;&gt;&gt;Lambda&lt;0x10e76a990&gt;
+🍰layer3.0	layer:&gt;&gt;&gt;Lambda&lt;0x121ee34d0&gt;
 --------------------------------------------------
 ==================================================
 
@@ -612,9 +583,9 @@ layer3.run()</p>
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 <span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">Loop</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># create some data</span>
         <span class="n">loop_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span><span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span><span class="p">,</span>
                          <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">,)</span>
@@ -673,7 +644,7 @@ layer3.run()</p>
 ==================================================
 🍰layer0.0	layer:&gt;&gt;&gt;Loop
 --------------------------------------------------
-🍰layer1.0	layer:&gt;&gt;&gt;Progressb Bar
+🍰layer1.0	layer:&gt;&gt;&gt;ProgressBar
 	[🐍func_name]	pgbar_data
 	[⛰doc]	
         update progress bar with python dictionary
@@ -748,7 +719,7 @@ layer3.run()</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Event" class="doc_header"><code>class</code> <code>Event</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L347" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Event</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>event_name</code></strong>=<em><code>None</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="Event" class="doc_header"><code>class</code> <code>Event</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L348" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Event</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>An event is the landmark with in 1 iteration</p>
 
@@ -766,12 +737,12 @@ layer3.run()</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ToString</span><span class="p">(</span><span class="n">Loop</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;variable_</span><span class="si">{self.i}</span><span class="s2">&quot;</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;variable_</span><span class="si">{self.i}</span><span class="s2">&quot;</span>
 
 <span class="k">class</span> <span class="nc">ChangeString</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">iterable</span><span class="o">=</span><span class="p">[]):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">iterable</span><span class="o">=</span><span class="n">iterable</span><span class="p">,</span><span class="n">event_name</span><span class="o">=</span><span class="s2">&quot;CHANGE_STRING&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">iterable</span><span class="o">=</span><span class="p">[]):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">iterable</span><span class="o">=</span><span class="n">iterable</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -789,21 +760,21 @@ layer3.run()</p>
     <span class="n">layer2</span> <span class="o">=</span> <span class="n">ToString</span><span class="p">(</span><span class="n">layer1</span><span class="p">,)</span>
     <span class="n">layer3</span> <span class="o">=</span> <span class="n">ChangeString</span><span class="p">(</span><span class="n">layer2</span><span class="p">)</span>
     <span class="c1"># you can use this &quot;on&quot; syntax</span>
-    <span class="nd">@layer3</span><span class="o">.</span><span class="n">CHANGE_STRING</span><span class="o">.</span><span class="n">on</span>
+    <span class="nd">@layer3</span><span class="o">.</span><span class="n">ChangeString</span><span class="o">.</span><span class="n">on</span>
     <span class="k">def</span> <span class="nf">trim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Var_</span><span class="si">{self.element}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Var_</span><span class="si">{self.element}</span><span class="s2">&quot;</span>
         
     <span class="c1"># or this syntax</span>
-    <span class="nd">@layer3</span><span class="o">.</span><span class="n">on_CHANGE_STRING</span>
+    <span class="nd">@layer3</span><span class="o">.</span><span class="n">on_ChangeString</span>
     <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">pgbar_description</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
         
-    <span class="nd">@layer3</span><span class="o">.</span><span class="n">before_1st_CHANGE_STRING</span>
+    <span class="nd">@layer3</span><span class="o">.</span><span class="n">before_1st_ChangeString</span>
     <span class="k">def</span> <span class="nf">print_start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        decorated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start_</span><span class="si">{self.epoch}</span><span class="s2">_</span><span class="si">{self.i}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;start_</span><span class="si">{self.epoch}</span><span class="s2">_</span><span class="si">{self.i}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">layer3</span>
 </pre></div>
@@ -846,7 +817,7 @@ layer3.run()</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{0.0: layer:&gt;&gt;&gt;base, 1.0: layer:&gt;&gt;&gt;Progressb Bar, 2.0: layer:&gt;&gt;&gt;ToString, 3.0: layer:&gt;&gt;&gt;CHANGE_STRING}</pre>
+<pre>{0.0: layer:&gt;&gt;&gt;base, 1.0: layer:&gt;&gt;&gt;ProgressBar, 2.0: layer:&gt;&gt;&gt;ToString, 3.0: layer:&gt;&gt;&gt;ChangeString}</pre>
 </div>
 
 </div>
@@ -875,9 +846,9 @@ layer3.run()</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[layer:&gt;&gt;&gt;ON_CHANGE_STRING_1_trim,
- layer:&gt;&gt;&gt;ON_CHANGE_STRING_2_update,
- layer:&gt;&gt;&gt;BEFORE_1ST_CHANGE_STRING_3_print_start]</pre>
+<pre>[layer:&gt;&gt;&gt;ON_ChangeString_1_trim,
+ layer:&gt;&gt;&gt;ON_ChangeString_2_update,
+ layer:&gt;&gt;&gt;BEFORE_1ST_ChangeString_3_print_start]</pre>
 </div>
 
 </div>
@@ -904,11 +875,11 @@ layer3.run()</p>
 <div class="output_area">
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Loop layer CHANGE_STRING summary:
+<pre>Loop layer ChangeString summary:
 ==================================================
 🍰layer0.0	layer:&gt;&gt;&gt;base
 --------------------------------------------------
-🍰layer1.0	layer:&gt;&gt;&gt;Progressb Bar
+🍰layer1.0	layer:&gt;&gt;&gt;ProgressBar
 	[🐍func_name]	pgbar_data
 	[⛰doc]	
         update progress bar with python dictionary
@@ -927,54 +898,30 @@ layer3.run()</p>
 --------------------------------------------------
 🍰layer2.0	layer:&gt;&gt;&gt;ToString
 --------------------------------------------------
-🍰layer3.0	layer:&gt;&gt;&gt;CHANGE_STRING
-	[🐍func_name]	after_last_CHANGE_STRING
+🍰layer3.0	layer:&gt;&gt;&gt;ChangeString
+	[🐍func_name]	after_last_ChangeString
 	[⛰doc]	
-            Append new after_last callback for event:CHANGE_STRING
+            Append new after_last callback for event:ChangeString
             Use this function as decorator
         
-	[😝var]	self,f,EventCB3,new_cb
-	[😜names]	Loop,new_event_cb
+	[😝var]	cls,f
+	[😜names]	getattr
 	...................................
-	[🐍func_name]	after_last_CHANGE_STRING
+	[🐍func_name]	before_1st_ChangeString
 	[⛰doc]	
-            Append new after_last callback for event:CHANGE_STRING
+            Append new before_1st callback for event:ChangeString
             Use this function as decorator
         
-	[😝var]	self,f,EventCB3,new_cb
-	[😜names]	Loop,new_event_cb
+	[😝var]	cls,f
+	[😜names]	getattr
 	...................................
-	[🐍func_name]	before_1st_CHANGE_STRING
+	[🐍func_name]	on_ChangeString
 	[⛰doc]	
-            Append new before_1st callback for event:CHANGE_STRING
+            Append new on callback for event:ChangeString
             Use this function as decorator
         
-	[😝var]	self,f,EventCB2,new_cb
-	[😜names]	Loop,new_event_cb
-	...................................
-	[🐍func_name]	before_1st_CHANGE_STRING
-	[⛰doc]	
-            Append new before_1st callback for event:CHANGE_STRING
-            Use this function as decorator
-        
-	[😝var]	self,f,EventCB2,new_cb
-	[😜names]	Loop,new_event_cb
-	...................................
-	[🐍func_name]	on_CHANGE_STRING
-	[⛰doc]	
-            Append new on callback for event:CHANGE_STRING
-            Use this function as decorator
-        
-	[😝var]	self,f,EventCB1,new_cb
-	[😜names]	Loop,new_event_cb
-	...................................
-	[🐍func_name]	on_CHANGE_STRING
-	[⛰doc]	
-            Append new on callback for event:CHANGE_STRING
-            Use this function as decorator
-        
-	[😝var]	self,f,EventCB1,new_cb
-	[😜names]	Loop,new_event_cb
+	[😝var]	cls,f
+	[😜names]	getattr
 	...................................
 --------------------------------------------------
 ==================================================
@@ -1007,10 +954,7 @@ layer3.run()</p>
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>[layer:&gt;&gt;&gt;base,
- layer:&gt;&gt;&gt;Progressb Bar,
- layer:&gt;&gt;&gt;ToString,
- layer:&gt;&gt;&gt;CHANGE_STRING]</pre>
+<pre>[layer:&gt;&gt;&gt;base, layer:&gt;&gt;&gt;ProgressBar, layer:&gt;&gt;&gt;ToString, layer:&gt;&gt;&gt;ChangeString]</pre>
 </div>
 
 </div>
@@ -1038,7 +982,7 @@ layer3.run()</p>
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>start_0_-1
-CHANGE_STRING
+ChangeString
 
 </pre>
 </div>

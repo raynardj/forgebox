@@ -39,6 +39,7 @@ index = {"method4all": "10_loop.ipynb",
          "Opts": "optimizers.ipynb"}
 
 modules = ["loop.py",
+           "loops.py",
            "ftorch/cuda.py",
            "data/nlp.py",
            "pipe.py",

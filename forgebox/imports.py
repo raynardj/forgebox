@@ -4,7 +4,8 @@ __all__ = ['to_optim', '__all__']
 
 # Cell
 
-__all__ = ["pd","np","partial","Path","json","Counter","plt","os","sys","glob","Image"]
+__all__ = ["pd","np","partial","Path","json","Counter",
+           "plt","os","sys","glob","Image",]
 import pandas as pd
 
 pd.DataFrame.vc = lambda self,col:pd.DataFrame(self[col].value_counts())
@@ -27,14 +28,12 @@ try:
     __all__+=["nn","torch","Dataset","DataLoader"]
 except:
     print("""Pytorch not loaded""")
-    pass
 
 try:
     from torchvision import transforms as tfm
-    print("""Torch Vision not loaded""")
     __all__.append("tfm")
 except:
-    pass
+    print("""Torch Vision not loaded""")
 
 try:
     from ipywidgets import interact, interact_manual

@@ -13,6 +13,9 @@ entries:
       title: Controllable loop process
       url: /loop
     - output: web,pdf
+      title: Title
+      url: /train
+    - output: web,pdf
       title: CUDA GPU Management
       url: /CUDA_GPU_Management
     - output: web,pdf
@@ -30,9 +33,6 @@ entries:
     - output: web,pdf
       title: Optimizer Mangement
       url: /optimizers
-    - output: web,pdf
-      title: 'Turbo '
-      url: /turbo
     output: web
     title: forgebox
   output: web
