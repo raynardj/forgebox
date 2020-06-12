@@ -74,7 +74,7 @@ class Loop:
         pass
 
     def __repr__(self):
-        return f"layer:>>>{self.name}"
+        return f"layer🍰{self.name}"
 
     def on(self,iterable):
         self.iterable = iterable
@@ -323,6 +323,11 @@ class Tolerate(Loop):
         """
         return self.errors
 
+    def end_call(self,):
+        le = len(self.error_list())
+        if le>0:
+            print(f"WARNING:{le} errors")
+
 class LambdaCall(Loop):
     def __init__(self,iterable = [],
                  func = lambda x:x,
@@ -357,6 +362,11 @@ class Event(Loop):
         self.create_cb_deco("on")
         self.create_cb_deco("before_1st")
         self.create_cb_deco("after_last")
+        self.core.update_forall(self)
+        self.core.assign_forall(self)
+
+    def __repr__(self):
+        return f"event🌏{self.event_name}"
 
     def create_cb_deco(self,moment):
         event_name = self.event_name

@@ -33,9 +33,6 @@ entries:
     - output: web,pdf
       title: Optimizer Mangement
       url: /optimizers
-    - output: web,pdf
-      title: 'Turbo '
-      url: /turbo
     output: web
     title: forgebox
   output: web
