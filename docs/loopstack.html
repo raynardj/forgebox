@@ -115,18 +115,46 @@ summary: "summary"
 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">TrainLoop</span><span class="p">(</span><span class="n">LoopStack</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data_iter</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">from_loops</span><span class="p">(</span><span class="n">ProgressBar</span><span class="p">,</span><span class="n">Tolerate</span><span class="p">,</span>
-                        <span class="o">*</span><span class="n">events</span><span class="p">(</span><span class="o">*</span><span class="n">TRAIN_EVENTS</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">data_iter</span><span class="p">,)</span>
-</pre></div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
 
-    </div>
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="TrainLoop" class="doc_header"><code>class</code> <code>TrainLoop</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loopstack.py#L43" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TrainLoop</code>(<strong><code>data_iter</code></strong>) :: <a href="/forgebox/loopstack#LoopStack"><code>LoopStack</code></a></p>
+</blockquote>
+<p>A stack of loop</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="EvalLoop" class="doc_header"><code>class</code> <code>EvalLoop</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loopstack.py#L57" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EvalLoop</code>(<strong><code>data_iter</code></strong>) :: <a href="/forgebox/loopstack#LoopStack"><code>LoopStack</code></a></p>
+</blockquote>
+<p>A stack of loop</p>
+
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -153,15 +181,15 @@ summary: "summary"
 
 <div class="output_text output_subarea output_execute_result">
 <pre>LoopStack&gt;:TrainLoop
-	layer:&gt;&gt;&gt;Loop
-	layer:&gt;&gt;&gt;ProgressBar
-	layer:&gt;&gt;&gt;Tolerate
-	layer:&gt;&gt;&gt;DATA_PROCESS
-	layer:&gt;&gt;&gt;FORWARD
-	layer:&gt;&gt;&gt;LOSS_CALC
-	layer:&gt;&gt;&gt;BACKWARD
-	layer:&gt;&gt;&gt;OPT_STEP
-	layer:&gt;&gt;&gt;METRICS</pre>
+	layer🍰Loop
+	layer🍰ProgressBar
+	layer🍰Tolerate
+	event🌏DATA_PROCESS
+	event🌏FORWARD
+	event🌏LOSS_CALC
+	event🌏BACKWARD
+	event🌏OPT_STEP
+	event🌏METRICS</pre>
 </div>
 
 </div>
@@ -187,33 +215,207 @@ summary: "summary"
 
 <div class="output_area">
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">RecursionError</span>                            Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-37-8efba2eecf81&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>loop<span class="ansi-blue-fg">.</span>summary<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Loop layer TrainLoop summary:
+==================================================
+🍰layer0.0	layer🍰Loop
+--------------------------------------------------
+🍰layer1.0	layer🍰ProgressBar
+	[🐍func_name]	pgbar_data
+	[⛰doc]	
+        update progress bar with python dictionary
+        data: python dictionary
+        
+	[😝var]	self,data
+	[😜names]	t,set_postfix
+	...................................
+	[🐍func_name]	pgbar_description
+	[⛰doc]	
+        update progress bar prefix with text string
+        
+	[😝var]	self,text
+	[😜names]	t,set_description_str
+	...................................
+--------------------------------------------------
+🍰layer2.0	layer🍰Tolerate
+	[🐍func_name]	error_list
+	[⛰doc]	
+        A list of errors happend so far
+        
+	[😝var]	self
+	[😜names]	errors
+	...................................
+--------------------------------------------------
+🍰layer3.0	event🌏DATA_PROCESS
+	[🐍func_name]	after_last_DATA_PROCESS
+	[⛰doc]	
+            Append new after_last callback for event:DATA_PROCESS
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	before_1st_DATA_PROCESS
+	[⛰doc]	
+            Append new before_1st callback for event:DATA_PROCESS
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	on_DATA_PROCESS
+	[⛰doc]	
+            Append new on callback for event:DATA_PROCESS
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+--------------------------------------------------
+🍰layer4.0	event🌏FORWARD
+	[🐍func_name]	after_last_FORWARD
+	[⛰doc]	
+            Append new after_last callback for event:FORWARD
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	before_1st_FORWARD
+	[⛰doc]	
+            Append new before_1st callback for event:FORWARD
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	on_FORWARD
+	[⛰doc]	
+            Append new on callback for event:FORWARD
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+--------------------------------------------------
+🍰layer5.0	event🌏LOSS_CALC
+	[🐍func_name]	after_last_LOSS_CALC
+	[⛰doc]	
+            Append new after_last callback for event:LOSS_CALC
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	before_1st_LOSS_CALC
+	[⛰doc]	
+            Append new before_1st callback for event:LOSS_CALC
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	on_LOSS_CALC
+	[⛰doc]	
+            Append new on callback for event:LOSS_CALC
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+--------------------------------------------------
+🍰layer6.0	event🌏BACKWARD
+	[🐍func_name]	after_last_BACKWARD
+	[⛰doc]	
+            Append new after_last callback for event:BACKWARD
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	before_1st_BACKWARD
+	[⛰doc]	
+            Append new before_1st callback for event:BACKWARD
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	on_BACKWARD
+	[⛰doc]	
+            Append new on callback for event:BACKWARD
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+--------------------------------------------------
+🍰layer7.0	event🌏OPT_STEP
+	[🐍func_name]	after_last_OPT_STEP
+	[⛰doc]	
+            Append new after_last callback for event:OPT_STEP
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	before_1st_OPT_STEP
+	[⛰doc]	
+            Append new before_1st callback for event:OPT_STEP
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	on_OPT_STEP
+	[⛰doc]	
+            Append new on callback for event:OPT_STEP
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+--------------------------------------------------
+🍰layer8.0	event🌏METRICS
+	[🐍func_name]	after_last_METRICS
+	[⛰doc]	
+            Append new after_last callback for event:METRICS
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	before_1st_METRICS
+	[⛰doc]	
+            Append new before_1st callback for event:METRICS
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+	[🐍func_name]	on_METRICS
+	[⛰doc]	
+            Append new on callback for event:METRICS
+            Use this function as decorator
+        
+	[😝var]	cls,f
+	[😜names]	getattr
+	...................................
+--------------------------------------------------
+🍰layer9.0	LoopStack&gt;:TrainLoop
+	layer🍰Loop
+	layer🍰ProgressBar
+	layer🍰Tolerate
+	event🌏DATA_PROCESS
+	event🌏FORWARD
+	event🌏LOSS_CALC
+	event🌏BACKWARD
+	event🌏OPT_STEP
+	event🌏METRICS
+--------------------------------------------------
+==================================================
 
-<span class="ansi-green-fg">~/github/forgebox/forgebox/loop.py</span> in <span class="ansi-cyan-fg">summary</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">     94</span>         funcs <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-blue-fg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">     95</span>         <span class="ansi-green-fg">for</span> idx<span class="ansi-blue-fg">,</span>layer <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>core<span class="ansi-blue-fg">.</span>lmap<span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-fg">---&gt; 96</span><span class="ansi-red-fg">             </span>rt<span class="ansi-blue-fg">+=</span> <span class="ansi-blue-fg">f&#34;🍰layer{idx}\t{str(layer)}\n&#34;</span>
-<span class="ansi-green-intense-fg ansi-bold">     97</span>             <span class="ansi-green-fg">for</span> fname<span class="ansi-blue-fg">,</span>f <span class="ansi-green-fg">in</span> self<span class="ansi-blue-fg">.</span>core<span class="ansi-blue-fg">.</span>for_all_functions<span class="ansi-blue-fg">(</span>layer<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>items<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     98</span>                 <span class="ansi-green-fg">if</span> id<span class="ansi-blue-fg">(</span>f<span class="ansi-blue-fg">)</span> <span class="ansi-green-fg">not</span> <span class="ansi-green-fg">in</span> funcs<span class="ansi-blue-fg">:</span>
-
-<span class="ansi-green-fg">&lt;ipython-input-33-5d6fd85f1cfd&gt;</span> in <span class="ansi-cyan-fg">__repr__</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">     21</span>     <span class="ansi-green-fg">def</span> __repr__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     22</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f&#34;LoopStack&gt;:{self.name}\n\t&#34;</span><span class="ansi-blue-fg">+</span><span class="ansi-red-fg">\</span>
-<span class="ansi-green-fg">---&gt; 23</span><span class="ansi-red-fg">             </span><span class="ansi-blue-fg">&#34;\n\t&#34;</span><span class="ansi-blue-fg">.</span>join<span class="ansi-blue-fg">(</span>map<span class="ansi-blue-fg">(</span>str<span class="ansi-blue-fg">,</span>self<span class="ansi-blue-fg">.</span>core<span class="ansi-blue-fg">.</span>layers<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-... last 1 frames repeated, from the frame below ...
-
-<span class="ansi-green-fg">&lt;ipython-input-33-5d6fd85f1cfd&gt;</span> in <span class="ansi-cyan-fg">__repr__</span><span class="ansi-blue-fg">(self)</span>
-<span class="ansi-green-intense-fg ansi-bold">     21</span>     <span class="ansi-green-fg">def</span> __repr__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
-<span class="ansi-green-intense-fg ansi-bold">     22</span>         <span class="ansi-green-fg">return</span> <span class="ansi-blue-fg">f&#34;LoopStack&gt;:{self.name}\n\t&#34;</span><span class="ansi-blue-fg">+</span><span class="ansi-red-fg">\</span>
-<span class="ansi-green-fg">---&gt; 23</span><span class="ansi-red-fg">             </span><span class="ansi-blue-fg">&#34;\n\t&#34;</span><span class="ansi-blue-fg">.</span>join<span class="ansi-blue-fg">(</span>map<span class="ansi-blue-fg">(</span>str<span class="ansi-blue-fg">,</span>self<span class="ansi-blue-fg">.</span>core<span class="ansi-blue-fg">.</span>layers<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">RecursionError</span>: maximum recursion depth exceeded</pre>
+</pre>
 </div>
 </div>
 
@@ -226,7 +428,7 @@ summary: "summary"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
 </pre></div>
 
     </div>
@@ -246,7 +448,7 @@ summary: "summary"
     
 <span class="nd">@loop</span><span class="o">.</span><span class="n">on_FORWARD</span>
 <span class="k">def</span> <span class="nf">update_pg</span><span class="p">(</span><span class="n">loop</span><span class="p">):</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">pgbar_description</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;double: </span><span class="si">{loop.double}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">pgbar_description</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;double: </span><span class="si">{loop.double}</span><span class="s2">&quot;</span><span class="p">)</span>
     
 <span class="nd">@loop</span><span class="o">.</span><span class="n">on_FORWARD</span>
 <span class="k">def</span> <span class="nf">another_thing_on_forward</span><span class="p">(</span><span class="n">loop</span><span class="p">):</span>
@@ -277,8 +479,241 @@ summary: "summary"
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
+WARNING:51 errors
 </pre>
 </div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">loop</span><span class="o">.</span><span class="n">error_list</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[{&#39;stage&#39;: &#39;start_cb&#39;,
+  &#39;i&#39;: -1,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;model&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 0,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 1,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 2,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 3,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 4,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 5,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 6,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 7,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 8,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 9,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 10,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 11,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 12,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 13,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 14,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 15,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 16,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 17,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 18,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 19,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 20,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 21,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 22,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 23,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 24,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 25,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 26,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 27,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 28,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 29,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 30,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 31,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 32,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 33,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 34,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 35,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 36,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 37,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 38,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 39,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 40,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 41,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 42,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 43,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 44,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 45,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 46,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 47,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 48,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)},
+ {&#39;stage&#39;: &#39;iter_cb&#39;,
+  &#39;i&#39;: 49,
+  &#39;epoch&#39;: 0,
+  &#39;error&#39;: AttributeError(&#34;&#39;StorageCore&#39; object has no attribute &#39;opt&#39;&#34;)}]</pre>
+</div>
+
 </div>
 
 </div>
