@@ -8,7 +8,6 @@
     "create different file": "/create_different",
     "DataFrame PipeLine": "/dataframe_pipeline",
     "03 Imports": "/imports",
-    "Optimizer Mangement": "/optimizers",
-    "Turbo ": "/turbo"
+    "Optimizer Mangement": "/optimizers"
   }
 }
