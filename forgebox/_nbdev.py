@@ -2,7 +2,8 @@
 
 __all__ = ["index", "modules", "custom_doc_links", "git_url"]
 
-index = {"method4all": "10_loop.ipynb",
+index = {"Stuff": "10_loop.ipynb",
+         "method4all": "10_loop.ipynb",
          "StorageCore": "10_loop.ipynb",
          "Loop": "10_loop.ipynb",
          "ProgressBar": "10_loop.ipynb",
@@ -10,6 +11,7 @@ index = {"method4all": "10_loop.ipynb",
          "Tolerate": "10_loop.ipynb",
          "LambdaCall": "10_loop.ipynb",
          "Event": "10_loop.ipynb",
+         "chunkify": "10_loop.ipynb",
          "create_event": "15_loopstack.ipynb",
          "events": "15_loopstack.ipynb",
          "LoopStack": "15_loopstack.ipynb",

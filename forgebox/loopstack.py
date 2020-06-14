@@ -3,8 +3,9 @@
 __all__ = ['create_event', 'events', 'LoopStack', 'TrainLoop', 'EvalLoop']
 
 # Cell
-from .loop import Loop,ProgressBar,Tolerate,Event
+from .loop import Loop,ProgressBar,Tolerate,Event,Stuff
 from types import MethodType
+import numpy as np
 
 # Cell
 def create_event(event_name):
@@ -17,6 +18,7 @@ def events(*enames):
 
 # Cell
 class LoopStack(Loop):
+    settings = []
     """
     A stack of loop
     """
@@ -32,8 +34,20 @@ class LoopStack(Loop):
             super().__init__(iterable = l,
                              name = name)
 
+            for stuff in cls.settings:
+                self.make_stuff(stuff)
+
         setattr(cls,"__init__",init)
         return cls
+
+    @classmethod
+    def new_setting(cls,*settings):
+        cls.settings+=list(settings)
+
+    def make_stuff(self,name):
+        new_stuff = Stuff(name)
+        setattr(self.core,name,new_stuff)
+        setattr(self,name,new_stuff)
 
     def __repr__(self,):
         return f"LoopStack>:{self.name}\n\t"+\
@@ -44,6 +58,7 @@ class TrainLoop(LoopStack):
     def __init__(self,data_iter):
         self.from_loops(ProgressBar,Tolerate,
                         *events(*TRAIN_EVENTS))
+        self.new_setting("model","opt","loss","hp","cuda")
         self.__init__(data_iter,)
 
         @self.on_DATA_PROCESS
@@ -58,6 +73,7 @@ class EvalLoop(LoopStack):
     def __init__(self,data_iter):
         self.from_loops(ProgressBar,Tolerate,
                         *events(*EVAL_EVENTS))
+        self.new_setting("model","opt","loss","hp","cuda")
         self.__init__(data_iter,)
 
         @self.EVAL_FORWARD.downstream
