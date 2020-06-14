@@ -25,12 +25,15 @@ class Stuff:
         self[f"{self.name}_{len(self+1)}"] = obj
 
     def __getattr__(self,k):
-        if k in self.cases:
-            return self.cases[k]
-        elif k in self.funcs:
-            return self.funcs[k]
+        if k in self.cases: return self.cases[k]
+        elif k in self.funcs: return self.funcs[k]
         else:
-            return None
+            raise KeyError(f"❌🗝no key [{k}]: in self.cases or self.funcs")
+
+    def __hasattr__(self,k):
+        if k in self.cases:return True
+        elif k in self.funcs: return True
+        else: return False
 
     def __repr__(self,):
         return f"⚽️:{self.name}[\n\t"+"\n\t".join(self.cases.keys())+"\n]"
