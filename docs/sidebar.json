@@ -2,6 +2,7 @@
   "forgebox": {
     "Overview": "/",
     "Controllable loop process": "/loop",
+    "Interactive tools": "/inter_widgets",
     "Title": "/loopstack",
     "CUDA GPU Management": "/CUDA_GPU_Management",
     "NLP data": "/bilstm-based-search-on-netflix-data",

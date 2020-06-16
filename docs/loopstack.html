@@ -37,7 +37,7 @@ summary: "summary"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets.california_housing</span> <span class="kn">import</span> <span class="n">fetch_california_housing</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets.california_housing</span> <span class="k">import</span> <span class="n">fetch_california_housing</span>
 <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">fetch_california_housing</span><span class="p">(</span><span class="n">return_X_y</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
 
 <span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
@@ -133,7 +133,7 @@ summary: "summary"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="kn">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib</span> <span class="k">import</span> <span class="n">pyplot</span> <span class="k">as</span> <span class="n">plt</span>
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">x_normed</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span><span class="mi">10</span><span class="p">)])</span>
 </pre></div>
@@ -422,7 +422,7 @@ summary: "summary"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>
 </pre></div>
 
     </div>
@@ -442,7 +442,7 @@ summary: "summary"
     
 <span class="nd">@loop</span><span class="o">.</span><span class="n">on_FORWARD</span>
 <span class="k">def</span> <span class="nf">update_pg</span><span class="p">(</span><span class="n">loop</span><span class="p">):</span>
-    <span class="n">loop</span><span class="o">.</span><span class="n">pgbar_description</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;double: </span><span class="si">{loop.double}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">loop</span><span class="o">.</span><span class="n">pgbar_description</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;double: </span><span class="si">{loop.double}</span><span class="s2">&quot;</span><span class="p">)</span>
     
 <span class="nd">@loop</span><span class="o">.</span><span class="n">on_FORWARD</span>
 <span class="k">def</span> <span class="nf">another_thing_on_forward</span><span class="p">(</span><span class="n">loop</span><span class="p">):</span>

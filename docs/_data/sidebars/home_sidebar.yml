@@ -13,6 +13,9 @@ entries:
       title: Controllable loop process
       url: /loop
     - output: web,pdf
+      title: Interactive tools
+      url: /inter_widgets
+    - output: web,pdf
       title: Title
       url: /loopstack
     - output: web,pdf
