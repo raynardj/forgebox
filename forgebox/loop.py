@@ -5,6 +5,7 @@ __all__ = ['Stuff', 'method4all', 'StorageCore', 'Loop', 'ProgressBar', 'error_t
 
 # Cell
 import numpy as np
+import pandas as pd
 import math
 
 # Cell
@@ -30,30 +31,31 @@ class Stuff:
         elif k in self.funcs:
             return self.funcs[k]
         else:
-            return None
+            return super().__getattr__()
 
     def __repr__(self,):
-        return f"⚽️:{self.name}[\n\t"+"\n\t".join(self.cases.keys())+"\n]"
+        return f"🍄:{self.name}[\n\t"+"\n\t".join(self.cases.keys())+"\n]"
 
     def __len__(self):
         return len(self.cases)
 
-    def apply(self,f,name = None):
+    def __call__(self,func,*args,**kwargs):
         """
-        decorator
-        append a function apply to all cases
+        func: str or callable,
+            if str, it will run on each subject case's such named function
+            if callable, it will call on the callable, with the 1st arg being the subject case
+        args: extra args
+        kwargs: extra key word arguments
+
+        return: a list of returned results
         """
-        def wraper(*args,**kwargs):
-            for k,v in self.cases.items():
-                f(v,*args,**kwargs)
-
-        self.funcs[f.__name__] = wraper
-        setattr(self,f.__name__,wraper)
-        return wraper
-
-    def __call__(self,*args,**kwargs):
-        for k,func in self.funcs.items():
-            func(*args,**kwargs)
+        results = []
+        for k,case in self.cases.items():
+            if type(func)==str:
+                results.append(getattr(case,func)(*args,**kwargs))
+            else:
+                results.append(func(case,*args,**kwargs))
+        return results
 
 # Cell
 from tqdm import tqdm
@@ -137,6 +139,25 @@ class Loop:
                        "😜names":",".join(f.__code__.co_names),
                       })
         return detail
+
+    def func_detail_df(self):
+        funcs = []
+        result = []
+        for idx,layer in self.core.lmap.items():
+            for fname,f in self.core.for_all_functions(layer).items():
+                if id(f) not in funcs:
+                    dt = self.func_detail(f)
+                    dt.update(layer=str(layer))
+                    result.append(dt)
+                    funcs.append(id(f))
+        return pd.DataFrame(result)
+
+    def search(self):
+        from .widgets import search_box
+        pd.set_option('display.max_colwidth', 0)
+        doc_df = self.func_detail_df()
+        doc_df["⛰doc"]= doc_df["⛰doc"].apply(lambda x:str(x).replace("\n"," "))
+        search_box(doc_df, ["🐍func_name","⛰doc","layer","😝var","😜names"])
 
     def summary(self):
         rt = f"Loop layer {self.name} summary:\n"
