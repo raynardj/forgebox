@@ -10,6 +10,9 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
+      title: Tools on pandas dataframe
+      url: /df
+    - output: web,pdf
       title: Interactive tools
       url: /inter_widgets
     - output: web,pdf

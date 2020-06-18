@@ -1,6 +1,7 @@
 {
   "forgebox": {
     "Overview": "/",
+    "Tools on pandas dataframe": "/df",
     "Interactive tools": "/inter_widgets",
     "Controllable loop process": "/loop",
     "Title": "/loopstack",

@@ -72,6 +72,7 @@ def train_callbacks(loop):
     @loop.BACKWARD.on
     def opt_step(loop):
         loop.opt("step")
+
 def train_single_forward(metric_func = []):
     def train_single_forward_cb(loop):
         @loop.on_DATA_PROCESS
