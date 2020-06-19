@@ -39,6 +39,13 @@ class Stuff:
     def __len__(self):
         return len(self.cases)
 
+    def update(self,func,*args,**kwargs):
+        for k,case in self.cases.items():
+            if type(func)==str:
+                self[k] = getattr(case,func)(*args,**kwargs)
+            else:
+                self[k] = func(case,*args,**kwargs)
+
     def __call__(self,func,*args,**kwargs):
         """
         func: str or callable,

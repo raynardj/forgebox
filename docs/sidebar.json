@@ -2,7 +2,9 @@
   "forgebox": {
     "Overview": "/",
     "Tools on pandas dataframe": "/df",
+    "HTML operation": "/html",
     "Interactive tools": "/inter_widgets",
+    "spacy toolkit": "/spacy",
     "Controllable loop process": "/loop",
     "Title": "/loopstack",
     "CUDA GPU Management": "/CUDA_GPU_Management",

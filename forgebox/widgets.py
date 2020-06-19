@@ -7,6 +7,7 @@ import pandas as pd
 import numpy as np
 from ipywidgets import interact,interact_manual
 from IPython.display import HTML
+from .df import PandasDisplay
 
 # Cell
 def display_df(df):display(df)
@@ -29,8 +30,9 @@ def search_box(df,columns,manual = False,max_rows = 10,callback = display_df):
         for col in columns:
             result = df[col].fillna("NaN Value").str.contains(KeyWord)
             if sum(result)>0:
-                display(HTML(f"<h3>\"{KeyWord}\" matched on column:[{col}]</h3>"))
-                callback(df[result].head(max_rows))
-                return
+                with PandasDisplay(max_colwidth=0,max_rows=max_rows):
+                    display(HTML(f"<h3>\"{KeyWord}\" matched on column:[{col}]</h3>"))
+                    callback(df[result].head(max_rows))
+                    return
         print(f"Nothing found on any column on keyword:{KeyWord}")
         return
