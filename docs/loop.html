@@ -31,7 +31,7 @@ summary: "iteration with callbacks"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">time</span> <span class="k">import</span> <span class="n">sleep</span>
 </pre></div>
 
     </div>
@@ -51,7 +51,7 @@ summary: "iteration with callbacks"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Stuff" class="doc_header"><code>class</code> <code>Stuff</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L11" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Stuff</code>(<strong><code>name</code></strong>)</p>
+<h2 id="Stuff" class="doc_header"><code>class</code> <code>Stuff</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L12" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Stuff</code>(<strong><code>name</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -97,7 +97,7 @@ summary: "iteration with callbacks"
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>⚽️:model[
+<pre>🍄:model[
 	G
 	D
 ]</pre>
@@ -114,13 +114,79 @@ summary: "iteration with callbacks"
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@model</span><span class="o">.</span><span class="n">apply</span>
-<span class="k">def</span> <span class="nf">to_device</span><span class="p">(</span><span class="n">single_model</span><span class="p">,</span><span class="n">device</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{single_model}</span><span class="s2"> put to device:</span><span class="si">{device}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">to_device</span><span class="p">(</span><span class="n">single_model</span><span class="p">,</span><span class="n">device</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;</span><span class="si">{single_model}</span><span class="s2"> put to device:</span><span class="si">{device}</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="c1"># single_model.to(device)</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="p">(</span><span class="n">to_device</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>generative_model put to device:2
+discriminative_model put to device:2
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[None, None]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="p">(</span><span class="s2">&quot;upper&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[&#39;GENERATIVE_MODEL&#39;, &#39;DISCRIMINATIVE_MODEL&#39;]</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -161,12 +227,21 @@ summary: "iteration with callbacks"
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In real cases we can do</p>
+<div class="highlight"><pre><span></span><span class="n">model</span><span class="p">(</span><span class="s2">&quot;to&quot;</span><span class="p">,</span><span class="s2">&quot;cuda:1&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="p">(</span><span class="s2">&quot;cuda:1&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="p">(</span><span class="n">to_device</span><span class="p">,</span><span class="s2">&quot;cuda:1&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -185,32 +260,14 @@ discriminative_model put to device:cuda:1
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">to_device</span><span class="p">(</span><span class="s2">&quot;cuda:2&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>generative_model put to device:cuda:2
-discriminative_model put to device:cuda:2
-</pre>
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[None, None]</pre>
 </div>
+
 </div>
 
 </div>
@@ -229,7 +286,7 @@ discriminative_model put to device:cuda:2
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="method4all" class="doc_header"><code>method4all</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L67" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>method4all</code>(<strong><code>f</code></strong>)</p>
+<h4 id="method4all" class="doc_header"><code>method4all</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L73" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>method4all</code>(<strong><code>f</code></strong>)</p>
 </blockquote>
 <p>Use this function as a decorator,
 The decorated function under Loop class can be used on outer layer</p>
@@ -251,7 +308,7 @@ The decorated function under Loop class can be used on outer layer</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="StorageCore" class="doc_header"><code>class</code> <code>StorageCore</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L75" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>StorageCore</code>(<strong><code>start_layer</code></strong>)</p>
+<h2 id="StorageCore" class="doc_header"><code>class</code> <code>StorageCore</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L81" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>StorageCore</code>(<strong><code>start_layer</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -271,7 +328,7 @@ The decorated function under Loop class can be used on outer layer</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Loop" class="doc_header"><code>class</code> <code>Loop</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L109" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Loop</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>name</code></strong>=<em><code>None</code></em>)</p>
+<h2 id="Loop" class="doc_header"><code>class</code> <code>Loop</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L115" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Loop</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>name</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -326,15 +383,15 @@ The decorated function under Loop class can be used on outer layer</p>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Printer</span><span class="p">(</span><span class="n">Loop</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;i_</span><span class="si">{self.core.i}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;i_</span><span class="si">{self.core.i}</span><span class="s2">&quot;</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;</span><span class="se">\t</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">start_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;start of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">end_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;end of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;end of epoch </span><span class="si">{self.epoch}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="n">l2</span> <span class="o">=</span> <span class="n">Printer</span><span class="p">(</span><span class="n">l</span><span class="p">)</span>
 </pre></div>
 
@@ -394,7 +451,7 @@ end of epoch 0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProgressBar" class="doc_header"><code>class</code> <code>ProgressBar</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L298" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProgressBar</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>jupyter</code></strong>=<em><code>True</code></em>, <strong><code>mininterval</code></strong>=<em><code>0.1</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="ProgressBar" class="doc_header"><code>class</code> <code>ProgressBar</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L323" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProgressBar</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>jupyter</code></strong>=<em><code>True</code></em>, <strong><code>mininterval</code></strong>=<em><code>0.1</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -411,7 +468,7 @@ end of epoch 0
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="kn">import</span> <span class="n">tqdm</span><span class="p">,</span><span class="n">tqdm_notebook</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">tqdm.notebook</span> <span class="k">import</span> <span class="n">tqdm</span><span class="p">,</span><span class="n">tqdm_notebook</span>
 </pre></div>
 
     </div>
@@ -474,7 +531,7 @@ end of epoch 0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="error_tolerate" class="doc_header"><code>error_tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L341" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>error_tolerate</code>(<strong><code>downstream_func</code></strong>)</p>
+<h4 id="error_tolerate" class="doc_header"><code>error_tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L366" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>error_tolerate</code>(<strong><code>downstream_func</code></strong>)</p>
 </blockquote>
 <p>downstream_func:Downstream function</p>
 
@@ -495,7 +552,7 @@ end of epoch 0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Tolerate" class="doc_header"><code>class</code> <code>Tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L353" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Tolerate</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="Tolerate" class="doc_header"><code>class</code> <code>Tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L378" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Tolerate</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>Tolerate any error happened downstream
 layer2 = Tolerate(upstream_iterable)</p>
@@ -520,7 +577,7 @@ layer3.run()</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="LambdaCall" class="doc_header"><code>class</code> <code>LambdaCall</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L384" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LambdaCall</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>start_func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>end_func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="LambdaCall" class="doc_header"><code>class</code> <code>LambdaCall</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L409" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LambdaCall</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>start_func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>end_func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -568,7 +625,7 @@ layer3.run()</p>
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">error_on_purpose</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">element</span><span class="o">&gt;</span><span class="mi">5</span><span class="p">:</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;value too small, </span><span class="si">{x.element}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;value too small, </span><span class="si">{x.element}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="n">l1</span> <span class="o">=</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="n">Loop</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span><span class="p">)))</span>
 <span class="c1"># add the tolerate layer in between</span>
@@ -651,42 +708,42 @@ WARNING:5 errors
   </thead>
   <tbody>
     <tr>
-      <th>0</th>
+      <td>0</td>
       <td>start_cb</td>
       <td>-1</td>
       <td>0</td>
       <td>'StorageCore' object has no attribute 'element'</td>
     </tr>
     <tr>
-      <th>1</th>
+      <td>1</td>
       <td>iter_cb</td>
       <td>5</td>
       <td>0</td>
       <td>value too small, 6</td>
     </tr>
     <tr>
-      <th>2</th>
+      <td>2</td>
       <td>iter_cb</td>
       <td>6</td>
       <td>0</td>
       <td>value too small, 7</td>
     </tr>
     <tr>
-      <th>3</th>
+      <td>3</td>
       <td>iter_cb</td>
       <td>7</td>
       <td>0</td>
       <td>value too small, 8</td>
     </tr>
     <tr>
-      <th>4</th>
+      <td>4</td>
       <td>iter_cb</td>
       <td>8</td>
       <td>0</td>
       <td>value too small, 9</td>
     </tr>
     <tr>
-      <th>5</th>
+      <td>5</td>
       <td>end_cb</td>
       <td>8</td>
       <td>0</td>
@@ -751,7 +808,7 @@ WARNING:5 errors
 	[😜names]	errors
 	...................................
 --------------------------------------------------
-🍰layer3.0	layer🍰Lambda&lt;0x1119e25d0&gt;
+🍰layer3.0	layer🍰Lambda&lt;0x1170d7a10&gt;
 --------------------------------------------------
 ==================================================
 
@@ -759,6 +816,26 @@ WARNING:5 errors
 </div>
 </div>
 
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can search for the function documentation</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">l2</span><span class="o">.</span><span class="n">search</span><span class="p">()</span>
+</pre></div>
+
+    </div>
 </div>
 </div>
 
@@ -775,9 +852,9 @@ WARNING:5 errors
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
 <span class="k">class</span> <span class="nc">Application</span><span class="p">(</span><span class="n">Loop</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># create some data</span>
         <span class="n">loop_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">epoch</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epoch</span><span class="p">,</span><span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">i</span><span class="p">,</span>
                          <span class="n">val</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">,)</span>
@@ -911,7 +988,7 @@ WARNING:5 errors
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Event" class="doc_header"><code>class</code> <code>Event</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L406" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Event</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="Event" class="doc_header"><code>class</code> <code>Event</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L431" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Event</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>An event is the landmark with in 1 iteration</p>
 
@@ -929,11 +1006,11 @@ WARNING:5 errors
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">ToString</span><span class="p">(</span><span class="n">Loop</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;variable_</span><span class="si">{self.i}</span><span class="s2">&quot;</span>
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;variable_</span><span class="si">{self.i}</span><span class="s2">&quot;</span>
 
 <span class="k">class</span> <span class="nc">ChangeString</span><span class="p">(</span><span class="n">Event</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">iterable</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">iterable</span><span class="o">=</span><span class="p">[]):</span>
         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">iterable</span><span class="o">=</span><span class="n">iterable</span><span class="p">)</span>
 </pre></div>
 
@@ -954,7 +1031,7 @@ WARNING:5 errors
     <span class="c1"># you can use this &quot;on&quot; syntax</span>
     <span class="nd">@layer3</span><span class="o">.</span><span class="n">ChangeString</span><span class="o">.</span><span class="n">on</span>
     <span class="k">def</span> <span class="nf">trim</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Var_</span><span class="si">{self.element}</span><span class="s2">&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&quot;Var_</span><span class="si">{self.element}</span><span class="s2">&quot;</span>
         
     <span class="c1"># or this syntax</span>
     <span class="nd">@layer3</span><span class="o">.</span><span class="n">on_ChangeString</span>
@@ -966,7 +1043,7 @@ WARNING:5 errors
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        decorated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;start_</span><span class="si">{self.epoch}</span><span class="s2">_</span><span class="si">{self.i}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&quot;start_</span><span class="si">{self.epoch}</span><span class="s2">_</span><span class="si">{self.i}</span><span class="s2">&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">layer3</span>
 </pre></div>
@@ -1236,7 +1313,7 @@ None
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunkify" class="doc_header"><code>chunkify</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L495" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunkify</code>(<strong>*<code>iterables</code></strong>, <strong><code>bs</code></strong>=<em><code>32</code></em>)</p>
+<h4 id="chunkify" class="doc_header"><code>chunkify</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L520" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunkify</code>(<strong>*<code>iterables</code></strong>, <strong><code>bs</code></strong>=<em><code>32</code></em>)</p>
 </blockquote>
 
 </div>
