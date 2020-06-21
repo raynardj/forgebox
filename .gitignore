@@ -7,4 +7,5 @@ build/
 dist/
 *.egg-info
 nbs/data/*
+nbs/*.db
 nbs/.ipynb_checkpoints

@@ -1,0 +1,16 @@
+<table class="table">
+    <tr>
+        {%for col in df.columns%}
+        <th><strong class='text-primary'>{{col}}</strong></th>
+        {%endfor%}
+    </tr>
+    {% for idx,row in df.iterrows()%}
+        <tr>
+            {%for col in df.columns%}
+            <td><div class='data_cell' data-original = "{{row.get(col)}}"
+                data-valtype="{{type(row.get(col)).__name__}}"
+                data-col = '{{col}}' data-idx = '{{idx}}'>{{row.get(col)}}</div></td>
+            {%endfor%}
+        </tr>
+    {% endfor %}
+</table>
