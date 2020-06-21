@@ -10,6 +10,18 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
+      title: Tools on pandas dataframe
+      url: /df
+    - output: web,pdf
+      title: HTML operation
+      url: /html
+    - output: web,pdf
+      title: Interactive tools
+      url: /inter_widgets
+    - output: web,pdf
+      title: spacy toolkit
+      url: /spacy
+    - output: web,pdf
       title: Controllable loop process
       url: /loop
     - output: web,pdf
