@@ -16,8 +16,13 @@ class Stuff:
         self.funcs = dict()
 
     def __setitem__(self,k,v):
-        self.cases[k]=v
-        setattr(self,k,self.cases[k])
+        setattr(self,k,v)
+
+    def __setattr__(self,k,v):
+        if k not in ["name","cases","funcs"]:
+            self.cases[k] = v
+        else:
+            super().__setattr__(k,v)
 
     def __getitem__(self,k):
         return self.cases[k]
@@ -56,12 +61,13 @@ class Stuff:
 
         return: a list of returned results
         """
-        results = []
+        results = dict()
         for k,case in self.cases.items():
             if type(func)==str:
-                results.append(getattr(case,func)(*args,**kwargs))
+                results.update({k:getattr(case,func)(*args,**kwargs)})
             else:
-                results.append(func(case,*args,**kwargs))
+                results.update({k:func(case,*args,**kwargs)})
+
         return results
 
 # Cell

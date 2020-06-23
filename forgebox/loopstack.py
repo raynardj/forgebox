@@ -38,6 +38,8 @@ class LoopStack(Loop):
             for stuff in cls.settings:
                 self.make_stuff(stuff)
 
+
+
         setattr(cls,"init",init)
         return cls
 
@@ -78,30 +80,34 @@ def to_tensor(x):
     return torch.Tensor(x)
 
 def train_single_forward(metric_func = []):
-    def train_single_forward_cb(loop):
-        @loop.on_DATA_PROCESS
-        def set_xy(loop):
-            loop.x["x1"],loop.y["y1"] = loop.element
-            loop.x.update(to_tensor)
-            loop.y.update(to_tensor)
+    def train_single_forward_cb(self):
+        @self.on_DATA_PROCESS
+        def set_xy(self):
+            self.var.x,self.var.y = self.element
+            self.var.x = to_tensor(self.var.x)
+            self.var.y = to_tensor(self.var.y)
 
-        @loop.on_FORWARD
-        def forward_pass(loop):
-            loop.core.pred = loop.model("__call__",loop.x.x1)[0]
+        @self.on_FORWARD
+        def forward_pass(self):
+            y_ = self.model("__call__",self.var.x)
+            self.var.y_ = y_.popitem()[1]
 
-        @loop.on_LOSS_CALC
-        def calculate_loss(loop):
-            loop.loss["latest"] = loop.loss_func("__call__",loop.pred,loop.y.y1)
+        @self.on_LOSS_CALC
+        def calculate_loss(self):
+            for loss_name,loss_val in \
+                self.loss_func("__call__",self.var.y_,self.var.y).items():
+                self.loss[loss_name] = loss_val
 
-        @loop.on_METRICS
-        def calcualte_metrics(loop):
+        @self.on_METRICS
+        def calcualte_metrics(self):
             # calculate metrics
             with torch.no_grad():
-                for func in metric_func:
-                    loop.metric[func.__name__] = func(loop.pred,loop.y)
+                self.metric.cases.update(self.metric_func(self.var.y_,self.var.y))
 
             # loop through metrics
-            loop.pgbar_data(loop.metric.cases)
+            dt = self.metric.cases
+            self.results.append(dt)
+            self.pgbar_data(self.metric.cases)
 
     return train_single_forward_cb
 
@@ -113,13 +119,15 @@ class TrainLoop(LoopStack):
             loops.append(Tolerate)
         loops+=list(events(*TRAIN_EVENTS))
         self.from_loops(*loops)
-        self.new_setting("model","x","y",
+        self.new_setting("model","var",
                          "opt","loss_func","loss",
                          "hp","cuda","metric_func","metric")
         self.init(data_iter,)
         for cb in callbacks:
             print(f"assigning callback {cb}")
             cb(self)
+
+        self.core.results = []
 
 class EvalLoop(LoopStack):
     def __init__(self,data_iter,tolerate=True):
@@ -128,7 +136,9 @@ class EvalLoop(LoopStack):
             loops.append(Tolerate)
         loops+=list(events(*EVAL_EVENTS))
         self.from_loops(*loops)
-        self.new_setting("model","opt","loss","hp","cuda")
+        self.new_setting("model","var",
+                         "loss_func","loss",
+                         "hp","cuda","metric_func","metric")
         self.__init__(data_iter,)
 
         @self.EVAL_FORWARD.downstream
