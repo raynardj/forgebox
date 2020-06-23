@@ -58,6 +58,7 @@ class LoopStack(Loop):
 
 # Cell
 import torch
+from torch import is_tensor
 
 def train_callbacks(loop):
     @loop.on_DATA_PROCESS
@@ -90,7 +91,7 @@ def train_single_forward(metric_func = []):
         @self.on_FORWARD
         def forward_pass(self):
             y_ = self.model("__call__",self.var.x)
-            self.var.y_ = y_.popitem()[1]
+            self.var.y_ = y_.popitem()[1][:,0]
 
         @self.on_LOSS_CALC
         def calculate_loss(self):
@@ -102,12 +103,18 @@ def train_single_forward(metric_func = []):
         def calcualte_metrics(self):
             # calculate metrics
             with torch.no_grad():
-                self.metric.cases.update(self.metric_func(self.var.y_,self.var.y))
+                self.metric.cases.update(self.metric_func("__call__",
+                                                          self.var.y_,self.var.y))
 
+        @self.on_METRICS
+        def to_item(self):
             # loop through metrics
             dt = self.metric.cases
+            dt.update(self.loss.cases)
+            dt = dict((k,v.item() if is_tensor(v) else v) \
+                          for k,v in dt.items())
             self.results.append(dt)
-            self.pgbar_data(self.metric.cases)
+            self.pgbar_data(dt)
 
     return train_single_forward_cb
 
