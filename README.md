@@ -2,7 +2,7 @@
 > Hackings of data science
 
 
-![logo](nbs/log.png)
+![logo](nbs/logo.jpg)
 
 ## Installation
 ```
