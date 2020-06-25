@@ -44,14 +44,16 @@ class Stuff:
     def __len__(self):
         return len(self.cases)
 
-    def update(self,func,*args,**kwargs):
-        for k,case in self.cases.items():
-            if type(func)==str:
-                self[k] = getattr(case,func)(*args,**kwargs)
-            else:
-                self[k] = func(case,*args,**kwargs)
+    def update(self,func):
+        def update_func(*args,**kwargs):
+            for k,case in self.cases.items():
+                if type(func)==str:
+                    self[k] = getattr(case,func)(*args,**kwargs)
+                else:
+                    self[k] = func(case,*args,**kwargs)
+        return update_func
 
-    def __call__(self,func,*args,**kwargs):
+    def __call__(self,func=None):
         """
         func: str or callable,
             if str, it will run on each subject case's such named function
@@ -61,14 +63,17 @@ class Stuff:
 
         return: a list of returned results
         """
-        results = dict()
-        for k,case in self.cases.items():
-            if type(func)==str:
-                results.update({k:getattr(case,func)(*args,**kwargs)})
-            else:
-                results.update({k:func(case,*args,**kwargs)})
-
-        return results
+        def run_funcs(*args,**kwargs):
+            results = dict()
+            for k,case in self.cases.items():
+                if type(func)==str:
+                    results.update({k:getattr(case,func)(*args,**kwargs)})
+                elif func==None:
+                    results.update({k:getattr(case,"__call__")(*args,**kwargs)})
+                else:
+                    results.update({k:func(case,*args,**kwargs)})
+            return results
+        return run_funcs
 
 # Cell
 from tqdm import tqdm
@@ -118,7 +123,7 @@ class StorageCore:
         for name,f in self.forall_pool.items():
             setattr(obj,name,f)
 
-class Loop:
+class Loop(list):
     """
     Basic loop class
     """

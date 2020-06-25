@@ -63,19 +63,19 @@ from torch import is_tensor
 def train_callbacks(loop):
     @loop.on_DATA_PROCESS
     def opt_zero_grad(loop):
-        loop.opt("zero_grad")
+        loop.opt("zero_grad")()
 
     @loop.before_1st_FORWARD
     def switch_model_to_train(loop):
-        loop.model("train")
+        loop.model("train")()
 
     @loop.BACKWARD.on
     def opt_step(loop):
-        loop.loss("backward")
+        loop.loss("backward")()
 
     @loop.BACKWARD.on
     def opt_step(loop):
-        loop.opt("step")
+        loop.opt("step")()
 
 def to_tensor(x):
     return torch.Tensor(x)
@@ -90,21 +90,19 @@ def train_single_forward(metric_func = []):
 
         @self.on_FORWARD
         def forward_pass(self):
-            y_ = self.model("__call__",self.var.x)
+            y_ = self.model()(self.var.x)
             self.var.y_ = y_.popitem()[1][:,0]
 
         @self.on_LOSS_CALC
         def calculate_loss(self):
-            for loss_name,loss_val in \
-                self.loss_func("__call__",self.var.y_,self.var.y).items():
+            for loss_name,loss_val in self.loss_func()(self.var.y_,self.var.y).items():
                 self.loss[loss_name] = loss_val
 
         @self.on_METRICS
         def calcualte_metrics(self):
             # calculate metrics
             with torch.no_grad():
-                self.metric.cases.update(self.metric_func("__call__",
-                                                          self.var.y_,self.var.y))
+                self.metric.cases.update(self.metric_func()(self.var.y_,self.var.y))
 
         @self.on_METRICS
         def to_item(self):
@@ -122,11 +120,11 @@ def single_device(device):
     def single_device_callback(self):
         @on_DATA_PROCESS
         def var_to_device(self):
-            self.var.update("to",device)
+            self.var.update("to")(device)
 
         @before_1st_FORWARD
         def model_to_device(self):
-            self.model.update("to",device)
+            self.model.update("to")(device)
 
     return single_device
 

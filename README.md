@@ -1,5 +1,5 @@
 # ForgeBox
-> Hackings of data science
+> Data science with fancy loops
 
 
 ![logo](nbs/logo.jpg)
