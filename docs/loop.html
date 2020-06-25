@@ -238,7 +238,7 @@ discriminative_model put to device:2
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">model</span><span class="p">(</span><span class="n">to_device</span><span class="p">)(</span><span class="s2">&quot;cuda:1&quot;</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">words</span><span class="p">(</span><span class="n">to_device</span><span class="p">)(</span><span class="s2">&quot;cuda:1&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -250,15 +250,21 @@ discriminative_model put to device:2
 
 <div class="output_area">
 
-<div class="output_subarea output_text output_error">
-<pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
-<span class="ansi-green-fg">&lt;ipython-input-11-5bd13098fa9e&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
-<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>model<span class="ansi-blue-fg">(</span>to_device<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;cuda:1&#34;</span><span class="ansi-blue-fg">)</span>
-
-<span class="ansi-red-fg">NameError</span>: name &#39;model&#39; is not defined</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>generative_model put to device:cuda:1
+discriminative_model put to device:cuda:1
+</pre>
 </div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;G&#39;: None, &#39;D&#39;: None}</pre>
+</div>
+
 </div>
 
 </div>
@@ -442,7 +448,7 @@ end of epoch 0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="ProgressBar" class="doc_header"><code>class</code> <code>ProgressBar</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L334" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProgressBar</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>jupyter</code></strong>=<em><code>True</code></em>, <strong><code>mininterval</code></strong>=<em><code>0.1</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="ProgressBar" class="doc_header"><code>class</code> <code>ProgressBar</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L341" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>ProgressBar</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>jupyter</code></strong>=<em><code>True</code></em>, <strong><code>mininterval</code></strong>=<em><code>0.1</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -522,7 +528,7 @@ end of epoch 0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="error_tolerate" class="doc_header"><code>error_tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L377" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>error_tolerate</code>(<strong><code>downstream_func</code></strong>)</p>
+<h4 id="error_tolerate" class="doc_header"><code>error_tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L384" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>error_tolerate</code>(<strong><code>downstream_func</code></strong>)</p>
 </blockquote>
 <p>downstream_func:Downstream function</p>
 
@@ -543,7 +549,7 @@ end of epoch 0
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Tolerate" class="doc_header"><code>class</code> <code>Tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L389" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Tolerate</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="Tolerate" class="doc_header"><code>class</code> <code>Tolerate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L396" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Tolerate</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>Tolerate any error happened downstream
 layer2 = Tolerate(upstream_iterable)</p>
@@ -568,7 +574,7 @@ layer3.run()</p>
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="LambdaCall" class="doc_header"><code>class</code> <code>LambdaCall</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L420" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LambdaCall</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>start_func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>end_func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="LambdaCall" class="doc_header"><code>class</code> <code>LambdaCall</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L427" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>LambdaCall</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>, <strong><code>func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>start_func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>end_func</code></strong>=<em><code>'&lt;lambda&gt;'</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -799,7 +805,7 @@ WARNING:5 errors
 	[😜names]	errors
 	...................................
 --------------------------------------------------
-🍰layer3.0	layer🍰Lambda&lt;0x1145e5ad0&gt;
+🍰layer3.0	layer🍰Lambda&lt;0x114cbe410&gt;
 --------------------------------------------------
 ==================================================
 
@@ -979,7 +985,7 @@ WARNING:5 errors
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Event" class="doc_header"><code>class</code> <code>Event</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L442" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Event</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
+<h2 id="Event" class="doc_header"><code>class</code> <code>Event</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L449" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Event</code>(<strong><code>iterable</code></strong>=<em><code>[]</code></em>) :: <a href="/forgebox/loop#Loop"><code>Loop</code></a></p>
 </blockquote>
 <p>An event is the landmark with in 1 iteration</p>
 
@@ -1304,7 +1310,7 @@ None
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunkify" class="doc_header"><code>chunkify</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L531" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunkify</code>(<strong>*<code>iterables</code></strong>, <strong><code>bs</code></strong>=<em><code>32</code></em>)</p>
+<h4 id="chunkify" class="doc_header"><code>chunkify</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L538" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunkify</code>(<strong>*<code>iterables</code></strong>, <strong><code>bs</code></strong>=<em><code>32</code></em>)</p>
 </blockquote>
 
 </div>

@@ -128,6 +128,7 @@ class Loop(list):
     Basic loop class
     """
     _loop_layer = 0.
+    _loop_obj = True
     def __init__(self,iterable = [],name=None):
         self.iterable  = iterable
         self.next_layer = None
@@ -209,6 +210,12 @@ class Loop(list):
         for element in first:
             first()
         first.end_callon()
+
+    def __getitem__(self,idx):
+        return self.iterable[idx]
+
+    def __setitem__(self,idx,v):
+        self.iterable[idx] = v
 
     def refresh_i(self):
         self.core.i=-1

@@ -38,8 +38,6 @@ class LoopStack(Loop):
             for stuff in cls.settings:
                 self.make_stuff(stuff)
 
-
-
         setattr(cls,"init",init)
         return cls
 
@@ -156,7 +154,7 @@ class EvalLoop(LoopStack):
         self.new_setting("model","var",
                          "loss_func","loss",
                          "hp","cuda","metric_func","metric")
-        self.__init__(data_iter,)
+        self.init(data_iter,)
 
         @self.EVAL_FORWARD.downstream
         def torch_eval_wrap(self,func):
