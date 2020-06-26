@@ -30,6 +30,9 @@ class Stuff:
     def append(self,obj):
         self[f"{self.name}_{len(self+1)}"] = obj
 
+    def clear(self):
+        self.cases = dict()
+
     def __getattr__(self,k):
         if k in self.cases:
             return self.cases[k]
@@ -44,9 +47,16 @@ class Stuff:
     def __len__(self):
         return len(self.cases)
 
-    def apply(self,func):
+    def apply(self,func,scope = None):
+        """
+        func, the function to apply on each element
+        scope, list, name the scope of element
+        """
         def apply_func(*args,**kwargs):
             for k,case in self.cases.items():
+                if scope!=None:
+                    if k not in scope:
+                        continue
                 if type(func)==str:
                     self[k] = getattr(case,func)(*args,**kwargs)
                 else:
@@ -201,13 +211,19 @@ class Loop(list):
     def __len__(self):
         return self.iterable.__len__()
 
-    def run(self,):
+    def run(self,run_nb=1):
         """
         Run through iteration
         run start_call for every layer on the start of iteration
             run __call__ for every layer for each iteration
         run end_call for every layer on the end of iteration
         """
+        self.before_1st_callon()
+        for i in range(run_nb):
+            self.one_epoch()
+        self.after_last_callon()
+
+    def one_epoch(self):
         first = self.layers[0]
         self.refresh_i()
         first.start_callon()
@@ -228,14 +244,11 @@ class Loop(list):
     def update_i(self):
         self.core.i+=1
 
-    def downstream_wrap(self,f):
-        return f()
-
-    def downstream_start_wrap(self,f):
-        return f()
-
-    def downstream_end_wrap(self,f):
-        return f()
+    def downstream_wrap(self,f):return f()
+    def downstream_start_wrap(self,f):return f()
+    def downstream_end_wrap(self,f):return f()
+    def downstream_before_1st_wrap(self,f): return f()
+    def downstream_after_last_wrap(self,f): return f()
 
     def downstream(self,f):
         """
@@ -293,6 +306,14 @@ class Loop(list):
         self.end_call()
         self.downstream_end_wrap(self.end_cb)
 
+    def before_1st_callon(self):
+        self.before_1st_call()
+        self.downstream_before_1st_wrap(self.before_1st_cb)
+
+    def after_last_callon(self):
+        self.after_last_call()
+        self.downstream_before_1st_wrap(self.after_last_cb)
+
     def iter_cb(self):
         """
         call back during each iteration
@@ -318,11 +339,24 @@ class Loop(list):
         if self.next_layer!=None:
             self.next_layer.end_callon()
 
-    def start_call(self):
-        pass
+    def before_1st_cb(self):
+        """
+        callback before the 1st of iteration
+        """
+        if self.next_layer!=None:
+            self.next_layer.before_1st_callon()
 
-    def end_call(self):
-        pass
+    def after_last_cb(self):
+        """
+        callback after the last of iteration
+        """
+        if self.next_layer!=None:
+            self.next_layer.after_last_callon()
+
+    def before_1st_call(self):pass
+    def after_last_call(self):pass
+    def start_call(self):pass
+    def end_call(self):pass
 
     def __iter__(self,):
         for element in self.iterable:
@@ -469,6 +503,8 @@ class Event(Loop):
         self.cbs = []
         self.create_cb_deco("on")
         self.create_cb_deco("before_1st")
+        self.create_cb_deco("every_start")
+        self.create_cb_deco("every_end")
         self.create_cb_deco("after_last")
         self.core.update_forall(self)
         self.core.assign_forall(self)
@@ -511,16 +547,42 @@ class Event(Loop):
         self.new_event_cb(new_cb)
         return f
 
+    def every_start(self,f):
+        class EventCbEveryStart(Loop):
+            def __init__(self_,iterable=[]):
+                super().__init__(iterable=iterable,
+                                 name = f"EVERY_START_{self.event_name}_{self.cbs.__len__()+1}_{f.__name__}")
+                self_.f = f
+
+            def start_call(self_): self_.f(self)
+
+        new_cb = EventCbEveryStart()
+        self.new_event_cb(new_cb)
+        return f
+
     def before_1st(self,f):
-        class EventCbBefore(Loop):
+        class EventCbBefore1st(Loop):
             def __init__(self_,iterable=[]):
                 super().__init__(iterable=iterable,
                                  name = f"BEFORE_1ST_{self.event_name}_{self.cbs.__len__()+1}_{f.__name__}")
                 self_.f = f
 
-            def start_call(self_): self_.f(self)
+            def before_1st_call(self_): self_.f(self)
 
-        new_cb = EventCbBefore()
+        new_cb = EventCbBefore1st()
+        self.new_event_cb(new_cb)
+        return f
+
+    def every_end(self,f):
+        class EventCbEveryEnd(Loop):
+            def __init__(self_,iterable=[]):
+                super().__init__(iterable=iterable,
+                                 name = f"EVERY_END_{self.event_name}_{self.cbs.__len__()+1}_{f.__name__}")
+                self_.f = f
+
+            def end_call(self_): self_.f(self)
+
+        new_cb = EventCbEveryEnd()
         self.new_event_cb(new_cb)
         return f
 
@@ -531,7 +593,7 @@ class Event(Loop):
                                  name = f"AFTER_LAST_{self.event_name}_{self.cbs.__len__()+1}_{f.__name__}")
                 self_.f = f
 
-            def end_call(self_): self_.f(self)
+            def after_last_call(self_): self_.f(self)
 
         new_cb = EventCbAfter()
         self.new_event_cb(new_cb)
