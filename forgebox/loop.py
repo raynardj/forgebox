@@ -44,14 +44,18 @@ class Stuff:
     def __len__(self):
         return len(self.cases)
 
-    def update(self,func):
-        def update_func(*args,**kwargs):
+    def apply(self,func):
+        def apply_func(*args,**kwargs):
             for k,case in self.cases.items():
                 if type(func)==str:
                     self[k] = getattr(case,func)(*args,**kwargs)
                 else:
                     self[k] = func(case,*args,**kwargs)
-        return update_func
+        return apply_func
+
+    def update(self,dictionary):
+        for k, v in dictionary.items():
+            self[k]=v
 
     def __call__(self,func=None):
         """
@@ -339,8 +343,15 @@ class Loop(list):
 
 # Cell
 class ProgressBar(Loop):
-    def __init__(self,iterable=[],jupyter = True,mininterval = 1e-1):
+    def __init__(self,iterable=[],jupyter = True,mininterval = 1.,leave=False):
         super().__init__(iterable,"ProgressBar")
+        """
+        jupyter:bool, using the jupyter progressbar (or the console pb)?
+            default True
+        mininterval: minimun update interval
+        leave:bool, if true, we do not remove the progress bar at the end
+            default: False
+        """
 
         if jupyter: # jupyter widget
             from tqdm.notebook import tqdm
@@ -349,6 +360,7 @@ class ProgressBar(Loop):
             from tqdm import tqdm
 
         self.tqdm = tqdm
+        self.leave = leave
         self.mininterval = mininterval
         self.data = dict()
 
@@ -377,7 +389,7 @@ class ProgressBar(Loop):
         self.t.update(1)
 
     def create_bar(self):
-        self.t = self.tqdm(total=len(self.iterable),
+        self.t = self.tqdm(total=len(self.iterable),leave=self.leave,
                            mininterval=self.mininterval)
 
 # Cell

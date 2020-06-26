@@ -6,7 +6,10 @@ __all__ = ['create_event', 'events', 'LoopStack', 'train_callbacks', 'to_tensor'
 # Cell
 from .loop import Loop,ProgressBar,Tolerate,Event,Stuff,chunkify
 from types import MethodType
+from datetime import datetime
 import numpy as np
+import pandas as pd
+from time import sleep
 
 # Cell
 def create_event(event_name):
@@ -55,10 +58,9 @@ class LoopStack(Loop):
             "\n\t".join(map(str,self.core.layers[:-1]))
 
 # Cell
-import torch
-from torch import is_tensor
-
 def train_callbacks(loop):
+    loop.core.metric_tab = MetricTab()
+
     @loop.on_DATA_PROCESS
     def opt_zero_grad(loop):
         loop.opt("zero_grad")()
@@ -93,24 +95,44 @@ def train_single_forward(metric_func = []):
 
         @self.on_LOSS_CALC
         def calculate_loss(self):
-            for loss_name,loss_val in self.loss_func()(self.var.y_,self.var.y).items():
-                self.loss[loss_name] = loss_val
+            losses =  self.loss_func()(self.var.y_,self.var.y)
+            self.loss.update(losses)
 
         @self.on_METRICS
         def calcualte_metrics(self):
             # calculate metrics
             with torch.no_grad():
-                self.metric.cases.update(self.metric_func()(self.var.y_,self.var.y))
+                metrics = self.metric_func()(self.var.y_,self.var.y)
+                self.metric.update(metrics)
 
         @self.on_METRICS
         def to_item(self):
             # loop through metrics
-            dt = self.metric.cases
-            dt.update(self.loss.cases)
+            self.metric.update(self.loss.cases)
             dt = dict((k,v.item() if is_tensor(v) else v) \
-                          for k,v in dt.items())
-            self.results.append(dt)
+                          for k,v in self.metric.cases.items())
+            self.metric_tab+=dt
             self.pgbar_data(dt)
+
+        @self.on_METRICS
+        def save_batch_row(self):
+            self.metric_tab.update(
+                bs = self.var.x.size(0),
+                epoch = self.epoch,
+                i = self.i,
+                ts = datetime.now()
+            )
+
+        @self.after_last_METRICS
+        def show_metric(self):
+            self.metric_tab.mark()
+            summary =self.metric_tab.summary()
+            try:
+                from IPython.display import clear_output
+                clear_output()
+                display(summary)
+            except:
+                print(print(summary))
 
     return train_single_forward_cb
 
@@ -118,13 +140,17 @@ def single_device(device):
     def single_device_callback(self):
         @on_DATA_PROCESS
         def var_to_device(self):
-            self.var.update("to")(device)
+            self.var.apply("to")(device)
 
         @before_1st_FORWARD
         def model_to_device(self):
-            self.model.update("to")(device)
+            self.model.apply("to")(device)
 
     return single_device
+
+# Cell
+import torch
+from torch import is_tensor
 
 class TrainLoop(LoopStack):
     def __init__(self,data_iter,model=[],opt=[],loss_func=[],loss=[],hp=[],cuda=[],
@@ -141,8 +167,6 @@ class TrainLoop(LoopStack):
         for cb in callbacks:
             print(f"assigning callback {cb}")
             cb(self)
-
-        self.core.results = []
 
 class EvalLoop(LoopStack):
     def __init__(self,data_iter,tolerate=True):
