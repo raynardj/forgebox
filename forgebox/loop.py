@@ -10,6 +10,7 @@ import math
 
 # Cell
 class Stuff:
+    _is_stuff = True
     def __init__(self,name):
         self.name = name
         self.cases = dict()
