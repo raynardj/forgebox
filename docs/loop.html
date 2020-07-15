@@ -804,7 +804,7 @@ layer3.run()</p>
 	[😜names]	errors
 	...................................
 --------------------------------------------------
-🍰layer3.0	layer🍰Lambda&lt;0x117cabb30&gt;
+🍰layer3.0	layer🍰Lambda&lt;0x119422e30&gt;
 --------------------------------------------------
 ==================================================
 
@@ -1307,6 +1307,276 @@ None
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Parallel">Parallel<a class="anchor-link" href="#Parallel">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">sqrt</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">heavy_calc</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">heavy_calc</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 933 µs, sys: 1.41 ms, total: 2.35 ms
+Wall time: 10 s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0.0,
+ 1.0,
+ 1.4142135623730951,
+ 1.7320508075688772,
+ 2.0,
+ 2.23606797749979,
+ 2.449489742783178,
+ 2.6457513110645907,
+ 2.8284271247461903,
+ 3.0]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="mi">5</span><span class="p">,)(</span><span class="n">delayed</span><span class="p">(</span><span class="n">heavy_calc</span><span class="p">)(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>CPU times: user 26.5 ms, sys: 21.8 ms, total: 48.3 ms
+Wall time: 2.79 s
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>[0.0,
+ 1.0,
+ 1.4142135623730951,
+ 1.7320508075688772,
+ 2.0,
+ 2.23606797749979,
+ 2.449489742783178,
+ 2.6457513110645907,
+ 2.8284271247461903,
+ 3.0]</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">showstuff</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+<span class="n">showstuff</span><span class="p">(</span><span class="n">a</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(&lt;generator object &lt;genexpr&gt; at 0x11b3761d0&gt;,)
+0
+1
+2
+3
+4
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">MultiProc</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">loop</span><span class="p">,</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="mi">6</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">loop</span> <span class="o">=</span> <span class="n">loop</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_jobs</span> <span class="o">=</span> <span class="n">n_jobs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parallel</span> <span class="o">=</span> <span class="n">Parallel</span><span class="p">(</span><span class="n">n_jobs</span><span class="o">=</span><span class="n">n_jobs</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">loop</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">loop</span>
+        <span class="k">def</span> <span class="nf">one_epoch_parallel</span><span class="p">(</span><span class="n">loop</span><span class="p">):</span>
+            <span class="n">first</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">loop</span><span class="o">.</span><span class="n">refresh_i</span><span class="p">()</span>
+            <span class="n">first</span><span class="o">.</span><span class="n">start_callon</span><span class="p">()</span>
+            <span class="nb">print</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">parallel</span><span class="p">(</span><span class="n">delayed</span><span class="p">(</span><span class="n">first</span><span class="o">.</span><span class="fm">__call__</span><span class="p">)()</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">first</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">first</span><span class="o">.</span><span class="n">end_callon</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">old</span> <span class="o">=</span> <span class="n">loop</span><span class="o">.</span><span class="n">one_epoch</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="n">loop</span><span class="p">,</span><span class="s2">&quot;one_epoch&quot;</span><span class="p">,</span><span class="n">MethodType</span><span class="p">(</span><span class="n">one_epoch_parallel</span><span class="p">,</span><span class="n">loop</span><span class="p">))</span>
+        <span class="k">return</span>
+    
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">exc_type</span><span class="p">,</span><span class="n">exc_val</span><span class="p">,</span><span class="n">exc_tb</span><span class="p">):</span>
+        <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">loop</span><span class="p">,</span><span class="s2">&quot;one_epoch&quot;</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">old</span><span class="p">)</span>
+        <span class="k">return</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Calc</span><span class="p">(</span><span class="n">Loop</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">iterable</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">iterable</span><span class="o">=</span><span class="n">iterable</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pgbar_data</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">sqrt</span><span class="o">=</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">element</span><span class="p">)))</span>
+        
+    <span class="k">def</span> <span class="nf">end_call</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;done&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">basic_loop</span> <span class="o">=</span> <span class="n">ProgressBar</span><span class="p">(</span><span class="n">Loop</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)))</span>
+<span class="n">test_li</span> <span class="o">=</span> <span class="n">Calc</span><span class="p">(</span><span class="n">basic_loop</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%%time</span>
+<span class="n">test_li</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>done
+CPU times: user 55.5 ms, sys: 8.47 ms, total: 64 ms
+Wall time: 10.1 s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Chunkify-for-batch-cutting">Chunkify for batch cutting<a class="anchor-link" href="#Chunkify-for-batch-cutting">&#182;</a></h2>
 </div>
 </div>
@@ -1323,7 +1593,7 @@ None
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="chunkify" class="doc_header"><code>chunkify</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L613" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunkify</code>(<strong>*<code>iterables</code></strong>, <strong><code>bs</code></strong>=<em><code>32</code></em>)</p>
+<h4 id="chunkify" class="doc_header"><code>chunkify</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loop.py#L616" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>chunkify</code>(<strong>*<code>iterables</code></strong>, <strong><code>bs</code></strong>=<em><code>32</code></em>)</p>
 </blockquote>
 
 </div>

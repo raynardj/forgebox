@@ -610,6 +610,9 @@ class Event(Loop):
         self.cbs.append(new_cb)
 
 # Cell
+from joblib import Parallel,delayed
+
+# Cell
 def chunkify(*iterables,bs = 32):
     if len(iterables)>1:
         return list(tuple(l[i*bs:(i+1)*bs] for l in iterables) \
