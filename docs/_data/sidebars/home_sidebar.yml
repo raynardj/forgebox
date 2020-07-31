@@ -22,10 +22,16 @@ entries:
       title: spacy toolkit
       url: /spacy
     - output: web,pdf
+      title: FreeMap
+      url: /freemap
+    - output: web,pdf
       title: Controllable loop process
       url: /loop
     - output: web,pdf
       title: Title
+      url: /train
+    - output: web,pdf
+      title: 15 LoopStack
       url: /loopstack
     - output: web,pdf
       title: 01 A logged editable table
