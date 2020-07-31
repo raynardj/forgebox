@@ -40,9 +40,6 @@ entries:
       title: CUDA GPU Management
       url: /CUDA_GPU_Management
     - output: web,pdf
-      title: Conditional Random Field
-      url: /b10_conditional_random_field
-    - output: web,pdf
       title: NLP data
       url: /bilstm-based-search-on-netflix-data
     - output: web,pdf

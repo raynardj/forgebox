@@ -11,7 +11,6 @@
     "15 LoopStack": "/loopstack",
     "01 A logged editable table": "/traceable_edit_in_flask",
     "CUDA GPU Management": "/CUDA_GPU_Management",
-    "Conditional Random Field": "/b10_conditional_random_field",
     "NLP data": "/bilstm-based-search-on-netflix-data",
     "create different file": "/create_different",
     "DataFrame PipeLine": "/dataframe_pipeline",
