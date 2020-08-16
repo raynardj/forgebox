@@ -29,10 +29,10 @@ entries:
       url: /loop
     - output: web,pdf
       title: Title
-      url: /train
+      url: /config
     - output: web,pdf
-      title: 15 LoopStack
-      url: /loopstack
+      title: Minimum
+      url: /minimum
     - output: web,pdf
       title: 01 A logged editable table
       url: /traceable_edit_in_flask
