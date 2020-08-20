@@ -4,7 +4,7 @@ __all__ = ['create_event', 'events', 'LoopStack', 'MetricTab', 'train_callbacks'
            'simple_forward', 'single_device', 'TrainLoop', 'EvalLoop', 'find_stuff', 'share_stuff']
 
 # Cell
-from .loop import Loop,ProgressBar,Tolerate,Event,Stuff,chunkify
+from .loop import StorageCore,Loop,ProgressBar,Tolerate,Event,Stuff,chunkify
 from types import MethodType
 from datetime import datetime
 import numpy as np
@@ -115,32 +115,32 @@ class MetricTab:
         return batch_df, batch_mean
 
 # Cell
-def train_callbacks(loop):
+def train_callbacks(loop:Loop)->"A cluster of callback function":
     """
     call backs allow optimizing model weights
     """
     loop.core.metric_tab = MetricTab()
 
     @loop.every_start_FORWARD
-    def switch_model_to_train(loop): loop.model("train")()
+    def switch_model_to_train(loop:Loop): loop.model("train")()
 
     @loop.on_DATA_PROCESS
-    def opt_zero_grad(loop):loop.opt("zero_grad")()
+    def opt_zero_grad(loop:Loop):loop.opt("zero_grad")()
 
     @loop.on_BACKWARD
-    def opt_move(loop):
+    def opt_move(loop:Loop):
         loop.loss("backward")()
         loop.opt("step")()
 
-def eval_callbacks(loop):
+def eval_callbacks(loop:Loop):
     loop.core.metric_tab = MetricTab()
     @loop.on_DATA_PROCESS
-    def switch_model_to_eval(loop): loop.model("eval")()
+    def switch_model_to_eval(loop:Loop): loop.model("eval")()
 
 def to_tensor(x):
     return torch.Tensor(x)
 
-def simple_forward(metric_func = []):
+def simple_forward(metric_func:list = [])->"A cluster of callback function":
     def simple_forward_cb(self):
         @self.on_DATA_PROCESS
         def set_xy(self):
@@ -192,7 +192,7 @@ def simple_forward(metric_func = []):
                 clear_output()
                 display(summary)
             except:
-                print(print(summary))
+                print(summary)
 
     return simple_forward_cb
 
@@ -253,11 +253,11 @@ class EvalLoop(LoopStack):
                 func()
 
 # Cell
-def find_stuff(core):
+def find_stuff(core:StorageCore):
     klist = list(filter(lambda k:hasattr(getattr(core,k),"_is_stuff"), vars(core).keys()))
     return dict((k,getattr(core,k)) for k in klist)
 
-def share_stuff(loop_from,loop_to):
+def share_stuff(loop_from:Loop,loop_to:Loop):
     stuff_dict = find_stuff(loop_from.core)
     for k,v in stuff_dict.items():
         setattr(loop_to.core,k,v)

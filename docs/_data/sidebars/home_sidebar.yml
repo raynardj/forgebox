@@ -29,6 +29,12 @@ entries:
       url: /loop
     - output: web,pdf
       title: Title
+      url: /train
+    - output: web,pdf
+      title: 15 LoopStack
+      url: /loopstack
+    - output: web,pdf
+      title: Config
       url: /config
     - output: web,pdf
       title: Minimum
