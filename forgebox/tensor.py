@@ -1,6 +1,7 @@
 __all__ = ['modules_to_opt_conf','measure_freeze','numpify']
 
 from copy import deepcopy
+from torch import nn
 
 def modules_to_opt_conf(*modules,**opt_kwargs)->"a list of PyTorch optimizer config":
     """

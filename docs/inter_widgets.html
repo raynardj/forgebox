@@ -6,6 +6,7 @@ keywords: fastai
 sidebar: home_sidebar
 
 summary: "Very helpful interactive tools"
+description: "Very helpful interactive tools"
 ---
 <!--
 
@@ -18,17 +19,30 @@ summary: "Very helpful interactive tools"
 -->
 
 <div class="container" id="notebook-container">
-    {% raw %}
         
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -38,7 +52,7 @@ summary: "Very helpful interactive tools"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="display_df" class="doc_header"><code>display_df</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>display_df</code>(<strong><code>df</code></strong>)</p>
+<h4 id="display_df" class="doc_header"><code>display_df</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L11" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>display_df</code>(<strong><code>df</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -49,6 +63,10 @@ summary: "Very helpful interactive tools"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -58,7 +76,7 @@ summary: "Very helpful interactive tools"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="search_box" class="doc_header"><code>search_box</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>search_box</code>(<strong><code>df</code></strong>, <strong><code>columns</code></strong>, <strong><code>manual</code></strong>=<em><code>False</code></em>, <strong><code>max_rows</code></strong>=<em><code>10</code></em>, <strong><code>callback</code></strong>=<em><code>'display_df'</code></em>)</p>
+<h4 id="search_box" class="doc_header"><code>search_box</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>search_box</code>(<strong><code>df</code></strong>, <strong><code>columns</code></strong>, <strong><code>manual</code></strong>=<em><code>False</code></em>, <strong><code>max_rows</code></strong>=<em><code>10</code></em>, <strong><code>callback</code></strong>=<em><code>'display_df'</code></em>)</p>
 </blockquote>
 <p>create a search box based on dataframe
 df: pandas dataframe
@@ -77,13 +95,17 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Search-text-within-dataframe-columns">Search text within dataframe columns<a class="anchor-link" href="#Search-text-within-dataframe-columns">&#182;</a></h2><p>We can have any dataframe we like:</p>
+<h2 id="Search-text-within-dataframe-columns">Search text within dataframe columns<a class="anchor-link" href="#Search-text-within-dataframe-columns"> </a></h2><p>We can have any dataframe we like:</p>
 
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -97,6 +119,8 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Put the dataframe and target column names into the <code>search_box()</code></p>
@@ -104,6 +128,8 @@ callback: python callable, discribe the action you want to put on
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -117,6 +143,8 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If your dataframe is slightly huge, and slow to respond, you can use <code>manual=True</code> to turn off the auto keypress response</p>
@@ -124,6 +152,8 @@ callback: python callable, discribe the action you want to put on
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -138,6 +168,63 @@ callback: python callable, discribe the action you want to put on
 
 </div>
     {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Interactive-pagination">Interactive pagination<a class="anchor-link" href="#Interactive-pagination"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="paginate" class="doc_header"><code>paginate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L42" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>paginate</code>(<strong><code>df</code></strong>, <strong><code>page_len</code></strong>=<em><code>20</code></em>)</p>
+</blockquote>
+<p>Paginate dataframe in jupyter notebook interactively
+Like you can flip through the page</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">paginate</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 </div>
  
 
