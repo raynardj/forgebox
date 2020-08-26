@@ -45,6 +45,7 @@ def paginate(df,page_len = 20):
     Like you can flip through the page
     """
     from ipywidgets import interact,interact_manual
+    from IPython.display import display,HTML
     pages = len(df)//page_len
     @interact
     def preview(page = (0,pages)):
