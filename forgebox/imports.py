@@ -21,6 +21,13 @@ import os
 import sys
 
 try:
+    from .widgets import search_box,paginate
+    pd.DataFrame.search_box = search_box
+    pd.DataFrame.paginate = paginate
+except:
+    pass
+
+try:
     import torch
     from torch import nn
     from torch.utils.data.dataset import Dataset

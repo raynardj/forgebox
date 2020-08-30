@@ -47,13 +47,14 @@ description: "Minimal way of managing a **(Directed Acyclic Graph)DAG pipeline**
     <span class="n">is_link_identifier</span> <span class="o">=</span> <span class="kc">True</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
     <span class="n">inputs</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">func</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">ensure_funcs</span><span class="p">()</span>
         <span class="n">func_name</span> <span class="o">=</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func_name</span> <span class="o">=</span> <span class="n">func_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">funcs_</span><span class="p">[</span><span class="n">func_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">func</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">func</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">funcs_</span><span class="p">[</span><span class="n">func_name</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">get_kwargs_default</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">register_args</span><span class="p">()</span>
         
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,):</span>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;[Link Function]:</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="si">}</span><span class="s2">&quot;</span>
@@ -62,7 +63,11 @@ description: "Minimal way of managing a **(Directed Acyclic Graph)DAG pipeline**
         <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="s2">&quot;funcs_&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="n">funcs_</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
             
-    <span class="k">def</span> <span class="nf">ensure_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">uuid</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">ensure_uuid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">uuid</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="nb">str</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Make sure there&#39;s uuid,</span>
+<span class="sd">        if not create on</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">uuid</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
             <span class="n">uuid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid4</span><span class="p">())</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span> <span class="o">=</span> <span class="n">Config</span><span class="p">()</span>
@@ -72,42 +77,134 @@ description: "Minimal way of managing a **(Directed Acyclic Graph)DAG pipeline**
             <span class="k">return</span> <span class="n">uuid</span>
         
     <span class="k">def</span> <span class="nf">check_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">uuid</span><span class="p">):</span>
-        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="s2">&quot;is_link_identifier&quot;</span><span class="p">):</span>
-            <span class="k">return</span> <span class="n">v</span><span class="o">.</span><span class="n">unit_call</span><span class="p">(</span><span class="n">uuid</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
+        
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="s2">&quot;is_link_identifier&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">:</span>
+            <span class="c1"># this is not a callback function</span>
             <span class="k">return</span> <span class="n">v</span>
+        
+        <span class="k">elif</span> <span class="n">v</span><span class="o">.</span><span class="n">func_name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">uuid</span><span class="p">]:</span>
+            <span class="c1"># found calculated result of the function</span>
+            <span class="c1"># read the cached result</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="si">}</span><span class="s2">] using cache:</span><span class="se">\t</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">func_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">v</span><span class="o">.</span><span class="n">func_name</span><span class="p">)</span>
+        
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># calculated result of function v not found,</span>
+            <span class="c1"># execuate the calculation</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="si">}</span><span class="s2">] execute callback:</span><span class="se">\t</span><span class="si">{</span><span class="n">v</span><span class="o">.</span><span class="n">func_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">v</span><span class="o">.</span><span class="n">unit_call</span><span class="p">(</span><span class="n">uuid</span><span class="p">)()</span>
+            <span class="k">return</span> <span class="n">result</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">value_only</span><span class="p">(</span><span class="n">dict_</span><span class="p">:</span><span class="n">Config</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Config</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        filter out the value that requires callback</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Config</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">dict_</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="s2">&quot;is_link_identifier&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">False</span><span class="p">)</span>
+    
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">callback_only</span><span class="p">(</span><span class="n">dict_</span><span class="p">:</span><span class="n">Config</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Config</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        filter out the value that does not require callback</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">Config</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">dict_</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="s2">&quot;is_link_identifier&quot;</span><span class="p">)</span><span class="o">==</span><span class="kc">True</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">get_cached</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">uuid</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Config</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the cached data</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">this_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">Config</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="n">this_data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_argname</span> \
+                          <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">this_data</span><span class="p">)</span>
         
     <span class="k">def</span> <span class="nf">unit_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">uuid</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
         <span class="n">uuid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ensure_uuid</span><span class="p">(</span><span class="n">uuid</span><span class="p">)</span>
+        
         <span class="k">def</span> <span class="nf">called</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
             <span class="c1"># record inputs</span>
             <span class="n">kwargs0</span> <span class="o">=</span> <span class="n">deepcopy</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">kwargs_default</span><span class="p">)</span>
             <span class="n">kwargs0</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
             
-            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Config</span><span class="p">({</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">:</span><span class="n">Config</span><span class="p">(</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">,</span><span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs0</span><span class="p">)}))</span>
+            <span class="c1"># save inputs</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">inputs</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">Config</span><span class="p">({</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">:</span><span class="n">Config</span><span class="p">(</span><span class="n">args</span> <span class="o">=</span> <span class="n">args</span><span class="p">,</span>
+                                                                   <span class="n">kwargs</span> <span class="o">=</span> <span class="n">kwargs0</span><span class="p">)}))</span>
+            <span class="c1"># save data</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">value_only</span><span class="p">(</span><span class="n">kwargs0</span><span class="p">))</span>
             
-            <span class="n">kwargs0</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">check_callback</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">uuid</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs0</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+            <span class="c1"># check the cache for all args</span>
+            <span class="n">cached</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_cached</span><span class="p">(</span><span class="n">uuid</span><span class="p">)</span>
+            <span class="n">kwargs0</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">cached</span><span class="p">)</span>
+            
+            <span class="c1"># check the callback trigger</span>
+            <span class="n">args0</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">check_callback</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">uuid</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">args</span><span class="p">)</span>
+            <span class="n">kwargs0</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">((</span><span class="n">k</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">check_callback</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">uuid</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">kwargs0</span><span class="o">.</span><span class="n">items</span><span class="p">())</span>
+            
+            <span class="c1"># redundant keywords</span>
+            <span class="k">if</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">args0</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="o">&gt;=</span><span class="nb">len</span><span class="p">(</span><span class="n">args0</span><span class="p">):</span>
+                <span class="n">manual_args</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">args</span><span class="p">[:</span><span class="nb">len</span><span class="p">(</span><span class="n">args0</span><span class="p">)]</span>
+                <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">manual_args</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">kwargs0</span><span class="p">:</span>
+                        <span class="k">del</span> <span class="n">kwargs0</span><span class="p">[</span><span class="n">k</span><span class="p">]</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args0</span><span class="p">)</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">manual_args</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">args0</span><span class="p">[</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">manual_args</span><span class="p">):]:</span>
             
             <span class="c1"># run function</span>
-            <span class="n">rt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">verbose</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="si">}</span><span class="s2">] final args </span><span class="si">{</span><span class="n">args0</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="si">}</span><span class="s2">] final kwargs </span><span class="si">{</span><span class="n">kwargs0</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">rt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args0</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs0</span><span class="p">)</span>
             
-            <span class="c1"># record outputs</span>
+            <span class="c1"># save outputs</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span><span class="s1">&#39;items&#39;</span><span class="p">):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">[</span><span class="n">uuid</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="bp">self</span><span class="o">.</span><span class="n">func_name</span><span class="p">:</span><span class="n">rt</span><span class="p">})</span>
+            
             <span class="k">return</span> <span class="n">rt</span>
         <span class="k">return</span> <span class="n">called</span>
         
     <span class="k">def</span> <span class="fm">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">,):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit_call</span><span class="p">()(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     
-    <span class="k">def</span> <span class="nf">get_kwargs_default</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">register_args</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">-&gt;</span><span class="kc">None</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Register all the arguements</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">arg_spec</span> <span class="o">=</span> <span class="n">getfullargspec</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">func</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">arg_spec</span> <span class="o">=</span> <span class="n">arg_spec</span>
         
+        <span class="c1"># gather all the default **keyword** arguments</span>
         <span class="n">kwargs_default</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
         <span class="k">if</span> <span class="n">arg_spec</span><span class="o">.</span><span class="n">defaults</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">kwargs_default</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">args</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">defaults</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])))</span>
         <span class="k">if</span> <span class="n">arg_spec</span><span class="o">.</span><span class="n">kwonlydefaults</span> <span class="o">!=</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">kwargs_default</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">kwonlyargs</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">kwonlydefaults</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">kwargs_default</span> <span class="o">=</span> <span class="n">kwargs_default</span>
+        
+        <span class="c1"># gather all the arg,kwarg name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">all_argname</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">args</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">all_argname</span><span class="o">+=</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">args</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">kwonlyargs</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">all_argname</span><span class="o">+=</span><span class="n">arg_spec</span><span class="o">.</span><span class="n">kwonlyargs</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">Link</span><span class="o">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="mi">2</span>
 </pre></div>
 
     </div>
@@ -127,9 +224,80 @@ description: "Minimal way of managing a **(Directed Acyclic Graph)DAG pipeline**
 <div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@Link</span>
 <span class="k">def</span> <span class="nf">abc</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="n">b</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="nd">@Link</span>
+<span class="k">def</span> <span class="nf">process_abc</span><span class="p">(</span><span class="n">f</span> <span class="o">=</span> <span class="n">abc</span><span class="p">,</span><span class="n">d</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span> 
+    <span class="k">return</span> <span class="n">f</span><span class="o">*</span><span class="n">d</span>
+
+<span class="nd">@Link</span>
+<span class="k">def</span> <span class="nf">step2</span><span class="p">(</span><span class="n">d</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="n">e</span> <span class="o">=</span> <span class="n">process_abc</span><span class="p">,):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;power&quot;</span><span class="p">:</span><span class="n">e</span><span class="o">**</span><span class="n">d</span><span class="p">,</span><span class="s2">&quot;mod&quot;</span><span class="p">:</span><span class="n">e</span><span class="o">%</span><span class="k">d</span>}
+
+<span class="nd">@Link</span>
+<span class="k">def</span> <span class="nf">step3</span><span class="p">(</span><span class="n">mod</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">mod</span><span class="o">/</span><span class="mi">2</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">step3</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[step3] final args []
+[step3] final kwargs {}
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-160-93e7421bb413&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>step3<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-155-5099601ed5c0&gt;</span> in <span class="ansi-cyan-fg">__call__</span><span class="ansi-blue-fg">(self, *args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    120</span> 
+<span class="ansi-green-intense-fg ansi-bold">    121</span>     <span class="ansi-green-fg">def</span> __call__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">--&gt; 122</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">return</span> self<span class="ansi-blue-fg">.</span>unit_call<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">**</span>kwargs<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    123</span> 
+<span class="ansi-green-intense-fg ansi-bold">    124</span>     <span class="ansi-green-fg">def</span> register_args<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">-&gt;</span><span class="ansi-green-fg">None</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-green-fg">&lt;ipython-input-155-5099601ed5c0&gt;</span> in <span class="ansi-cyan-fg">called</span><span class="ansi-blue-fg">(*args, **kwargs)</span>
+<span class="ansi-green-intense-fg ansi-bold">    109</span>                 print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f&#34;[{self.func_name}] final args {args0}&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    110</span>                 print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">f&#34;[{self.func_name}] final kwargs {kwargs0}&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">--&gt; 111</span><span class="ansi-red-fg">             </span>rt <span class="ansi-blue-fg">=</span> self<span class="ansi-blue-fg">.</span>func<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">*</span>args0<span class="ansi-blue-fg">,</span><span class="ansi-blue-fg">**</span>kwargs0<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">    112</span> 
+<span class="ansi-green-intense-fg ansi-bold">    113</span>             <span class="ansi-red-fg"># save outputs</span>
+
+<span class="ansi-red-fg">TypeError</span>: step3() missing 1 required positional argument: &#39;mod&#39;</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -191,7 +359,8 @@ description: "Minimal way of managing a **(Directed Acyclic Graph)DAG pipeline**
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;e39bc0b1-781c-4e16-9c55-e76b5dc8d15e&#39;: {&#39;abc&#39;: {&#39;args&#39;: (5,), &#39;kwargs&#39;: {}}}}</pre>
+<pre>{&#39;9ddc067c-20ae-4489-88cb-facaf968b2c2&#39;: {&#39;abc&#39;: {&#39;args&#39;: (5,),
+   &#39;kwargs&#39;: {&#39;b&#39;: 3, &#39;a&#39;: 2}}}}</pre>
 </div>
 
 </div>
@@ -224,7 +393,7 @@ description: "Minimal way of managing a **(Directed Acyclic Graph)DAG pipeline**
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>{&#39;e39bc0b1-781c-4e16-9c55-e76b5dc8d15e&#39;: {&#39;abc&#39;: 25}}</pre>
+<pre>{&#39;9ddc067c-20ae-4489-88cb-facaf968b2c2&#39;: {&#39;b&#39;: 3, &#39;a&#39;: 2, &#39;abc&#39;: 25}}</pre>
 </div>
 
 </div>
