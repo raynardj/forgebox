@@ -1,13 +1,14 @@
-var mlm_visualize = (data,text)=>{
+var mlm_visualize = (data,text,output_id)=>{
     var token_data = restructure(data,text)
-    console.log(data)
-    console.log(display_sentence(token_data))
+    
+    $(`#${output_id}`).append(display_sentence(token_data))
 }
 var display_sentence=(token_data)=>{
         seq_token = token_data[0];
         var sentence='';
         for(token in seq_token){
-            sentence+=token.render_token();
+            sentence+=seq_token[token]
+                .render_token();
         }
         return `<span>${sentence}</span>`
 }
@@ -72,25 +73,26 @@ var token_factory=(text,attention)=>{
         }
         text=text;
         attention=attention;
-    }
-    get_mask=(layer,head)=>{
-        return this.attention
-        .layers[layer]
-        .heads[head]
-    }
-    get_mask_forward=(layer,head)=>{
-        return this.get_mask(layer,head)
-            .get_mask_forward(this.seq_idx)
-    }
-    get_mask_backward=(layer,head)=>{
-        return this.get_mask(layer,head)
-            .get_mask_backward(this.seq_idx)
-    }
-    render_token=()=>{
-        return `<span data-seq_idx=${this.seq_dix}
-        data-x=${this.x}
-        data-is_mask='${this.is_mask}'
-        >${this.token}</span>`
+    
+        get_mask=(layer,head)=>{
+            return this.attention
+            .layers[layer]
+            .heads[head]
+        };
+        get_mask_forward=(layer,head)=>{
+            return this.get_mask(layer,head)
+                .get_mask_forward(this.seq_idx)
+        };
+        get_mask_backward=(layer,head)=>{
+            return this.get_mask(layer,head)
+                .get_mask_backward(this.seq_idx)
+        };
+        render_token=()=>{
+            return `<span data-seq_idx=${this.seq_dix}
+            data-x=${this.x}
+            data-is_mask='${this.is_mask}'
+            >${this.token}</span>`
+        }
     }
     return Token
 }
@@ -105,7 +107,7 @@ var restructure=(data,text)=>{
     var att_obj= new Attention()
     var Token = token_factory(text,att_obj)
     var new_data = {}
-    mapper=mapper[0]
+
     for(var m=0;m<pred_tokens.length;m++){
         /* Iter through mask tokens*/
         var the_mask = {}
