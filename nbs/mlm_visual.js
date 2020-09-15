@@ -3,11 +3,26 @@ var mlm_visualize = (data,text,output_id)=>{
     
     var sentence = new Sentence()
 
-    $(`#${output_id}`).append(sentence.display())
+    $(`#${output_id}`).append(sentence.display({with_heads:true}))
     window.sentence = sentence
 }
+var Status=class{
+    constructor(data){
+        this={...this,...data};
+    }
+}
+var get_theme=(idx)=>{
+    var mapping = {
+        0:"primary",
+        1:"success",
+        2:"info",
+        3:"warning",
+        4:"danger",
+    }
+    return mapping[idx%5]
+}
 
-argmax = (arr)=>{
+var argmax = (arr)=>{
     var result = 0;
     var max_ = arr[0];
     for(var i=0;i<arr.length;i++){
@@ -18,7 +33,7 @@ argmax = (arr)=>{
     }
     return result
 }
-threshold_filter = (arr,threshold=.05)=>{
+var threshold_filter = (arr,threshold=.05)=>{
     var result = [];
     for(var i=0;i<arr.length;i++){
         if(arr[i]>threshold){
@@ -96,6 +111,55 @@ var attention_factory=(data,text,output_id)=>{
     }
 
     var att_obj = new Attention();
+    var nb_layers=att_obj.layers.length;
+    var nb_heads=att_obj.layers[0].heads.length;
+    var HeadBtnDOM=class{
+        attention = att_obj;
+        constructor(data){
+            this.head_idx = data.idx;
+            this.control = data.control;
+            this.status = this.control.status
+        }
+        click_func=()=>{
+            this.status.head_idx = this.head_idx;
+        }
+        render=()=>{
+            this.dom = document.createElement("span");
+            this.dom.object = this;
+            $(this.dom)
+                .addClass("btn")
+                .addClass("btn-xs")
+                .addClass(`btn-${get_theme(this.head_idx)}`);
+            $(this.dom).html(`H ${this.head_idx}`);
+            $(this.dom).click(this.click_func)
+            return this.dom
+        }
+    }
+    var BtnControl=class{
+        constructor(single,iterable){
+            this.single=single;
+            this.iterable=iterable;
+            this.components = []
+            this.status = {}
+        }
+        render = ()=>{
+            for(var i=0;i<this.iterable.length;i++){
+                var dt = {idx:i,control:this,element:this.iterable[i]}
+                this.components.push(new this.single(dt))
+            }
+
+            this.dom = document.createElement("div")
+            $(this.dom).addClass("btn-group")
+            this.dom.object = this
+
+            for(var i=0;i<this.components.length;i++){
+                var component = this.components[i].render();
+                $(this.dom).append(component);
+            }
+            return this.dom
+        }
+        
+    }
 
     var Token = class{
         constructor(data){
@@ -110,12 +174,12 @@ var attention_factory=(data,text,output_id)=>{
         }
         text=text;
         attention=att_obj;
-        nb_layers=att_obj.layers.length;
+        
 
         back=(i,head,cb=null,th_cb=null)=>{
-            if(i<this.nb_layers)
+            if(i<nb_layers)
             {
-                var layer = this.nb_layers-1-i;
+                var layer = nb_layers-1-i;
                 var mask_slice = this.get_mask_backward(layer,head)
                 var next_idx = argmax(mask_slice)
                 
@@ -149,7 +213,7 @@ var attention_factory=(data,text,output_id)=>{
         assign_click=(dom)=>{
             var onclick = ()=>{
                 this.sentence.recover()
-                this.back(0,0,coloring("red"),shading("blue",5))
+                this.back(0,0,coloring("red"),shading("rgba(50,60,255,.8)",5))
             }
             dom.onclick = onclick;
         }
@@ -216,20 +280,28 @@ var attention_factory=(data,text,output_id)=>{
                 })
             }
         }
-        display=()=>{
+        display=(config)=>{
             /*
             return the sentence dom
             */
-            var sentence_dom=document.createElement("div");
+            this.dom=document.createElement("div");
+            var {with_heads}=config;
+
+            $(this.dom).append("<hr>")
+            
+            if(with_heads){
+                this.heads_control = new BtnControl(HeadBtnDOM,[...Array(nb_heads).keys()]);
+                $(this.dom).append(this.heads_control.render());
+                $(this.dom).append("<hr>")
+            }
+
             var last_pos=0;
             for(var i in this.tokens){
-
                 var {token_dom,last_pos} =this.tokens[i]
                     .render_token(last_pos);
-                    $(sentence_dom).append(token_dom);
+                $(this.dom).append(token_dom);
             }
-            this.dom = sentence_dom
-            return sentence_dom
+            return this.dom
         }
         map_token=(callback)=>{
             /*
