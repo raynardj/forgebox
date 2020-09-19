@@ -29,9 +29,6 @@ entries:
       url: /loop
     - output: web,pdf
       title: Title
-      url: /train
-    - output: web,pdf
-      title: 15 LoopStack
       url: /loopstack
     - output: web,pdf
       title: Config
@@ -45,6 +42,9 @@ entries:
     - output: web,pdf
       title: CUDA GPU Management
       url: /CUDA_GPU_Management
+    - output: web,pdf
+      title: Bert Visualize
+      url: /bert_visualize
     - output: web,pdf
       title: NLP data
       url: /bilstm-based-search-on-netflix-data
