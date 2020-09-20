@@ -52,6 +52,9 @@ entries:
       title: create different file
       url: /create_different
     - output: web,pdf
+      title: Create multi-task adjustment for cross-entropy
+      url: /cross_entropy_weighter
+    - output: web,pdf
       title: DataFrame PipeLine
       url: /dataframe_pipeline
     - output: web,pdf
