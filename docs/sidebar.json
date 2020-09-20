@@ -15,6 +15,7 @@
     "Bert Visualize": "/bert_visualize",
     "NLP data": "/bilstm-based-search-on-netflix-data",
     "create different file": "/create_different",
+    "Create multi-task adjustment for cross-entropy": "/cross_entropy_weighter",
     "DataFrame PipeLine": "/dataframe_pipeline",
     "03 Imports": "/imports",
     "Optimizer Mangement": "/optimizers",
