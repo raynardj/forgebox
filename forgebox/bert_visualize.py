@@ -5,6 +5,7 @@ __all__ = ['MLMVisualizer', 'li', 'infer_logits', 'predict_text', 'visualize', '
 # Cell
 from .imports import *
 from .config import Config
+from .static_file import open_static
 from jinja2 import Template
 from .html import DOM
 from uuid import uuid4
@@ -46,6 +47,8 @@ class MLMVisualizer:
         x = tokenized['input_ids']
         offset_mapping = tokenized['offset_mapping']
         mask = x==self.tokenizer.mask_token_id
+        if len(offset_mapping.shape)==3:
+            offset_mapping=offset_mapping[0]
         return x,mask,offset_mapping
 
 # Cell
@@ -99,10 +102,8 @@ def visualize(vis,
 
 
 def visualize_result(vis, result: Config):
-    with open('mlm_visual.html', 'r') as f:
-        template = Template(f.read())
-    with open('mlm_visual.js', 'r') as f:
-        js = f.read()
+    template = Template(open_static('mlm/visual.html'))
+    js = open_static('mlm/visual.js')
     text = result.text
     delattr(result, 'text')
     output_id = str(uuid4())

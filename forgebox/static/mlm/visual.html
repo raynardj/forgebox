@@ -1,0 +1,13 @@
+<div>
+    <h2>Masked language modeling visualization</h2>
+    <script>
+        {{mlm_visual_js}}
+
+        var data = JSON.parse('{{data}}');
+        var text =  `{{text}}`;
+        var output_id = '{{output_id}}'
+        mlm_visualize(data,text,output_id);
+    </script>
+
+    <div id='{{output_id}}'></div>
+</div>
