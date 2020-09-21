@@ -29,9 +29,6 @@ entries:
       url: /loop
     - output: web,pdf
       title: Title
-      url: /train
-    - output: web,pdf
-      title: 15 LoopStack
       url: /loopstack
     - output: web,pdf
       title: Config
@@ -46,11 +43,17 @@ entries:
       title: CUDA GPU Management
       url: /CUDA_GPU_Management
     - output: web,pdf
+      title: Bert Visualize
+      url: /bert_visualize
+    - output: web,pdf
       title: NLP data
       url: /bilstm-based-search-on-netflix-data
     - output: web,pdf
       title: create different file
       url: /create_different
+    - output: web,pdf
+      title: Create multi-task adjustment for cross-entropy
+      url: /cross_entropy_weighter
     - output: web,pdf
       title: DataFrame PipeLine
       url: /dataframe_pipeline
