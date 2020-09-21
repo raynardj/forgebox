@@ -6,6 +6,7 @@ keywords: fastai
 sidebar: home_sidebar
 
 summary: "A weighter for multi-task learning with different softmax+cross-entropy"
+description: "A weighter for multi-task learning with different softmax+cross-entropy"
 ---
 <!--
 
@@ -18,20 +19,29 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 -->
 
 <div class="container" id="notebook-container">
-    {% raw %}
         
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tools-and-imports">Tools and imports<a class="anchor-link" href="#Tools-and-imports">&#182;</a></h2>
+<h2 id="Tools-and-imports">Tools and imports<a class="anchor-link" href="#Tools-and-imports"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -45,12 +55,16 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Enters-softmax">Enters softmax<a class="anchor-link" href="#Enters-softmax">&#182;</a></h2>
+<h2 id="Enters-softmax">Enters softmax<a class="anchor-link" href="#Enters-softmax"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -65,12 +79,16 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Experience-the-problem">Experience the problem<a class="anchor-link" href="#Experience-the-problem">&#182;</a></h2>
+<h2 id="Experience-the-problem">Experience the problem<a class="anchor-link" href="#Experience-the-problem"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -92,6 +110,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -118,6 +140,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -141,6 +167,8 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
@@ -152,6 +180,8 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -165,6 +195,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -198,6 +232,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -211,6 +249,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -565,9 +607,11 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-pattern">The pattern<a class="anchor-link" href="#The-pattern">&#182;</a></h3>
+<h3 id="The-pattern">The pattern<a class="anchor-link" href="#The-pattern"> </a></h3>
 </div>
 </div>
 </div>
@@ -581,6 +625,8 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -622,9 +668,11 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="The-solution">The solution<a class="anchor-link" href="#The-solution">&#182;</a></h3><p>Assume we have certain function, will produce a weight that will bring each cross entropy loss to the same constant scale ${a}$.</p>
+<h3 id="The-solution">The solution<a class="anchor-link" href="#The-solution"> </a></h3><p>Assume we have certain function, will produce a weight that will bring each cross entropy loss to the same constant scale ${a}$.</p>
 <p>$L_{i}.f(c_{i})=a$</p>
 <p>$f(c_{i})a.log_{10}(c_{i})=a$</p>
 <p>Here we can get how to calculate $f(c_{i})$</p>
@@ -633,6 +681,8 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -647,6 +697,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -662,6 +716,8 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>For now it's a about the same scale of loss</p>
@@ -669,6 +725,8 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -710,15 +768,23 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Adjusted-CrossEntropy">Adjusted CrossEntropy<a class="anchor-link" href="#Adjusted-CrossEntropy">&#182;</a></h2>
+<h2 id="Adjusted-CrossEntropy">Adjusted CrossEntropy<a class="anchor-link" href="#Adjusted-CrossEntropy"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -741,6 +807,8 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Let's make this adjustment into the loss function, an upgraded version of CrossEntropy</p>
@@ -748,6 +816,8 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -783,6 +853,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -796,6 +870,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -1150,6 +1228,10 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -1195,6 +1277,7 @@ summary: "A weighter for multi-task learning with different softmax+cross-entrop
 
 </div>
     {% endraw %}
+
 </div>
  
 
