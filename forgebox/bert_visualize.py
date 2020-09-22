@@ -68,7 +68,7 @@ def infer_logits(
     return Config(
         logits=logits,
         pred_idx=pred_idx,
-        pred_tokens = tokenizer.convert_ids_to_tokens(pred_idx)
+        pred_tokens = vis.tokenizer.convert_ids_to_tokens(pred_idx)
     )
 
 
