@@ -1,1 +1,1 @@
-recursive-include forgebox/static/*
+recursive-include forgebox/static/ *

@@ -4,10 +4,9 @@ var mlm_visualize = (data, text, output_id) => {
         ControlBar,
         att_obj
     } = attention_factory(data, text, output_id)
-
     var sentence = new Sentence();
     var control_bar = new ControlBar({
-        nb_heads: att_obj.attention.length,
+        nb_heads: att_obj.layers[0].heads.length,
         current_head: 0
     });
 
