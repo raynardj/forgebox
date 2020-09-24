@@ -51,4 +51,4 @@ def paginate(df,page_len = 20):
     def preview(page = (0,pages)):
         display(HTML(f"<h4>page:{page}/{pages}</4>"))
         end = (page+1)*page_len
-        display(df.head(end+1).tail(page_len))
+        display(df.head(end).tail(page_len))
