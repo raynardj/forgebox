@@ -7,6 +7,7 @@ import torch
 from torch import nn
 import pandas as pd
 import numpy as np
+from typing import Callable
 
 # Cell
 class MultiTaskCELoss(nn.Module):
@@ -18,7 +19,18 @@ class MultiTaskCELoss(nn.Module):
         super().__init__()
         self.celoss = nn.CrossEntropyLoss()
 
-    def forward(self,y_pred,y_true):
+    def forward(
+        self,
+        y_pred: torch.FloatTensor,
+        y_true: torch.LongTensor,
+    )-> torch.FloatTensor:
+        """
+        Input:
+            - y_pred: torch.FloatTensor, Prediction tensor
+            - y_true: torch.LongTensor, Label indices
+        Return:
+            - loss: torch.FloatTensor, scala adjusted
+        """
         nb_classes = y_pred.size(-1)
         lambda_ = 1/np.log10(nb_classes)
         loss = self.celoss(y_pred,y_true)

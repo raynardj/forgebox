@@ -29,13 +29,10 @@ entries:
       url: /loop
     - output: web,pdf
       title: Title
-      url: /train
+      url: /loopstack
     - output: web,pdf
       title: Get static file
       url: /static_file
-    - output: web,pdf
-      title: 15 LoopStack
-      url: /loopstack
     - output: web,pdf
       title: Config
       url: /config
