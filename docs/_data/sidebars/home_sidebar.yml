@@ -29,7 +29,7 @@ entries:
       url: /loop
     - output: web,pdf
       title: Title
-      url: /loopstack
+      url: /Untitled
     - output: web,pdf
       title: Get static file
       url: /static_file
