@@ -12,6 +12,7 @@
     "Config": "/config",
     "Minimum": "/minimum",
     "01 A logged editable table": "/traceable_edit_in_flask",
+    "Wild Tree and loss": "/wild_tree_and_loss",
     "CUDA GPU Management": "/CUDA_GPU_Management",
     "Bert Visualize": "/bert_visualize",
     "NLP data": "/bilstm-based-search-on-netflix-data",

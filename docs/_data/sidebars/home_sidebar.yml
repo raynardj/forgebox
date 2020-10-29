@@ -43,6 +43,9 @@ entries:
       title: 01 A logged editable table
       url: /traceable_edit_in_flask
     - output: web,pdf
+      title: Wild Tree and loss
+      url: /wild_tree_and_loss
+    - output: web,pdf
       title: CUDA GPU Management
       url: /CUDA_GPU_Management
     - output: web,pdf
