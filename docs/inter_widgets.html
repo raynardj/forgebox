@@ -6,6 +6,7 @@ keywords: fastai
 sidebar: home_sidebar
 
 summary: "Very helpful interactive tools"
+description: "Very helpful interactive tools"
 ---
 <!--
 
@@ -18,17 +19,30 @@ summary: "Very helpful interactive tools"
 -->
 
 <div class="container" id="notebook-container">
-    {% raw %}
         
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -38,7 +52,7 @@ summary: "Very helpful interactive tools"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="display_df" class="doc_header"><code>display_df</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L11" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>display_df</code>(<strong><code>df</code></strong>)</p>
+<h4 id="display_df" class="doc_header"><code>display_df</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L14" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>display_df</code>(<strong><code>df</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -49,6 +63,10 @@ summary: "Very helpful interactive tools"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -58,7 +76,7 @@ summary: "Very helpful interactive tools"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="search_box" class="doc_header"><code>search_box</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L13" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>search_box</code>(<strong><code>df</code></strong>, <strong><code>columns</code></strong>, <strong><code>manual</code></strong>=<em><code>False</code></em>, <strong><code>max_rows</code></strong>=<em><code>10</code></em>, <strong><code>callback</code></strong>=<em><code>'display_df'</code></em>)</p>
+<h4 id="search_box" class="doc_header"><code>search_box</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L16" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>search_box</code>(<strong><code>df</code></strong>, <strong><code>columns</code></strong>, <strong><code>manual</code></strong>=<em><code>False</code></em>, <strong><code>max_rows</code></strong>=<em><code>10</code></em>, <strong><code>callback</code></strong>=<em><code>'display_df'</code></em>)</p>
 </blockquote>
 <p>create a search box based on dataframe
 df: pandas dataframe
@@ -77,13 +95,17 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Search-text-within-dataframe-columns">Search text within dataframe columns<a class="anchor-link" href="#Search-text-within-dataframe-columns">&#182;</a></h2><p>We can have any dataframe we like:</p>
+<h2 id="Search-text-within-dataframe-columns">Search text within dataframe columns<a class="anchor-link" href="#Search-text-within-dataframe-columns"> </a></h2><p>We can have any dataframe we like:</p>
 
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -97,6 +119,8 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Put the dataframe and target column names into the <code>search_box()</code></p>
@@ -104,6 +128,8 @@ callback: python callable, discribe the action you want to put on
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -117,6 +143,8 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If your dataframe is slightly huge, and slow to respond, you can use <code>manual=True</code> to turn off the auto keypress response</p>
@@ -124,6 +152,8 @@ callback: python callable, discribe the action you want to put on
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -137,15 +167,23 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interactive-pagination">Interactive pagination<a class="anchor-link" href="#Interactive-pagination">&#182;</a></h2>
+<h2 id="Interactive-pagination">Interactive pagination<a class="anchor-link" href="#Interactive-pagination"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -155,7 +193,7 @@ callback: python callable, discribe the action you want to put on
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="paginate" class="doc_header"><code>paginate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L42" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>paginate</code>(<strong><code>df</code></strong>, <strong><code>page_len</code></strong>=<em><code>20</code></em>)</p>
+<h4 id="paginate" class="doc_header"><code>paginate</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L45" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>paginate</code>(<strong><code>df</code></strong>, <strong><code>page_len</code></strong>=<em><code>20</code></em>)</p>
 </blockquote>
 <p>Paginate dataframe in jupyter notebook interactively
 Like you can flip through the page</p>
@@ -168,6 +206,10 @@ Like you can flip through the page</p>
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -182,6 +224,145 @@ Like you can flip through the page</p>
 
 </div>
     {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SingleButton-widget">SingleButton widget<a class="anchor-link" href="#SingleButton-widget"> </a></h2>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="make_hboxes" class="doc_header"><code>make_hboxes</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L60" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>make_hboxes</code>(<strong>*<code>widgets</code></strong>, <strong><code>sections</code></strong>:<code>int</code>=<em><code>2</code></em>)</p>
+</blockquote>
+<p>Make a list of HBox, with each hbox
+    contans {sections} of widgets at most
+widgets: widget from ipywidgets
+sections: int</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h2 id="SingleButton" class="doc_header"><code>class</code> <code>SingleButton</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/widgets.py#L81" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>SingleButton</code>(<strong><code>btn_text</code></strong>:<code>str</code>=<em><code>'Run'</code></em>, <strong><code>btn_style</code></strong>:<code>str</code>=<em><code>'danger'</code></em>, <strong><code>callback</code></strong>:<code>Callable</code>=<em><code>'&lt;lambda&gt;'</code></em>, <strong><code>sections</code></strong>:<code>int</code>=<em><code>2</code></em>)</p>
+</blockquote>
+<p>A single button widget
+It's like interactive_manual with callback</p>
+<h2 id="Example">Example<a class="anchor-link" href="#Example"> </a></h2><p>@SingleButton(callback=execute_sql, btn_text:"run command", btn_style="primary")
+def makeup_some_sql(
+    table={"typing":list, "options":["table_a", "table_b"]},
+    limit={"typing":int, "max":1000, "step":10, "default":100},
+):
+    return f"select * from {table} limit {limit}"</p>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Example-for-SingleButton">Example for SingleButton<a class="anchor-link" href="#Example-for-SingleButton"> </a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is a sample callback</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.html</span> <span class="kn">import</span> <span class="n">DOM</span>
+<span class="k">def</span> <span class="nf">sql_callback</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">DOM</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="s2">&quot;h3&quot;</span><span class="p">)()</span>
+    <span class="c1"># and we execute more code like,</span>
+    <span class="c1">#    eg. run this line in sql</span>
+    <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we can have an interactive single button page, with multipule input widgets</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@SingleButton</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">sql_callback</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">abc</span><span class="p">(</span>
+    <span class="n">limit</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span><span class="mi">20</span><span class="p">},</span>
+    <span class="n">where_condition</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="s2">&quot;where 1=1&quot;</span><span class="p">,</span> <span class="p">},</span>
+    <span class="n">table</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">:[</span><span class="s2">&quot;image_urls&quot;</span><span class="p">,</span><span class="s2">&quot;patient_data&quot;</span><span class="p">]}</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;sql &gt; SELECT * FROM </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">where_condition</span><span class="si">}</span><span class="s2"> LIMIT </span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 </div>
  
 
