@@ -85,12 +85,14 @@ class SingleButton:
 
     ## Example
 
+    ```python
     @SingleButton(callback=execute_sql, btn_text:"run command", btn_style="primary")
     def makeup_some_sql(
         table={"typing":list, "options":["table_a", "table_b"]},
         limit={"typing":int, "max":1000, "step":10, "default":100},
     ):
         return f"select * from {table} limit {limit}"
+    ```
     """
     def __init__(
         self,
@@ -178,11 +180,14 @@ class SingleButton:
 
         with self.out:
             rt = self.target_func(**inputs)
-        return rt
+            return rt
 
     def __call__(self, f: Callable):
         """
         Use this class as a decorator
+        @SingleButton(callback=func)
+        def abc(...):
+            ...
         """
         self.f=f
         self.name = f.__name__

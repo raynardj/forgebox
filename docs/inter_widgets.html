@@ -231,6 +231,22 @@ Like you can flip through the page</p>
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A single button widget</p>
+<p>It's like interactive_manual with callback</p>
+<p>You can make an fully interactive featured widgets if there is only one button to get new page</p>
+<h3 id="Example">Example<a class="anchor-link" href="#Example"> </a></h3><div class="highlight"><pre><span></span><span class="nd">@SingleButton</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">execute_sql</span><span class="p">,</span> <span class="n">btn_text</span><span class="p">:</span><span class="s2">&quot;run command&quot;</span><span class="p">,</span> <span class="n">btn_style</span><span class="o">=</span><span class="s2">&quot;primary&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">makeup_some_sql</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">:[</span><span class="s2">&quot;table_a&quot;</span><span class="p">,</span> <span class="s2">&quot;table_b&quot;</span><span class="p">]},</span>
+    <span class="n">limit</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;step&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">},</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;select * from </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> limit </span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
     {% raw %}
     
 <div class="cell border-box-sizing code_cell rendered">
@@ -281,12 +297,13 @@ sections: int</p>
 </blockquote>
 <p>A single button widget
 It's like interactive_manual with callback</p>
-<h2 id="Example">Example<a class="anchor-link" href="#Example"> </a></h2><p>@SingleButton(callback=execute_sql, btn_text:"run command", btn_style="primary")
-def makeup_some_sql(
-    table={"typing":list, "options":["table_a", "table_b"]},
-    limit={"typing":int, "max":1000, "step":10, "default":100},
-):
-    return f"select * from {table} limit {limit}"</p>
+<h2 id="Example">Example<a class="anchor-link" href="#Example"> </a></h2><div class="highlight"><pre><span></span><span class="nd">@SingleButton</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">execute_sql</span><span class="p">,</span> <span class="n">btn_text</span><span class="p">:</span><span class="s2">&quot;run command&quot;</span><span class="p">,</span> <span class="n">btn_style</span><span class="o">=</span><span class="s2">&quot;primary&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">makeup_some_sql</span><span class="p">(</span>
+    <span class="n">table</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">:[</span><span class="s2">&quot;table_a&quot;</span><span class="p">,</span> <span class="s2">&quot;table_b&quot;</span><span class="p">]},</span>
+    <span class="n">limit</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span> <span class="s2">&quot;step&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="mi">100</span><span class="p">},</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;select * from </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> limit </span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
 
 </div>
 
