@@ -6,7 +6,6 @@ keywords: fastai
 sidebar: home_sidebar
 
 summary: "Very helpful interactive tools"
-description: "Very helpful interactive tools"
 ---
 <!--
 
@@ -19,30 +18,17 @@ description: "Very helpful interactive tools"
 -->
 
 <div class="container" id="notebook-container">
+    {% raw %}
         
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -63,10 +49,6 @@ description: "Very helpful interactive tools"
 </div>
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -95,17 +77,13 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Search-text-within-dataframe-columns">Search text within dataframe columns<a class="anchor-link" href="#Search-text-within-dataframe-columns"> </a></h2><p>We can have any dataframe we like:</p>
+<h2 id="Search-text-within-dataframe-columns">Search text within dataframe columns<a class="anchor-link" href="#Search-text-within-dataframe-columns">&#182;</a></h2><p>We can have any dataframe we like:</p>
 
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -119,8 +97,6 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Put the dataframe and target column names into the <code>search_box()</code></p>
@@ -128,8 +104,6 @@ callback: python callable, discribe the action you want to put on
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -143,8 +117,6 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>If your dataframe is slightly huge, and slow to respond, you can use <code>manual=True</code> to turn off the auto keypress response</p>
@@ -152,8 +124,6 @@ callback: python callable, discribe the action you want to put on
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -167,23 +137,15 @@ callback: python callable, discribe the action you want to put on
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Interactive-pagination">Interactive pagination<a class="anchor-link" href="#Interactive-pagination"> </a></h2>
+<h2 id="Interactive-pagination">Interactive pagination<a class="anchor-link" href="#Interactive-pagination">&#182;</a></h2>
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -206,10 +168,6 @@ Like you can flip through the page</p>
 </div>
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -223,23 +181,15 @@ Like you can flip through the page</p>
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="SingleButton-widget">SingleButton widget<a class="anchor-link" href="#SingleButton-widget"> </a></h2>
+<h2 id="SingleButton-widget">SingleButton widget<a class="anchor-link" href="#SingleButton-widget">&#182;</a></h2>
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -264,10 +214,6 @@ sections: int</p>
 </div>
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -281,7 +227,7 @@ sections: int</p>
 </blockquote>
 <p>A single button widget
 It's like interactive_manual with callback</p>
-<h2 id="Example">Example<a class="anchor-link" href="#Example"> </a></h2><p>@SingleButton(callback=execute_sql, btn_text:"run command", btn_style="primary")
+<h2 id="Example">Example<a class="anchor-link" href="#Example">&#182;</a></h2><p>@SingleButton(callback=execute_sql, btn_text:"run command", btn_style="primary")
 def makeup_some_sql(
     table={"typing":list, "options":["table_a", "table_b"]},
     limit={"typing":int, "max":1000, "step":10, "default":100},
@@ -296,11 +242,9 @@ def makeup_some_sql(
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Example-for-SingleButton">Example for SingleButton<a class="anchor-link" href="#Example-for-SingleButton"> </a></h3>
+<h3 id="Example-for-SingleButton">Example for SingleButton<a class="anchor-link" href="#Example-for-SingleButton">&#182;</a></h3>
 </div>
 </div>
 </div>
@@ -311,8 +255,6 @@ def makeup_some_sql(
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -331,8 +273,6 @@ def makeup_some_sql(
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Now we can have an interactive single button page, with multipule input widgets</p>
@@ -340,8 +280,6 @@ def makeup_some_sql(
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -353,7 +291,7 @@ def makeup_some_sql(
     <span class="n">where_condition</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="s2">&quot;where 1=1&quot;</span><span class="p">,</span> <span class="p">},</span>
     <span class="n">table</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">:[</span><span class="s2">&quot;image_urls&quot;</span><span class="p">,</span><span class="s2">&quot;patient_data&quot;</span><span class="p">]}</span>
 <span class="p">):</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;sql &gt; SELECT * FROM </span><span class="si">{</span><span class="n">table</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">where_condition</span><span class="si">}</span><span class="s2"> LIMIT </span><span class="si">{</span><span class="n">limit</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;sql &gt; SELECT * FROM </span><span class="si">{table}</span><span class="s2"> </span><span class="si">{where_condition}</span><span class="s2"> LIMIT </span><span class="si">{limit}</span><span class="s2">&quot;</span>
 </pre></div>
 
     </div>
@@ -362,7 +300,6 @@ def makeup_some_sql(
 
 </div>
     {% endraw %}
-
 </div>
  
 

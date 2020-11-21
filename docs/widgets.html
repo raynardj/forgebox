@@ -6,7 +6,6 @@ keywords: fastai
 sidebar: home_sidebar
 
 summary: "Image widgets for jupyter noteook"
-description: "Image widgets for jupyter noteook"
 ---
 <!--
 
@@ -19,42 +18,29 @@ description: "Image widgets for jupyter noteook"
 -->
 
 <div class="container" id="notebook-container">
+    {% raw %}
         
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Imports">Imports<a class="anchor-link" href="#Imports"> </a></h2>
+<h2 id="Imports">Imports<a class="anchor-link" href="#Imports">&#182;</a></h2>
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Data-url-for-img-tag">Data url for img tag<a class="anchor-link" href="#Data-url-for-img-tag"> </a></h2><h3 id="Use-data-url-in-&lt;img-src='data:...'&gt;">Use data url in <code>&lt;img src='data:...'&gt;</code><a class="anchor-link" href="#Use-data-url-in-&lt;img-src='data:...'&gt;"> </a></h3>
+<h2 id="Data-url-for-img-tag">Data url for img tag<a class="anchor-link" href="#Data-url-for-img-tag">&#182;</a></h2><h3 id="Use-data-url-in-&lt;img-src='data:...'&gt;">Use data url in <code>&lt;img src='data:...'&gt;</code><a class="anchor-link" href="#Use-data-url-in-&lt;img-src='data:...'&gt;">&#182;</a></h3>
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -79,10 +65,6 @@ Return:</p>
 </div>
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -107,23 +89,15 @@ Return:</p>
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Preview-images-in-jupyter-notebook">Preview images in jupyter notebook<a class="anchor-link" href="#Preview-images-in-jupyter-notebook"> </a></h3>
+<h3 id="Preview-images-in-jupyter-notebook">Preview images in jupyter notebook<a class="anchor-link" href="#Preview-images-in-jupyter-notebook">&#182;</a></h3>
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -147,10 +121,6 @@ return forgebox.html.DOM</p>
 </div>
 
 </div>
-    {% endraw %}
-
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -176,16 +146,12 @@ view_images(
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Test-on-image-preview">Test on image preview<a class="anchor-link" href="#Test-on-image-preview"> </a></h2>
+<h2 id="Test-on-image-preview">Test on image preview<a class="anchor-link" href="#Test-on-image-preview">&#182;</a></h2>
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -199,8 +165,6 @@ view_images(
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Original image</p>
@@ -208,15 +172,13 @@ view_images(
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">HOME</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;HOME&#39;</span><span class="p">]</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">HOME</span><span class="si">}</span><span class="s2">/Pictures/img02.jpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{HOME}</span><span class="s2">/Pictures/img02.jpg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">resize</span><span class="p">((</span><span class="mi">200</span><span class="p">,</span><span class="mi">50</span><span class="p">))</span>
 <span class="n">img</span>
 </pre></div>
 
@@ -243,8 +205,6 @@ view_images(
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Data url of the image</p>
@@ -252,8 +212,6 @@ view_images(
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -283,8 +241,6 @@ view_images(
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Visualize single image</p>
@@ -292,8 +248,6 @@ view_images(
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -322,8 +276,6 @@ view_images(
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Visualize serveral images</p>
@@ -331,8 +283,6 @@ view_images(
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -361,8 +311,6 @@ view_images(
 </div>
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Contains more images in a row</p>
@@ -370,8 +318,6 @@ view_images(
 </div>
 </div>
 </div>
-    {% raw %}
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -403,7 +349,6 @@ view_images(
 
 </div>
     {% endraw %}
-
 </div>
  
 
