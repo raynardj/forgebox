@@ -136,29 +136,27 @@ summary: "Data science comprehensive toolbox 🛠⚔️📦"
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Single-button-callback">Single button callback<a class="anchor-link" href="#Single-button-callback">&#182;</a></h4><blockquote><p>a fully functional page with a single button, this single button is bonded to a function</p>
 </blockquote>
-<p>This is as much code as you need, to build a fully functional interactive page shows sql table from jupyter, that you can: <em> choose which table to visit</em> choose how many lines you want to show, (with a slider)</p>
+<p>This is as much code as you need, to build a fully functional interactive page shows sql table from jupyter, that you can: - choose which table to visit- choose how many lines you want to show, (with a slider)</p>
 <ul>
-<li>configure the where condition with a textbox on fron
-```python
-tablename_list = ["pubmed", "patient", "users", "drugs"]</li>
+<li>configure the where condition with a text box on front end</li>
 </ul>
-<p>from forgebox.html import DOM
-def show_sql_table(sql_input:str) -&gt; str:
-    with engine.connect() as conn:
-        df=pd.read_sql(sql_input, con=conn)</p>
+<div class="highlight"><pre><span></span><span class="n">tablename_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="s2">&quot;patient&quot;</span><span class="p">,</span> <span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="s2">&quot;drugs&quot;</span><span class="p">]</span>
 
-<pre><code># display the table as html
-DOM(df.to_html(),"div")()
+<span class="kn">from</span> <span class="nn">forgebox.html</span> <span class="kn">import</span> <span class="n">DOM</span>
+<span class="k">def</span> <span class="nf">show_sql_table</span><span class="p">(</span><span class="n">sql_input</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql_input</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">conn</span><span class="p">)</span>
+    <span class="c1"># display the table as html</span>
+    <span class="n">DOM</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(),</span><span class="s2">&quot;div&quot;</span><span class="p">)()</span>
 
-</code></pre>
-<p>@SingleButton(callback=show_sql_table)
-def abc(
-    limit:{"typing":int, "default":10, "min":5, "max":20},
-    where_condition:{"typing":str, "default": "where 1=1", },
-    table:{"typing":list, "options":tablename_list}
-):
-    return f"sql &gt; SELECT * FROM {table} {where_condition} LIMIT {limit}"
-```</p>
+<span class="nd">@SingleButton</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">show_sql_table</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">abc</span><span class="p">(</span>
+    <span class="n">limit</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span><span class="mi">20</span><span class="p">},</span>
+    <span class="n">where_condition</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="s2">&quot;where 1=1&quot;</span><span class="p">,</span> <span class="p">},</span>
+    <span class="n">table</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">tablename_list</span><span class="p">}</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;sql &gt; SELECT * FROM </span><span class="si">{table}</span><span class="s2"> </span><span class="si">{where_condition}</span><span class="s2"> LIMIT </span><span class="si">{limit}</span><span class="s2">&quot;</span>
+</pre></div>
 
 </div>
 </div>

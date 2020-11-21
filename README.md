@@ -79,8 +79,9 @@ paginate(your_dataframe, page_len=10)
 #### Single button callback
 > a fully functional page with a single button, this single button is bonded to a function
 
-This is as much code as you need, to build a fully functional interactive page shows sql table from jupyter, that you can: * choose which table to visit* choose how many lines you want to show, (with a slider)
-* configure the where condition with a textbox on fron
+This is as much code as you need, to build a fully functional interactive page shows sql table from jupyter, that you can: - choose which table to visit- choose how many lines you want to show, (with a slider)
+- configure the where condition with a text box on front end
+
 ```python
 tablename_list = ["pubmed", "patient", "users", "drugs"]
 
