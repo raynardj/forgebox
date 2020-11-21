@@ -55,7 +55,7 @@ class C2I:
         return len(self.dict)
 
     def __getitem__(self, k:int):
-        if type(k) == np.ndarray:
+        if type(k) in [np.ndarray, list]:
             # use vectorized function
             return self.get_int_(k)
         else:
