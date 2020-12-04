@@ -10,6 +10,9 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
+      title: 03 Imports
+      url: /imports
+    - output: web,pdf
       title: Tools on pandas dataframe
       url: /df
     - output: web,pdf
@@ -28,11 +31,11 @@ entries:
       title: Controllable loop process
       url: /loop
     - output: web,pdf
-      title: Title
-      url: /loopstack
-    - output: web,pdf
       title: Get static file
       url: /static_file
+    - output: web,pdf
+      title: 15 LoopStack
+      url: /loopstack
     - output: web,pdf
       title: Config
       url: /config
@@ -48,6 +51,9 @@ entries:
     - output: web,pdf
       title: Images
       url: /widgets
+    - output: web,pdf
+      title: Categorical Transformation for DL
+      url: /category
     - output: web,pdf
       title: CUDA GPU Management
       url: /CUDA_GPU_Management
@@ -66,9 +72,6 @@ entries:
     - output: web,pdf
       title: DataFrame PipeLine
       url: /dataframe_pipeline
-    - output: web,pdf
-      title: 03 Imports
-      url: /imports
     - output: web,pdf
       title: Optimizer Mangement
       url: /optimizers

@@ -5,8 +5,7 @@ title: ForgeBox
 keywords: fastai
 sidebar: home_sidebar
 
-summary: "Data science with fancy loops"
-description: "Data science with fancy loops"
+summary: "Data science comprehensive toolbox 🛠⚔️📦"
 ---
 <!--
 
@@ -19,14 +18,11 @@ description: "Data science with fancy loops"
 -->
 
 <div class="container" id="notebook-container">
-        
     {% raw %}
-    
+        
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-    {% endraw %}
-
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><a href="https://sourcerer.io/fame/raynardj/raynardj/forgebox/links/0"><img src="https://sourcerer.io/fame/raynardj/raynardj/forgebox/images/0" alt="fame"></a></p>
@@ -43,12 +39,126 @@ description: "Data science with fancy loops"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Installation">Installation<a class="anchor-link" href="#Installation"> </a></h2>
-<pre><code>pip install forgebox</code></pre>
+<h2 id="Installation">Installation<a class="anchor-link" href="#Installation">&#182;</a></h2><p>Easy simple installation in 1 shot</p>
+<div class="highlight"><pre><span></span>pip install forgebox
+</pre></div>
+<p>If not specified, you need anaconda3 for most of the tools, python shold be at least &gt;=3.6</p>
 
 </div>
 </div>
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Features-&#128640;-Briefing">Features &#128640; Briefing<a class="anchor-link" href="#Features-&#128640;-Briefing">&#182;</a></h2><blockquote><p>This is a tool box with comprehensive utilies, to put it simply, I just hope most of my frequetyly used DIY tools in in place and can be easily installed and imported</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Lazy,-fast-imports-&#129327;">Lazy, fast imports &#129327;<a class="anchor-link" href="#Lazy,-fast-imports-&#129327;">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The following command will import many frequent tools for data science, like <strong>pd</strong> for pandas, <strong>np</strong> for numpy, os, json, PIL.Image for image processing</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">frogebox.imports</span> <span class="kn">import</span> <span class="o">*</span>
+</pre></div>
+<p>No more🚫 following typings</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="o">...</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Free-style-mapping">Free style mapping<a class="anchor-link" href="#Free-style-mapping">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Works on every value of a complicated dictionary structure (eg. list in dict in list in dict, etc,. 😳)</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.freemap</span> <span class="kn">import</span> <span class="n">FreeMap</span>
+
+<span class="c1"># flatten decides if we want to flatten the strucuture</span>
+<span class="n">freemap_tool</span> <span class="o">=</span> <span class="n">FreeMap</span><span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">function</span><span class="o">/</span><span class="n">callable</span> <span class="n">applying</span> <span class="n">to</span> <span class="n">every</span> <span class="n">value</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="o">&lt;</span><span class="n">function</span><span class="o">/</span><span class="n">callable</span> <span class="n">that</span> <span class="n">filters</span> <span class="n">every</span> <span class="n">value</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="n">flatten</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="n">data2</span> <span class="o">=</span> <span class="n">freemap_tool</span><span class="p">(</span><span class="n">data1</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Interactive-Widgets">Interactive Widgets<a class="anchor-link" href="#Interactive-Widgets">&#182;</a></h3><blockquote><p>Interactive widgets work with in jupyter notebooks</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Search-box-&#128270;-for-dataframe">Search box &#128270; for dataframe<a class="anchor-link" href="#Search-box-&#128270;-for-dataframe">&#182;</a></h4><p>This will create an interactive text input box to search through the pandas dataframe, within the columns you set.</p>
+<p>if <code>manual</code> is set to False, the search will respond to <strong>each of your key press</strong>, it's fast but will suffer terrible user experience if the dataframe is huge in size.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.widgets</span> <span class="kn">import</span> <span class="n">search_box</span>
+
+<span class="n">search_box</span><span class="p">(</span><span class="n">data_df</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;col1&quot;</span><span class="p">,</span><span class="s2">&quot;col2&quot;</span><span class="p">],</span> <span class="n">manual</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="paginate">paginate<a class="anchor-link" href="#paginate">&#182;</a></h4><p>You can browse through a pandas dataframe like fliping pages 📄.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.widgets</span> <span class="kn">import</span> <span class="n">paginate</span>
+
+<span class="n">paginate</span><span class="p">(</span><span class="n">your_dataframe</span><span class="p">,</span> <span class="n">page_len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Single-button-callback">Single button callback<a class="anchor-link" href="#Single-button-callback">&#182;</a></h4><blockquote><p>a fully functional page with a single button, this single button is bonded to a function</p>
+</blockquote>
+<p>This is as much code as you need, to build a fully functional interactive page shows sql table from jupyter, that you can: ✅ choose which table to visit✅ choose how many lines you want to show, (with a slider)✅ configure the where condition with a text box on front end</p>
+<div class="highlight"><pre><span></span><span class="n">tablename_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="s2">&quot;patient&quot;</span><span class="p">,</span> <span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="s2">&quot;drugs&quot;</span><span class="p">]</span>
+
+<span class="kn">from</span> <span class="nn">forgebox.html</span> <span class="kn">import</span> <span class="n">DOM</span>
+<span class="k">def</span> <span class="nf">show_sql_table</span><span class="p">(</span><span class="n">sql_input</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">with</span> <span class="n">engine</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span> <span class="k">as</span> <span class="n">conn</span><span class="p">:</span>
+        <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="n">sql_input</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">conn</span><span class="p">)</span>
+    <span class="c1"># display the table as html</span>
+    <span class="n">DOM</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_html</span><span class="p">(),</span><span class="s2">&quot;div&quot;</span><span class="p">)()</span>
+
+<span class="nd">@SingleButton</span><span class="p">(</span><span class="n">callback</span><span class="o">=</span><span class="n">show_sql_table</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">abc</span><span class="p">(</span>
+    <span class="n">limit</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;min&quot;</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;max&quot;</span><span class="p">:</span><span class="mi">20</span><span class="p">},</span>
+    <span class="n">where_condition</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="s2">&quot;default&quot;</span><span class="p">:</span> <span class="s2">&quot;where 1=1&quot;</span><span class="p">,</span> <span class="p">},</span>
+    <span class="n">table</span><span class="p">:{</span><span class="s2">&quot;typing&quot;</span><span class="p">:</span><span class="nb">list</span><span class="p">,</span> <span class="s2">&quot;options&quot;</span><span class="p">:</span><span class="n">tablename_list</span><span class="p">}</span>
+<span class="p">):</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;sql &gt; SELECT * FROM </span><span class="si">{table}</span><span class="s2"> </span><span class="si">{where_condition}</span><span class="s2"> LIMIT </span><span class="si">{limit}</span><span class="s2">&quot;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+    {% endraw %}
 </div>
  
 
