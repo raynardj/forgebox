@@ -6,6 +6,7 @@ keywords: fastai
 sidebar: home_sidebar
 
 summary: "Stack loops in layers"
+description: "Stack loops in layers"
 ---
 <!--
 
@@ -18,14 +19,21 @@ summary: "Stack loops in layers"
 -->
 
 <div class="container" id="notebook-container">
-    {% raw %}
         
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To run through iterations quickly, we use the california housing data</p>
@@ -33,6 +41,8 @@ summary: "Stack loops in layers"
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -65,6 +75,8 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Normalized Data</p>
@@ -79,6 +91,8 @@ summary: "Stack loops in layers"
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -99,6 +113,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -134,6 +152,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -153,30 +175,27 @@ summary: "Stack loops in layers"
 
 <div class="output_area">
 
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-4-c518931bc769&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-green-fg">from</span> matplotlib <span class="ansi-green-fg">import</span> pyplot <span class="ansi-green-fg">as</span> plt
+<span class="ansi-green-intense-fg ansi-bold">      2</span> get_ipython<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">.</span>run_line_magic<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;matplotlib&#39;</span><span class="ansi-blue-fg">,</span> <span class="ansi-blue-fg">&#39;inline&#39;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>plt<span class="ansi-blue-fg">.</span>imshow<span class="ansi-blue-fg">(</span>x_normed<span class="ansi-blue-fg">[</span>np<span class="ansi-blue-fg">.</span>random<span class="ansi-blue-fg">.</span>choice<span class="ansi-blue-fg">(</span>range<span class="ansi-blue-fg">(</span><span class="ansi-cyan-fg">1000</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span><span class="ansi-cyan-fg">10</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span>
 
-
-<div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.image.AxesImage at 0x1a16a7fa50&gt;</pre>
+<span class="ansi-red-fg">NameError</span>: name &#39;x_normed&#39; is not defined</pre>
 </div>
-
-</div>
-
-<div class="output_area">
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-"
->
-</div>
-
 </div>
 
 </div>
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -218,9 +237,17 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -241,6 +268,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -261,9 +292,17 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -285,6 +324,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -300,15 +343,23 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Tabulated-Metrics">Tabulated Metrics<a class="anchor-link" href="#Tabulated-Metrics">&#182;</a></h2>
+<h2 id="Tabulated-Metrics">Tabulated Metrics<a class="anchor-link" href="#Tabulated-Metrics"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -330,6 +381,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -343,6 +398,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -359,6 +418,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -518,6 +581,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -578,9 +645,17 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -602,6 +677,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -622,6 +701,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -642,6 +725,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -662,6 +749,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -682,9 +773,17 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -694,7 +793,7 @@ summary: "Stack loops in layers"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="TrainLoop" class="doc_header"><code>class</code> <code>TrainLoop</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loopstack.py#L215" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TrainLoop</code>(<strong><code>data_iter</code></strong>, <strong><code>model</code></strong>=<em><code>[]</code></em>, <strong><code>opt</code></strong>=<em><code>[]</code></em>, <strong><code>loss_func</code></strong>=<em><code>[]</code></em>, <strong><code>loss</code></strong>=<em><code>[]</code></em>, <strong><code>hp</code></strong>=<em><code>[]</code></em>, <strong><code>cuda</code></strong>=<em><code>[]</code></em>, <strong><code>callbacks</code></strong>=<em><code>[&lt;function train_callbacks at 0x104ba4d40&gt;]</code></em>, <strong><code>tolerate</code></strong>=<em><code>True</code></em>) :: <a href="/forgebox/loopstack#LoopStack"><code>LoopStack</code></a></p>
+<h2 id="TrainLoop" class="doc_header"><code>class</code> <code>TrainLoop</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>TrainLoop</code>(<strong><code>data_iter</code></strong>, <strong><code>model</code></strong>=<em><code>[]</code></em>, <strong><code>opt</code></strong>=<em><code>[]</code></em>, <strong><code>loss_func</code></strong>=<em><code>[]</code></em>, <strong><code>loss</code></strong>=<em><code>[]</code></em>, <strong><code>hp</code></strong>=<em><code>[]</code></em>, <strong><code>cuda</code></strong>=<em><code>[]</code></em>, <strong><code>callbacks</code></strong>=<em><code>[&lt;function train_callbacks at 0x1117f50e0&gt;]</code></em>, <strong><code>tolerate</code></strong>=<em><code>True</code></em>) :: <a href="/forgebox/loopstack#LoopStack"><code>LoopStack</code></a></p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -706,6 +805,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -715,7 +818,7 @@ summary: "Stack loops in layers"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="EvalLoop" class="doc_header"><code>class</code> <code>EvalLoop</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/loopstack.py#L234" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EvalLoop</code>(<strong><code>data_iter</code></strong>, <strong><code>callbacks</code></strong>, <strong><code>tolerate</code></strong>=<em><code>False</code></em>) :: <a href="/forgebox/loopstack#LoopStack"><code>LoopStack</code></a></p>
+<h2 id="EvalLoop" class="doc_header"><code>class</code> <code>EvalLoop</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>EvalLoop</code>(<strong><code>data_iter</code></strong>, <strong><code>callbacks</code></strong>, <strong><code>tolerate</code></strong>=<em><code>False</code></em>) :: <a href="/forgebox/loopstack#LoopStack"><code>LoopStack</code></a></p>
 </blockquote>
 <p>Basic loop class</p>
 
@@ -727,6 +830,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -740,6 +847,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -753,6 +864,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -782,6 +897,10 @@ summary: "Stack loops in layers"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -808,12 +927,18 @@ summary: "Stack loops in layers"
 
 <div class="output_area">
 
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>assigning callback &lt;function train_callbacks at 0x1a32fc70e0&gt;
-assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb at 0x1a2e995950&gt;
-assigning callback &lt;function eval_callbacks at 0x1a32fc7290&gt;
-assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb at 0x1a2e995950&gt;
-</pre>
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">&lt;ipython-input-18-205c2633b11f&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">import</span> torch
+<span class="ansi-green-intense-fg ansi-bold">      3</span> 
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg"> </span>data_train <span class="ansi-blue-fg">=</span> list<span class="ansi-blue-fg">(</span>zip<span class="ansi-blue-fg">(</span>chunkify<span class="ansi-blue-fg">(</span>x_train<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>chunkify<span class="ansi-blue-fg">(</span>y_train<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span> data_val <span class="ansi-blue-fg">=</span> list<span class="ansi-blue-fg">(</span>zip<span class="ansi-blue-fg">(</span>chunkify<span class="ansi-blue-fg">(</span>x_val<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">,</span>chunkify<span class="ansi-blue-fg">(</span>y_val<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span> 
+
+<span class="ansi-red-fg">NameError</span>: name &#39;x_train&#39; is not defined</pre>
 </div>
 </div>
 
@@ -821,6 +946,10 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -836,12 +965,16 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># loop.search()</span>
+<div class=" highlight hl-ipython3"><pre><span></span> 
 </pre></div>
 
     </div>
@@ -849,12 +982,16 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Assigning-stuff">Assigning stuff<a class="anchor-link" href="#Assigning-stuff">&#182;</a></h4>
+<h4 id="Assigning-stuff">Assigning stuff<a class="anchor-link" href="#Assigning-stuff"> </a></h4>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -871,9 +1008,17 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -894,6 +1039,10 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -914,6 +1063,10 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -927,6 +1080,10 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -940,6 +1097,10 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -1065,6 +1226,10 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -1078,6 +1243,10 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -1341,6 +1510,7 @@ assigning callback &lt;function simple_forward.&lt;locals&gt;.simple_forward_cb 
 
 </div>
     {% endraw %}
+
 </div>
  
 
