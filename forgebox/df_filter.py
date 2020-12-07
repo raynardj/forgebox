@@ -108,7 +108,7 @@ class DataFilter:
         @interact
         def select_field(field = list(self.df.columns)):
             # visualize histogram
-            data_filter.show_distribution(field).show()
+            self.show_distribution(field).show()
 
             # create a filter execution interactive
-            data_filter.create_filter(field)
+            self.create_filter(field)
