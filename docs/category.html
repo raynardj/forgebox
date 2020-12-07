@@ -6,6 +6,7 @@ keywords: fastai
 sidebar: home_sidebar
 
 summary: "a list of things to categoryical transformation"
+description: "a list of things to categoryical transformation"
 ---
 <!--
 
@@ -18,20 +19,29 @@ summary: "a list of things to categoryical transformation"
 -->
 
 <div class="container" id="notebook-container">
-    {% raw %}
         
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Imports">Imports<a class="anchor-link" href="#Imports">&#182;</a></h2>
+<h2 id="Imports">Imports<a class="anchor-link" href="#Imports"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -41,7 +51,7 @@ summary: "a list of things to categoryical transformation"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="C2I" class="doc_header"><code>class</code> <code>C2I</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/category.py#L14" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>C2I</code>(<strong><code>arr</code></strong>:<code>Iterable</code>[<code>T_co</code>], <strong><code>pad_mst</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
+<h2 id="C2I" class="doc_header"><code>class</code> <code>C2I</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>C2I</code>(<strong><code>arr</code></strong>:<code>Iterable</code>[<code>T_co</code>], <strong><code>pad_mst</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Category to indices</p>
 <blockquote><blockquote><blockquote><p>c2i = C2I(
@@ -64,6 +74,10 @@ c2i[["class 2", "class 5"]]
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -73,7 +87,7 @@ c2i[["class 2", "class 5"]]
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="Category" class="doc_header"><code>class</code> <code>Category</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/category.py#L65" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Category</code>(<strong><code>arr</code></strong>:<code>Iterable</code>[<code>T_co</code>], <strong><code>pad_mst</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
+<h2 id="Category" class="doc_header"><code>class</code> <code>Category</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>Category</code>(<strong><code>arr</code></strong>:<code>Iterable</code>[<code>T_co</code>], <strong><code>pad_mst</code></strong>:<code>bool</code>=<em><code>False</code></em>)</p>
 </blockquote>
 <p>Manage categorical translations
 c = Category(
@@ -90,18 +104,22 @@ c.i2c[[3, 2, 1]]</p>
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Indexing-forward-and-backward">Indexing forward and backward<a class="anchor-link" href="#Indexing-forward-and-backward">&#182;</a></h2>
+<h2 id="Indexing-forward-and-backward">Indexing forward and backward<a class="anchor-link" href="#Indexing-forward-and-backward"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cates</span> <span class="o">=</span> <span class="n">Category</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;Cate_{x+1}&quot;</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">))))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cates</span> <span class="o">=</span> <span class="n">Category</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span><span class="sa">f</span><span class="s2">&quot;Cate_</span><span class="si">{</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="mi">50</span><span class="p">))))</span>
 </pre></div>
 
     </div>
@@ -109,6 +127,10 @@ c.i2c[[3, 2, 1]]</p>
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -138,6 +160,10 @@ c.i2c[[3, 2, 1]]</p>
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -167,6 +193,10 @@ c.i2c[[3, 2, 1]]</p>
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -180,12 +210,16 @@ c.i2c[[3, 2, 1]]</p>
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Indices-to-categories">Indices to categories<a class="anchor-link" href="#Indices-to-categories">&#182;</a></h3>
+<h3 id="Indices-to-categories">Indices to categories<a class="anchor-link" href="#Indices-to-categories"> </a></h3>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -219,12 +253,16 @@ c.i2c[[3, 2, 1]]</p>
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Category-to-indices">Category to indices<a class="anchor-link" href="#Category-to-indices">&#182;</a></h3>
+<h3 id="Category-to-indices">Category to indices<a class="anchor-link" href="#Category-to-indices"> </a></h3>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -255,6 +293,8 @@ c.i2c[[3, 2, 1]]</p>
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Using vectorized function</p>
@@ -262,6 +302,8 @@ c.i2c[[3, 2, 1]]</p>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -292,6 +334,8 @@ Wall time: 63.4 ms
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Using the original python function</p>
@@ -299,6 +343,8 @@ Wall time: 63.4 ms
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -329,6 +375,8 @@ Wall time: 136 ms
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Transform forward and backward and check fidelity</p>
@@ -336,6 +384,8 @@ Wall time: 136 ms
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -365,9 +415,11 @@ Wall time: 136 ms
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="With-missing-tokens">With missing tokens<a class="anchor-link" href="#With-missing-tokens">&#182;</a></h2>
+<h2 id="With-missing-tokens">With missing tokens<a class="anchor-link" href="#With-missing-tokens"> </a></h2>
 </div>
 </div>
 </div>
@@ -378,6 +430,8 @@ Wall time: 136 ms
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -391,12 +445,16 @@ Wall time: 136 ms
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Categories-to-indices">Categories to indices<a class="anchor-link" href="#Categories-to-indices">&#182;</a></h3>
+<h3 id="Categories-to-indices">Categories to indices<a class="anchor-link" href="#Categories-to-indices"> </a></h3>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -426,12 +484,16 @@ Wall time: 136 ms
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Indices-to-categories">Indices to categories<a class="anchor-link" href="#Indices-to-categories">&#182;</a></h3>
+<h3 id="Indices-to-categories">Indices to categories<a class="anchor-link" href="#Indices-to-categories"> </a></h3>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -462,18 +524,22 @@ Wall time: 136 ms
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Data-save-and-load">Data save and load<a class="anchor-link" href="#Data-save-and-load">&#182;</a></h2>
+<h2 id="Data-save-and-load">Data save and load<a class="anchor-link" href="#Data-save-and-load"> </a></h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Save-categories">Save categories<a class="anchor-link" href="#Save-categories">&#182;</a></h3>
+<h3 id="Save-categories">Save categories<a class="anchor-link" href="#Save-categories"> </a></h3>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -487,12 +553,16 @@ Wall time: 136 ms
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Load-categories">Load categories<a class="anchor-link" href="#Load-categories">&#182;</a></h3>
+<h3 id="Load-categories">Load categories<a class="anchor-link" href="#Load-categories"> </a></h3>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -524,6 +594,7 @@ Wall time: 136 ms
 
 </div>
     {% endraw %}
+
 </div>
  
 
