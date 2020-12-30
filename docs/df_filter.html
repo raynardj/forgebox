@@ -257,6 +257,236 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
 </div>
     {% endraw %}
 
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="s2">&quot;32.8%&quot;</span><span class="o">&gt;</span><span class="s2">&quot;35.2%&quot;</span><span class="p">,</span> <span class="s2">&quot;32.8%&quot;</span><span class="o">&gt;</span><span class="s2">&quot;15.2%&quot;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(False, True)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>MedInc</th>
+      <th>HouseAge</th>
+      <th>AveRooms</th>
+      <th>AveBedrms</th>
+      <th>Population</th>
+      <th>AveOccup</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>TestPercent</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>8.3252</td>
+      <td>41.0</td>
+      <td>6.984127</td>
+      <td>1.023810</td>
+      <td>322.0</td>
+      <td>2.555556</td>
+      <td>37.88</td>
+      <td>-122.23</td>
+      <td>88.91410755185981%</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>8.3014</td>
+      <td>21.0</td>
+      <td>6.238137</td>
+      <td>0.971880</td>
+      <td>2401.0</td>
+      <td>2.109842</td>
+      <td>37.86</td>
+      <td>-122.22</td>
+      <td>93.83564895188734%</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>7.2574</td>
+      <td>52.0</td>
+      <td>8.288136</td>
+      <td>1.073446</td>
+      <td>496.0</td>
+      <td>2.802260</td>
+      <td>37.85</td>
+      <td>-122.24</td>
+      <td>70.91076297605066%</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>5.6431</td>
+      <td>52.0</td>
+      <td>5.817352</td>
+      <td>1.073059</td>
+      <td>558.0</td>
+      <td>2.547945</td>
+      <td>37.85</td>
+      <td>-122.25</td>
+      <td>21.56618642530764%</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>3.8462</td>
+      <td>52.0</td>
+      <td>6.281853</td>
+      <td>1.081081</td>
+      <td>565.0</td>
+      <td>2.181467</td>
+      <td>37.85</td>
+      <td>-122.25</td>
+      <td>80.45282896672339%</td>
+    </tr>
+    <tr>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <td>20635</td>
+      <td>1.5603</td>
+      <td>25.0</td>
+      <td>5.045455</td>
+      <td>1.133333</td>
+      <td>845.0</td>
+      <td>2.560606</td>
+      <td>39.48</td>
+      <td>-121.09</td>
+      <td>36.93266496322409%</td>
+    </tr>
+    <tr>
+      <td>20636</td>
+      <td>2.5568</td>
+      <td>18.0</td>
+      <td>6.114035</td>
+      <td>1.315789</td>
+      <td>356.0</td>
+      <td>3.122807</td>
+      <td>39.49</td>
+      <td>-121.21</td>
+      <td>75.0362361985378%</td>
+    </tr>
+    <tr>
+      <td>20637</td>
+      <td>1.7000</td>
+      <td>17.0</td>
+      <td>5.205543</td>
+      <td>1.120092</td>
+      <td>1007.0</td>
+      <td>2.325635</td>
+      <td>39.43</td>
+      <td>-121.22</td>
+      <td>78.31525111633049%</td>
+    </tr>
+    <tr>
+      <td>20638</td>
+      <td>1.8672</td>
+      <td>18.0</td>
+      <td>5.329513</td>
+      <td>1.171920</td>
+      <td>741.0</td>
+      <td>2.123209</td>
+      <td>39.43</td>
+      <td>-121.32</td>
+      <td>46.47093977393043%</td>
+    </tr>
+    <tr>
+      <td>20639</td>
+      <td>2.3886</td>
+      <td>16.0</td>
+      <td>5.254717</td>
+      <td>1.162264</td>
+      <td>1387.0</td>
+      <td>2.616981</td>
+      <td>39.37</td>
+      <td>-121.24</td>
+      <td>42.4080878652766%</td>
+    </tr>
+  </tbody>
+</table>
+<p>20640 rows × 9 columns</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="A-tool-to-filter-data">A tool to filter data<a class="anchor-link" href="#A-tool-to-filter-data"> </a></h2>
@@ -281,7 +511,55 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="detect_number_column" class="doc_header"><code>detect_number_column</code><a href="__main__.py#L8" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>detect_number_column</code>(<strong><code>df</code></strong>)</p>
+<h4 id="pct_to_float" class="doc_header"><code>pct_to_float</code><a href="__main__.py#L8" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>pct_to_float</code>(<strong><code>x</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="ensure_pct" class="doc_header"><code>ensure_pct</code><a href="__main__.py#L15" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>ensure_pct</code>(<strong><code>df</code></strong>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="detect_number_column" class="doc_header"><code>detect_number_column</code><a href="__main__.py#L21" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>detect_number_column</code>(<strong><code>df</code></strong>)</p>
 </blockquote>
 <p>Detect number columns in dataframe</p>
 
@@ -306,7 +584,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DataFilter" class="doc_header"><code>class</code> <code>DataFilter</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataFilter</code>(<strong><code>df</code></strong>:<code>DataFrame</code>)</p>
+<h2 id="DataFilter" class="doc_header"><code>class</code> <code>DataFilter</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DataFilter</code>(<strong><code>df</code></strong>:<code>DataFrame</code>, <strong><code>fix_pct</code></strong>=<em><code>True</code></em>)</p>
 </blockquote>
 <p>Single column number filter</p>
 
@@ -367,6 +645,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <th>AveOccup</th>
       <th>Latitude</th>
       <th>Longitude</th>
+      <th>TestPercent</th>
     </tr>
   </thead>
   <tbody>
@@ -380,6 +659,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.555556</td>
       <td>37.88</td>
       <td>-122.23</td>
+      <td>88.91410755185981%</td>
     </tr>
     <tr>
       <td>1</td>
@@ -391,6 +671,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.109842</td>
       <td>37.86</td>
       <td>-122.22</td>
+      <td>93.83564895188734%</td>
     </tr>
     <tr>
       <td>2</td>
@@ -402,6 +683,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.802260</td>
       <td>37.85</td>
       <td>-122.24</td>
+      <td>70.91076297605066%</td>
     </tr>
     <tr>
       <td>3</td>
@@ -413,6 +695,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.547945</td>
       <td>37.85</td>
       <td>-122.25</td>
+      <td>21.56618642530764%</td>
     </tr>
     <tr>
       <td>4</td>
@@ -424,8 +707,10 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.181467</td>
       <td>37.85</td>
       <td>-122.25</td>
+      <td>80.45282896672339%</td>
     </tr>
     <tr>
+      <td>...</td>
       <td>...</td>
       <td>...</td>
       <td>...</td>
@@ -446,6 +731,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.560606</td>
       <td>39.48</td>
       <td>-121.09</td>
+      <td>36.93266496322409%</td>
     </tr>
     <tr>
       <td>20636</td>
@@ -457,6 +743,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>3.122807</td>
       <td>39.49</td>
       <td>-121.21</td>
+      <td>75.0362361985378%</td>
     </tr>
     <tr>
       <td>20637</td>
@@ -468,6 +755,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.325635</td>
       <td>39.43</td>
       <td>-121.22</td>
+      <td>78.31525111633049%</td>
     </tr>
     <tr>
       <td>20638</td>
@@ -479,6 +767,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.123209</td>
       <td>39.43</td>
       <td>-121.32</td>
+      <td>46.47093977393043%</td>
     </tr>
     <tr>
       <td>20639</td>
@@ -490,10 +779,11 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
       <td>2.616981</td>
       <td>39.37</td>
       <td>-121.24</td>
+      <td>42.4080878652766%</td>
     </tr>
   </tbody>
 </table>
-<p>20640 rows × 8 columns</p>
+<p>20640 rows × 9 columns</p>
 </div>
 </div>
 
@@ -529,7 +819,7 @@ description: "Simple dataframe filter, Interactivel y filter column by value, on
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_filter</span><span class="p">()</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_filter</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;AveBedrms&quot;</span><span class="p">,</span> <span class="s2">&quot;Latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;TestPercent&quot;</span><span class="p">])</span>
 </pre></div>
 
     </div>
