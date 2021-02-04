@@ -96,3 +96,26 @@ def abc(
 ):
     return f"sql > SELECT * FROM {table} {where_condition} LIMIT {limit}"
 ```
+
+### Dataset Layering 🍰
+> Instead of creating a bunch of dataset just treat another dataset as extra layer of __getitem__ function
+
+```python
+@layering(SomeStringDataset, "tensorDataset")
+def tokenizing(x):
+    return tokenizer(x, return_tensors='pt')['input_ids'][0]
+
+@layering(tokenizing, "guessNextDataset")
+def guess_next(x):
+    return x[:-1], x[1:]
+
+some_string_data = SomeStringDataset()
+
+tokenized_data = some_string_data.next_layer()
+print(tokenized_data[3])
+
+guess_pair = tokenized_data.next_layer()
+print(guess_pair[3])
+```
+
+And you can test these layer functions one by one
