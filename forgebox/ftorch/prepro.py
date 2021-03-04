@@ -7,6 +7,7 @@ import torch
 import pandas as pd
 import numpy as np
 from collections import Counter
+from typing import Callable
 
 
 class Empty(Dataset):
@@ -133,20 +134,20 @@ class Seq_Dataset(Dataset):
             self.make_discard()
 
         if vocab_path:
-            if (build_vocab == False) and (
-                os.path.exists(vocab_path) == False:
+            if (build_vocab is False) and (
+                    os.path.exists(vocab_path) is False):
                 print("vocab path not found, building vocab path anyway")
-                build_vocab=True
+                build_vocab = True
             if build_vocab:
-                self.vocab=self.build_vocab(self.seq)
+                self.vocab = self.build_vocab(self.seq)
                 self.vocab.to_json(self.vocab_path)
             else:
-                self.vocab=pd.read_json(self.vocab_path)
-            self.char2idx, self.idx2char=self.get_mapping(self.vocab)
+                self.vocab = pd.read_json(self.vocab_path)
+            self.char2idx, self.idx2char = self.get_mapping(self.vocab)
             self.make_translate()
         if fixlen:
-            self.process_batch=self.process_batch_fixlen
-        self.element_type=element_type
+            self.process_batch = self.process_batch_fixlen
+        self.element_type = element_type
         self.make_totorch()
 
     def __len__(self):
@@ -157,13 +158,13 @@ class Seq_Dataset(Dataset):
         calculate batch numbers
         :return: batch numbers
         """
-        self.N=len(self.seq)
-        self.BN=math.ceil(self.N / self.bs)
+        self.N = len(self.seq)
+        self.BN = math.ceil(self.N / self.bs)
         return self.BN
 
     def __getitem__(self, idx):
-        start_=self.bs * idx
-        seq_crop=self.seq[start_:start_ + self.bs]
+        start_ = self.bs * idx
+        seq_crop = self.seq[start_:start_ + self.bs]
         return self.process_batch(seq_crop)
 
     def make_breaker(self):
@@ -173,7 +174,7 @@ class Seq_Dataset(Dataset):
         else:
             def breaker(self, line):
                 return list(str(line))
-        self.breaker=breaker
+        self.breaker = breaker
         self.process_funcs.append(self.breaker)
 
     def make_discard(self):
@@ -183,14 +184,14 @@ class Seq_Dataset(Dataset):
         if self.discard_side == "left":
             def discard(self, seqlist):
                 return seqlist[-self.seq_len:]
-        self.discard=discard
+        self.discard = discard
         self.process_funcs.append(self.discard)
 
     def make_translate(self):
         def translate(self, x):
             return np.vectorize(self.mapfunc)(x)
 
-        self.translate=translate
+        self.translate = translate
         self.process_funcs.append(self.translate)
 
     def make_totorch(self):
@@ -200,7 +201,7 @@ class Seq_Dataset(Dataset):
         if self.element_type == "float":
             def totorch(self, seq):
                 return torch.FloatTensor(np.array(seq).astype(np.float32))
-        self.totorch=totorch
+        self.totorch = totorch
         self.process_funcs.append(self.totorch)
 
     def process_batch(self, batch):
@@ -214,17 +215,17 @@ class Seq_Dataset(Dataset):
                     batch+[self.dummy_input()]), batch_first=True)[:-1, ...]
 
     def dummy_input(self,):
-        dummy=self.sep_tok.join([" "]*self.seq_len)
+        dummy = self.sep_tok.join([" "]*self.seq_len)
         return dummy
 
     def seq2idx(self, x):
         for f in self.process_funcs:
-            x=f(self, x)
+            x = f(self, x)
         return x
 
     def get_mapping(self, vocab_df):
-        char2idx=dict(zip(vocab_df["token"], vocab_df["idx"]))
-        idx2char=dict(zip(vocab_df["idx"], vocab_df["token"]))
+        char2idx = dict(zip(vocab_df["token"], vocab_df["idx"]))
+        idx2char = dict(zip(vocab_df["idx"], vocab_df["token"]))
         return char2idx, idx2char
 
     def mapfunc(self, x):
@@ -248,18 +249,18 @@ class Seq_Dataset(Dataset):
         return self.breaker(self, self.sep_tok.join(list_of_tokens))
 
     def build_vocab(self, seq_list):
-        ct_dict=self.get_token_count_dict(self.get_full_token(seq_list))
-        ct_dict["SOS_TOKEN"]=9e9
-        ct_dict["EOS_TOKEN"]=8e9
-        ct_dict[" "]=7e9
-        tk, ct=list(ct_dict.keys()), list(ct_dict.values())
+        ct_dict = self.get_token_count_dict(self.get_full_token(seq_list))
+        ct_dict["SOS_TOKEN"] = 9e9
+        ct_dict["EOS_TOKEN"] = 8e9
+        ct_dict[" "] = 7e9
+        tk, ct = list(ct_dict.keys()), list(ct_dict.values())
 
-        token_df=pd.DataFrame({"token": tk, "count": ct}).sort_values(
+        token_df = pd.DataFrame({"token": tk, "count": ct}).sort_values(
             by="count", ascending=False)
 
-        return token_df.reset_index().drop("index", axis=1)
-            .reset_index().rename(columns={"index": "idx"}).fillna("")[
-            :self.vocab_size]
+        return token_df.reset_index().drop("index", axis=1)\
+            .reset_index()\
+            .rename(columns={"index": "idx"}).fillna("")[:self.vocab_size]
 
 
 class fuse(Dataset):
@@ -268,13 +269,13 @@ class fuse(Dataset):
         A pytorch dataset combining the dataset
         :param datasets:
         """
-        self.datasets=datasets
-        bs_s=set(list(d.bs for d in self.datasets))
-        length_s=set(list(len(d) for d in self.datasets))
+        self.datasets = datasets
+        bs_s = set(list(d.bs for d in self.datasets))
+        length_s = set(list(len(d) for d in self.datasets))
         assert len(bs_s) == 1, "batch sized not matched"
         assert len(length_s) == 1, "dataset lenth not matched"
-        self.bs=list(bs_s)[0]
-        self.length=list(length_s)[0]
+        self.bs = list(bs_s)[0]
+        self.length = list(length_s)[0]
 
     def __len__(self):
         return self.length
@@ -290,13 +291,13 @@ def collate(batch):
 class col_core:
     def __init__(self, col_name, save_dir=".matchbox/fields", debug=False):
         os.system("mkdir -p %s" % (save_dir))
-        self.col_name=col_name
-        self.debug=debug
-        self.save_dir=save_dir
+        self.col_name = col_name
+        self.debug = debug
+        self.save_dir = save_dir
         if self.save_dir[-1] != "/":
             self.save_dir += "/"
 
-        self.meta=dict()
+        self.meta = dict()
 
     def save_meta(self):
         np.save(self.save_dir + str(self.col_name) + ".npy", self.meta)
@@ -306,7 +307,7 @@ class col_core:
         pass meta dict values to obj attributes
         """
         if meta is None:
-            meta=self.meta
+            meta = self.meta
         for k, v in meta.items():
             if self.debug:
                 print("setting:\t%s\t%s" % (k, v))
@@ -314,8 +315,8 @@ class col_core:
 
     def load_meta(self, path=None):
         if path is None:
-            path=self.save_dir + str(self.col_name) + ".npy"
-        self.meta=np.load(path).tolist()
+            path = self.save_dir + str(self.col_name) + ".npy"
+        self.meta = np.load(path).tolist()
         self.set_meta(self.meta)
 
         if self.meta["coltype"] == "tabulate":
@@ -323,7 +324,7 @@ class col_core:
 
     def make_meta(self):
         for attr in self.make_meta_list:
-            self.meta[attr]=getattr(self, attr)
+            self.meta[attr] = getattr(self, attr)
 
     def check_dim(self, data):
         return pd.DataFrame(data, columns=self.dim_names)
@@ -332,32 +333,32 @@ class col_core:
 class categorical(col_core):
     def __init__(self, col_name, save_dir=".matchbox/fields"):
         super(categorical, self).__init__(col_name, save_dir)
-        self.coltype="categorical"
-        self.make_meta_list=["col_name", "coltype",
+        self.coltype = "categorical"
+        self.make_meta_list = ["col_name", "coltype",
                                "idx2cate", "cate2idx",
                                "width", "eye", "dim_names"]
-        self.__call__=self.prepro
+        self.__call__ = self.prepro
 
     def build(self, pandas_s, max_=20):
         assert max_ > 1, "max should be bigger than 1"
 
-        vcount=pd.DataFrame(pandas_s.value_counts())
+        vcount = pd.DataFrame(pandas_s.value_counts())
 
         print(vcount)
 
-        self.cate_full=list(vcount.index.tolist())
-        self.cate_list=self.cate_full[:max_ - 1]
+        self.cate_full = list(vcount.index.tolist())
+        self.cate_list = self.cate_full[:max_ - 1]
 
         # build dictionary
-        self.idx2cate=dict((k, v) for k, v in enumerate(self.cate_list))
+        self.idx2cate = dict((k, v) for k, v in enumerate(self.cate_list))
         self.idx2cate.update({len(self.cate_list): "_other"})
 
-        self.cate2idx=dict((v, k) for k, v in self.idx2cate.items())
-        self.eye=np.eye(len(self.cate2idx))
+        self.cate2idx = dict((v, k) for k, v in self.idx2cate.items())
+        self.eye = np.eye(len(self.cate2idx))
 
-        self.width=len(self.cate2idx)
+        self.width = len(self.cate2idx)
 
-        self.dim_names=list("%s -> %s" % (self.col_name, k)
+        self.dim_names = list("%s -> %s" % (self.col_name, k)
                               for k in self.cate2idx.keys())
         self.make_meta()
 
@@ -396,28 +397,28 @@ class categorical_idx(col_core):
             default .matchbox/fields
         """
         super(categorical_idx, self).__init__(col_name, save_dir)
-        self.coltype="categorical_idx"
-        self.dim_names=[self.col_name]
-        self.width=1
-        self.make_meta_list=["col_name", "coltype",
+        self.coltype = "categorical_idx"
+        self.dim_names = [self.col_name]
+        self.width = 1
+        self.make_meta_list = ["col_name", "coltype",
                                "idx2cate", "cate2idx", "width", "dim_names"]
-        self.__call__=self.prepro
+        self.__call__ = self.prepro
 
     def build(self, pandas_s, max_=20):
         assert max_ > 1, "max should be bigger than 1"
 
-        vcount=pd.DataFrame(pandas_s.value_counts())
+        vcount = pd.DataFrame(pandas_s.value_counts())
 
         print(vcount)
 
-        self.cate_full=list(vcount.index.tolist())
-        self.cate_list=self.cate_full[:max_ - 1]
+        self.cate_full = list(vcount.index.tolist())
+        self.cate_list = self.cate_full[:max_ - 1]
 
         # build dictionary
-        self.idx2cate=dict((k, v) for k, v in enumerate(self.cate_list))
+        self.idx2cate = dict((k, v) for k, v in enumerate(self.cate_list))
         self.idx2cate.update({len(self.cate_list): "_other"})
 
-        self.cate2idx=dict((v, k) for k, v in self.idx2cate.items())
+        self.cate2idx = dict((v, k) for k, v in self.idx2cate.items())
 
         self.make_meta()
 
@@ -428,9 +429,9 @@ class categorical_idx(col_core):
             return self.cate2idx["_other"]
 
     def prepro(self, pandas_s, expand=True):
-        x=pandas_s.apply(self.trans2idx).values
+        x = pandas_s.apply(self.trans2idx).values
         if expand:
-            x=np.expand_dims(x, -1)
+            x = np.expand_dims(x, -1)
         return x
 
     def __call__(self, pandas_s, expand=True):
@@ -445,44 +446,44 @@ class minmax(col_core):
     def __init__(self, col_name, fillna=0.0, save_dir=".matchbox/fields"):
         """minmax scaler: scale to 0~1"""
         super(minmax, self).__init__(col_name, save_dir)
-        self.coltype="minmax"
-        self.fillna=fillna
-        self.dim_names=[self.col_name]
-        self.width=1
-        self.make_meta_list=["col_name", "coltype",
+        self.coltype = "minmax"
+        self.fillna = fillna
+        self.dim_names = [self.col_name]
+        self.width = 1
+        self.make_meta_list = ["col_name", "coltype",
                                "min_", "max_", "range", "width", "dim_names"]
-        self.__call__=self.prepro
+        self.__call__ = self.prepro
 
     def build(self, pandas_s=None, min_=None, max_=None):
         if type(pandas_s) != pd.core.series.Series:
-            assert (min_ != None) and (
-                max_ != None),\
-                    "you have to set min_,max_ value"
-            self.min_=min_
-            self.max_=max_
+            assert (min_ is not None) and (
+                max_ is not None),\
+                "you have to set min_,max_ value"
+            self.min_ = min_
+            self.max_ = max_
 
         else:
-            pandas_s=pandas_s.fillna(self.fillna)
+            pandas_s = pandas_s.fillna(self.fillna)
             if min_ == None:
-                self.min_=pandas_s.min()
+                self.min_ = pandas_s.min()
             else:
-                self.min_=min_
+                self.min_ = min_
             if max_ == None:
-                self.max_=pandas_s.max()
+                self.max_ = pandas_s.max()
             else:
-                self.max_=max_
+                self.max_ = max_
 
-        self.range=self.max_ - self.min_
+        self.range = self.max_ - self.min_
         assert self.range != 0, "the value range is 0"
         print("min_:%.3f \tmax_:%.3f\t range:%.3f" %
               (self.min_, self.max_, self.range))
         self.make_meta()
 
     def prepro(self, data, expand=True):
-        x=(np.clip(data.values.astype(np.float64),
+        x = (np.clip(data.values.astype(np.float64),
                      self.min_, self.max_) - self.min_) / self.range
         if expand:
-            x=np.expand_dims(x, -1)
+            x = np.expand_dims(x, -1)
         return x
 
     def __call__(self, data, expand=True):
@@ -497,25 +498,25 @@ class minmax(col_core):
 class tabulate(col_core):
     def __init__(self, table_name, save_dir=".matchbox/fields"):
         super(tabulate, self).__init__(table_name, save_dir)
-        self.coltype="tabulate"
-        self.cols=dict()
+        self.coltype = "tabulate"
+        self.cols = dict()
 
-        self.save_dir=save_dir
+        self.save_dir = save_dir
         if self.save_dir[-1] != "/":
-            self.save_dir="%s/" % (self.save_dir)
+            self.save_dir = "%s/" % (self.save_dir)
 
-        self.make_meta_list=["col_name", "coltype", "cols", "dim_names"]
+        self.make_meta_list = ["col_name", "coltype", "cols", "dim_names"]
 
     def build_url(self, metalist):
         for url in metalist:
-            meta_dict=np.load(url).tolist()
-            self.cols[meta_dict["col_name"]]=meta_dict
+            meta_dict = np.load(url).tolist()
+            self.cols[meta_dict["col_name"]] = meta_dict
         self.make_dim()
         self.make_meta()
 
     def build(self, *args):
         for obj in args:
-            self.cols[obj.col_name]=obj.meta
+            self.cols[obj.col_name] = obj.meta
         self.make_sub()
         self.make_dim()
         self.make_meta()
@@ -524,13 +525,13 @@ class tabulate(col_core):
         """
         creat sub obj according to sub meta
         """
-        col_name=meta["col_name"]
+        col_name = meta["col_name"]
 
         setattr(self, col_name, eval(meta["coltype"])(col_name))
         getattr(self, col_name).set_meta(meta)
         if meta["coltype"] == "tabulate":
             getattr(self, col_name).make_sub()
-            getattr(self, col_name).meta=meta
+            getattr(self, col_name).meta = meta
 
     def make_sub(self):
         """
@@ -540,23 +541,23 @@ class tabulate(col_core):
             self.make_col(meta)
 
     def make_dim(self):
-        self.dim_names=[]
+        self.dim_names = []
 
         for k, meta in self.cols.items():
             for sub_dim in meta["dim_names"]:
                 self.dim_names.append("%s -> %s" % (self.col_name, sub_dim))
 
-        self.width=len(self.dim_names)
+        self.width = len(self.dim_names)
 
     def prepro(self, data):
         """
         data being a pandas dataframe
         """
-        data_list=[]
+        data_list = []
 
         for k, v in self.meta["cols"].items():
             # preprocess the data for every column
-            col=getattr(self, k)
+            col = getattr(self, k)
             if v["coltype"] == "tabulate":
                 data_list.append(col.prepro(data))
             else:
@@ -586,8 +587,8 @@ class test_DS:
         dt() to return the sample
         :param dataset:
         """
-        self.dl=DataLoader(dataset, **kwargs)
-        self.iter=iter(self.dl)
+        self.dl = DataLoader(dataset, **kwargs)
+        self.iter = iter(self.dl)
 
     def __call__(self):
         """
@@ -605,17 +606,17 @@ def split_df(df, valid=0.2, ensure_factor=2):
         to be the multiplication of this factor, default 2
     return train_df, valid_df
     """
-    split_=(np.random.rand(len(df)) > valid)
-    train_df=df[split_].sample(frac=1.).reset_index().drop("index", axis=1)
-    valid_df=df[~split_].sample(frac=1.).reset_index().drop("index", axis=1)
+    split_ = (np.random.rand(len(df)) > valid)
+    train_df = df[split_].sample(frac=1.).reset_index().drop("index", axis=1)
+    valid_df = df[~split_].sample(frac=1.).reset_index().drop("index", axis=1)
 
     if ensure_factor:
-        train_mod=len(train_df) % ensure_factor
-        valid_mod=len(valid_df) % ensure_factor
+        train_mod = len(train_df) % ensure_factor
+        valid_mod = len(valid_df) % ensure_factor
         if train_mod:
-            train_df=train_df[:-train_mod]
+            train_df = train_df[:-train_mod]
         if valid_mod:
-            valid_df=valid_df[:-valid_mod]
+            valid_df = valid_df[:-valid_mod]
     return train_df, valid_df
 
 
@@ -626,8 +627,8 @@ class npNormalize(object):
 
     def __init__(self, v, mean=None, std=None):
         super().__init__()
-        self.mean=v.mean() if mean == None else mean
-        self.std=v.std() if std == None else std
+        self.mean = v.mean() if mean is not None else mean
+        self.std = v.std() if std is not None else std
 
     def normalize(self, x):
         return (x - self.mean) / self.std
@@ -654,43 +655,43 @@ class historyReplay(object):
     """
 
     def __init__(self, bs, current_ratio=.2, history_len=50):
-        self.current_ratio=current_ratio
-        self.counter=0
-        self.history_len=history_len
-        self.bs=bs
-        self.argslist=[]
-        self.arglen=len(self.argslist)
-        self.latest_chunk=int(bs * current_ratio)
-        self.history_chunk=bs - self.latest_chunk
+        self.current_ratio = current_ratio
+        self.counter = 0
+        self.history_len = history_len
+        self.bs = bs
+        self.argslist = []
+        self.arglen = len(self.argslist)
+        self.latest_chunk = int(bs * current_ratio)
+        self.history_chunk = bs - self.latest_chunk
 
     def __call__(self, *args):
         # The 1st input
         if self.arglen == 0:
-            self.argslist=args
-            self.arglen=len(self.argslist)
+            self.argslist = args
+            self.arglen = len(self.argslist)
             return tuple(args) if self.arglen > 1 else tuple(args)[0]
         else:
-            stack_size=self.argslist[0].size(0)
+            stack_size = self.argslist[0].size(0)
             # the 2nd ~ the history length
             if stack_size < self.bs * self.history_len:
-                self.argslist=list(torch.cat(
+                self.argslist = list(torch.cat(
                     [args[i], self.argslist[i]], dim=0)
                     for i in range(len(self.argslist)))
                 self.counter += 1
                 return tuple(args) if self.arglen > 1 else tuple(args)[0]
             # above history length
             else:
-                pos=self.counter % self.history_len
-                start_pos=pos * self.bs
-                end_pos=(pos + 1) * self.bs
-                slice_=random.choices(
+                pos = self.counter % self.history_len
+                start_pos = pos * self.bs
+                end_pos = (pos + 1) * self.bs
+                slice_ = random.choices(
                     range(self.bs * self.history_len), k=self.history_chunk)
-                rt=[]
+                rt = []
                 for i in range(len(self.argslist)):
                     rt.append(torch.cat(
                         [args[i][:self.latest_chunk, ...],
-                        self.argslist[i][slice_, ...]], dim=0))
-                    self.argslist[i][start_pos:end_pos, ...]=args[i]
+                         self.argslist[i][slice_, ...]], dim=0))
+                    self.argslist[i][start_pos:end_pos, ...] = args[i]
                 self.counter += 1
                 return tuple(rt) if self.arglen > 1 else tuple(rt)[0]
 
@@ -724,12 +725,12 @@ def layering(dataset_class, new_name):
     print(guess_pair[3])
     """
     if hasattr(dataset_class, "associated_class"):
-        dataset_class=dataset_class.associated_class
+        dataset_class = dataset_class.associated_class
 
     def decorator(f: Callable):
         class newClass(Dataset):
             def __init__(self, last_ds,):
-                self.last_ds=last_ds
+                self.last_ds = last_ds
 
             def __repr__(self):
                 return f"Layered Pytorch Dataset: {new_name}"
@@ -739,10 +740,11 @@ def layering(dataset_class, new_name):
             def __getitem__(self, idx):
                 return f(self.last_ds[idx])
 
-        newClass.__name__=new_name
+        newClass.__name__ = new_name
+
         def next_layer(self,):
             return newClass(self)
-        f.associated_class=newClass
-        dataset_class.next_layer=next_layer
+        f.associated_class = newClass
+        dataset_class.next_layer = next_layer
         return f
     return decorator
