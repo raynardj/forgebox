@@ -2,6 +2,7 @@
   "forgebox": {
     "Overview": "/",
     "03 Imports": "/imports",
+    "Async": "/async",
     "Tools on pandas dataframe": "/df",
     "HTML operation": "/html",
     "Interactive tools": "/inter_widgets",
@@ -14,6 +15,7 @@
     "Minimum": "/minimum",
     "01 A logged editable table": "/traceable_edit_in_flask",
     "Dataframe filter": "/df_filter",
+    "Hard drive files": "/files",
     "Wild Tree and loss": "/wild_tree_and_loss",
     "Images": "/widgets",
     "Categorical Transformation for DL": "/category",

@@ -13,6 +13,9 @@ entries:
       title: 03 Imports
       url: /imports
     - output: web,pdf
+      title: Async
+      url: /async
+    - output: web,pdf
       title: Tools on pandas dataframe
       url: /df
     - output: web,pdf
@@ -48,6 +51,9 @@ entries:
     - output: web,pdf
       title: Dataframe filter
       url: /df_filter
+    - output: web,pdf
+      title: Hard drive files
+      url: /files
     - output: web,pdf
       title: Wild Tree and loss
       url: /wild_tree_and_loss
