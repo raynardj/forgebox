@@ -13,6 +13,9 @@ entries:
       title: 03 Imports
       url: /imports
     - output: web,pdf
+      title: Async
+      url: /async
+    - output: web,pdf
       title: Tools on pandas dataframe
       url: /df
     - output: web,pdf

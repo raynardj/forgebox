@@ -2,6 +2,7 @@
   "forgebox": {
     "Overview": "/",
     "03 Imports": "/imports",
+    "Async": "/async",
     "Tools on pandas dataframe": "/df",
     "HTML operation": "/html",
     "Interactive tools": "/inter_widgets",
