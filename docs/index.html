@@ -42,7 +42,9 @@ summary: "Data science comprehensive toolbox 🛠⚔️📦"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Features-&#128640;-Briefing">Features &#128640; Briefing<a class="anchor-link" href="#Features-&#128640;-Briefing">&#182;</a></h2><blockquote><p>This is a tool box with comprehensive utilies, to put it simply, I just hope most of my frequetyly used DIY tools in in place and can be easily installed and imported</p>
+
+<h2 id="Features-&#128640;-Briefing">Features &#128640; Briefing<a class="anchor-link" href="#Features-&#128640;-Briefing"> </a></h2><blockquote><p>This is a tool box with comprehensive <strong>utilies</strong>, to put it simply, I just hope most of my frequetyly used DIY tools in in place and can be easily installed and imported</p>
+
 </blockquote>
 
 </div>
@@ -72,7 +74,584 @@ summary: "Data science comprehensive toolbox 🛠⚔️📦"
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Free-style-mapping">Free style mapping<a class="anchor-link" href="#Free-style-mapping">&#182;</a></h3>
+
+<h3 id="Categorical-converter">Categorical converter<a class="anchor-link" href="#Categorical-converter"> </a></h3><blockquote><p>Mapping and converting categorical infomation</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.category</span> <span class="kn">import</span> <span class="n">Category</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">az</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">chr</span><span class="p">,</span><span class="nb">range</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">),</span> <span class="nb">ord</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">)</span><span class="o">+</span><span class="mi">1</span><span class="p">)))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">az</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;D&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;, &#39;H&#39;, &#39;I&#39;, &#39;J&#39;, &#39;K&#39;, &#39;L&#39;, &#39;M&#39;, &#39;N&#39;, &#39;O&#39;, &#39;P&#39;, &#39;Q&#39;, &#39;R&#39;, &#39;S&#39;, &#39;T&#39;, &#39;U&#39;, &#39;V&#39;, &#39;W&#39;, &#39;X&#39;, &#39;Y&#39;, &#39;Z&#39;, &#39;[&#39;, &#39;\\&#39;, &#39;]&#39;, &#39;^&#39;, &#39;_&#39;, &#39;`&#39;, &#39;a&#39;, &#39;b&#39;, &#39;c&#39;, &#39;d&#39;, &#39;e&#39;, &#39;f&#39;, &#39;g&#39;, &#39;h&#39;, &#39;i&#39;, &#39;j&#39;, &#39;k&#39;, &#39;l&#39;, &#39;m&#39;, &#39;n&#39;, &#39;o&#39;, &#39;p&#39;, &#39;q&#39;, &#39;r&#39;, &#39;s&#39;, &#39;t&#39;, &#39;u&#39;, &#39;v&#39;, &#39;w&#39;, &#39;x&#39;, &#39;y&#39;, &#39;z&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cate_az</span> <span class="o">=</span> <span class="n">Category</span><span class="p">(</span><span class="n">az</span><span class="p">)</span>
+<span class="n">cate_az</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Category Manager with 58</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cate_az</span><span class="o">.</span><span class="n">c2i</span><span class="p">[</span><span class="s2">&quot;R&quot;</span><span class="p">],</span> <span class="n">cate_az</span><span class="o">.</span><span class="n">i2c</span><span class="p">[</span><span class="mi">17</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>(17, &#39;R&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cate_az</span><span class="o">.</span><span class="n">c2i</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;ForgeBox&quot;</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 5, 46, 49, 38, 36,  1, 46, 55])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cate_az</span><span class="o">.</span><span class="n">i2c</span><span class="p">[[</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">38</span><span class="p">,</span> <span class="mi">36</span><span class="p">,</span>  <span class="mi">1</span><span class="p">,</span> <span class="mi">46</span><span class="p">,</span> <span class="mi">55</span><span class="p">]]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([&#39;F&#39;, &#39;o&#39;, &#39;r&#39;, &#39;g&#39;, &#39;e&#39;, &#39;B&#39;, &#39;o&#39;, &#39;x&#39;], dtype=&#39;&lt;U1&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Padding missing token</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cate_az</span> <span class="o">=</span> <span class="n">Category</span><span class="p">(</span><span class="n">az</span><span class="p">,</span> <span class="n">pad_mst</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">cate_az</span><span class="o">.</span><span class="n">c2i</span><span class="p">[</span><span class="nb">list</span><span class="p">(</span><span class="s2">&quot;Forge⚡️Box&quot;</span><span class="p">)]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([ 6, 47, 50, 39, 37,  0,  0,  2, 47, 56])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Get-a-dataframe-of-file-details-under-a--directory">Get a dataframe of file details under a  directory<a class="anchor-link" href="#Get-a-dataframe-of-file-details-under-a--directory"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.files</span> <span class="kn">import</span> <span class="n">file_detail</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">file_detail</span><span class="p">(</span><span class="s2">&quot;/Users/xiaochen.zhang/.cache/&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sample</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>path</th>
+      <th>file_type</th>
+      <th>parent</th>
+      <th>depth</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>36</td>
+      <td>/Users/xiaochen.zhang/.cache/torch/transformer...</td>
+      <td>json</td>
+      <td>transformers</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>/Users/xiaochen.zhang/.cache/torch/transformer...</td>
+      <td>json</td>
+      <td>transformers</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>51</td>
+      <td>/Users/xiaochen.zhang/.cache/langhuan/task_NER...</td>
+      <td>json</td>
+      <td>task_NER_210121_140513</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>32</td>
+      <td>/Users/xiaochen.zhang/.cache/torch/transformer...</td>
+      <td>lock</td>
+      <td>transformers</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <td>58</td>
+      <td>/Users/xiaochen.zhang/.cache/langhuan/task_Cla...</td>
+      <td>json</td>
+      <td>task_Classify_210128_164710</td>
+      <td>7</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="JS-style-async">JS style async<a class="anchor-link" href="#JS-style-async"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.asyncing</span> <span class="kn">import</span> <span class="n">Async</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">something_time_costing_but_you_dont_want_to_wait</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="n">sleep</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;slept for </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> seconds&quot;</span>
+
+<span class="k">def</span> <span class="nf">task2_you_will_perfrom_after_the_time_costing_one</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[result]:</span><span class="se">\t</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;1111111111&quot;</span><span class="p">)</span>
+
+<span class="n">Async</span><span class="p">(</span><span class="n">something_time_costing_but_you_dont_want_to_wait</span><span class="p">)(</span><span class="mi">2</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">then</span><span class="p">(</span><span class="n">task2_you_will_perfrom_after_the_time_costing_one</span><span class="p">)</span>\
+<span class="o">.</span><span class="n">catch</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;22222222222&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1111111111
+22222222222
+[result]:	slept for 2 seconds
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="HTML-in-notebook">HTML in notebook<a class="anchor-link" href="#HTML-in-notebook"> </a></h3>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.html</span> <span class="kn">import</span> <span class="n">DOM</span><span class="p">,</span> <span class="n">list_group</span><span class="p">,</span> <span class="n">list_group_kv</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This will map a clear HTML table view of wild tree type json structure/ list</p>
+
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">bands</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;police&quot;</span><span class="p">,</span> <span class="s2">&quot;headpin&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;ac&quot;</span><span class="p">:</span><span class="s2">&quot;dc&quot;</span><span class="p">}]</span>
+<span class="n">list_group</span><span class="p">(</span><span class="n">bands</span><span class="p">)()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<ul class="list-group"><li class="list-group-item">police</li><li class="list-group-item">headpin</li><li class="list-group-item"><ul class="list-group"><li class="list-group-item"><div class="row"><strong class="col-sm-5">ac</strong><span class="col-sm-7">dc</span></div></li></ul></li></ul>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">questions</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;question&quot;</span><span class="p">:</span><span class="s2">&quot;answer&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;another&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;deeper question&quot;</span><span class="p">:</span> <span class="s2">&quot;answer again&quot;</span><span class="p">},</span>
+    <span class="s2">&quot;final&quot;</span><span class="p">:{</span>
+        <span class="s2">&quot;questions&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;what&quot;</span><span class="p">,</span><span class="s2">&quot;is&quot;</span><span class="p">,</span><span class="s2">&quot;the&quot;</span><span class="p">,</span><span class="s2">&quot;answer&quot;</span><span class="p">,</span> <span class="s2">&quot;to&quot;</span><span class="p">,</span>
+            <span class="p">[</span><span class="s2">&quot;life&quot;</span><span class="p">,</span> <span class="s2">&quot;universe&quot;</span><span class="p">,</span><span class="s2">&quot;everything&quot;</span><span class="p">]]}</span>
+<span class="p">}</span>
+<span class="n">list_group_kv</span><span class="p">(</span><span class="n">questions</span><span class="p">)()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<ul class="list-group"><li class="list-group-item"><div class="row"><strong class="col-sm-5">question</strong><span class="col-sm-7">answer</span></div></li><li class="list-group-item"><div class="row"><strong class="col-sm-5">another</strong><span class="col-sm-7"><ul class="list-group"><li class="list-group-item"><div class="row"><strong class="col-sm-5">deeper question</strong><span class="col-sm-7">answer again</span></div></li></ul></span></div></li><li class="list-group-item"><div class="row"><strong class="col-sm-5">final</strong><span class="col-sm-7"><ul class="list-group"><li class="list-group-item"><div class="row"><strong class="col-sm-5">questions</strong><span class="col-sm-7"><ul class="list-group"><li class="list-group-item">what</li><li class="list-group-item">is</li><li class="list-group-item">the</li><li class="list-group-item">answer</li><li class="list-group-item">to</li><li class="list-group-item"><ul class="list-group"><li class="list-group-item">life</li><li class="list-group-item">universe</li><li class="list-group-item">everything</li></ul></li></ul></span></div></li></ul></span></div></li></ul>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Coding-html-in-python">Coding html in python<a class="anchor-link" href="#Coding-html-in-python"> </a></h4>
+</div>
+</div>
+</div>
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">title</span> <span class="o">=</span> <span class="n">DOM</span><span class="p">(</span><span class="s2">&quot;Title example&quot;</span><span class="p">,</span><span class="s2">&quot;h5&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;style&quot;</span><span class="p">:</span><span class="s2">&quot;color:#3399EE&quot;</span><span class="p">})</span>
+<span class="n">ul</span> <span class="o">=</span> <span class="n">DOM</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">,</span><span class="s2">&quot;ul&quot;</span><span class="p">);</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="n">ul</span> <span class="o">=</span> <span class="n">ul</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">DOM</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Line </span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;li&quot;</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;style&quot;</span><span class="p">:</span><span class="s2">&quot;color:#EE33DD&quot;</span><span class="p">}))</span>
+
+<span class="n">title</span><span class="p">()</span>
+<span class="n">ul</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<h5 style="color:#3399EE">Title example</h5>
+</div>
+
+</div>
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea ">
+<ul><li style="color:#EE33DD">Line 0</li><li style="color:#EE33DD">Line 1</li><li style="color:#EE33DD">Line 2</li><li style="color:#EE33DD">Line 3</li><li style="color:#EE33DD">Line 4</li></ul>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Free-style-mapping">Free style mapping<a class="anchor-link" href="#Free-style-mapping"> </a></h3>
+
 </div>
 </div>
 </div>
@@ -129,7 +708,12 @@ summary: "Data science comprehensive toolbox 🛠⚔️📦"
 <div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Single-button-callback">Single button callback<a class="anchor-link" href="#Single-button-callback">&#182;</a></h4><blockquote><p>a fully functional page with a single button, this single button is bonded to a function</p>
 </blockquote>
-<p>This is as much code as you need, to build a fully functional interactive page shows sql table from jupyter, that you can: ✅ choose which table to visit✅ choose how many lines you want to show, (with a slider)✅ configure the where condition with a text box on front end</p>
+
+<p>This is as much code as you need, to build a fully functional interactive page shows sql table from jupyter, that you can:<em> choose which table to visit</em> choose how many lines you want to show, (with a slider)</p>
+<ul>
+<li>configure the where condition with a text box on front end</li>
+</ul>
+
 <div class="highlight"><pre><span></span><span class="n">tablename_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;pubmed&quot;</span><span class="p">,</span> <span class="s2">&quot;patient&quot;</span><span class="p">,</span> <span class="s2">&quot;users&quot;</span><span class="p">,</span> <span class="s2">&quot;drugs&quot;</span><span class="p">]</span>
 
 <span class="kn">from</span> <span class="nn">forgebox.html</span> <span class="kn">import</span> <span class="n">DOM</span>
