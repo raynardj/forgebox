@@ -34,6 +34,9 @@ entries:
       title: Controllable loop process
       url: /loop
     - output: web,pdf
+      title: ETL Helper
+      url: /etl
+    - output: web,pdf
       title: Get static file
       url: /static_file
     - output: web,pdf
@@ -72,9 +75,6 @@ entries:
     - output: web,pdf
       title: NLP data
       url: /bilstm-based-search-on-netflix-data
-    - output: web,pdf
-      title: create different file
-      url: /create_different
     - output: web,pdf
       title: Create multi-task adjustment for cross-entropy
       url: /cross_entropy_weighter
