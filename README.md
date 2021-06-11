@@ -6,7 +6,7 @@
 
 ## Installation
 
-Easy simple installation in 1 shot
+Easy simple installation in 1 line
 ```shell
 pip install forgebox
 ```
@@ -333,5 +333,5 @@ def abc(
     where_condition:{"typing":str, "default": "where 1=1", },
     table:{"typing":list, "options":tablename_list}
 ):
-    return f"sql > SELECT * FROM {table} {where_condition} LIMIT {limit}"
+    return f"SELECT * FROM {table} {where_condition} LIMIT {limit}"
 ```
