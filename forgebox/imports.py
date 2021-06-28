@@ -37,10 +37,15 @@ from pathlib import Path
 import json
 from functools import partial
 from collections import Counter
-from matplotlib import pyplot as plt
+
 
 import os
 import sys
+
+try:
+    from matplotlib import pyplot as plt
+except:
+    pass
 
 try:
     from .widgets import search_box,paginate
@@ -62,6 +67,54 @@ try:
     from ipywidgets import interact, interact_manual
     from IPython.display import HTML
     __all__+=["interact","interact_manual","HTML"]
+except:
+    pass
+
+try:
+    import redis
+    def read_redis(key, host='localhost', port=6379, db=3):
+        rd = redis.Redis(host=host, port=port, db=db)
+        return pd.read_json(rd.get(key))
+
+    __all__+=["read_redis",]
+
+    def to_redis(self, key:str, con:redis.Redis = None, ex:int=600):
+        """
+        Save dataframe to redis
+        """
+        if con is None:
+            con = redis.Redis(host='localhost', port=6379, db=3)
+        return con.set(key, self.to_json())
+
+    pd.DataFrame.to_redis = to_redis
+
+    def df_cache(ex=600, host='localhost', port=6379, db=3):
+        """
+        Caching pd.DataFrame, use as decorator
+
+        @df_cache(ex=300)
+        def get_table_abc(uuid):
+            return pd.read_sql(f"select * from abc where uuid='{uuid}'", con=conn)
+
+        within 5 minutes, under same uuid, the code will query data base only once
+        """
+        rd = redis.Redis(host=host, port=port, db=db)
+        def decorator(f):
+            def wrapper(*args, **kwargs):
+                key = "_".join(str(i).lower() for i in args)
+                if len(kwargs)>0:
+                    key += "_"
+                    key += "_".join(f"{k}-{v}" for k,v in kwargs.items())
+                if rd.exists(key):
+                    return pd.read_json(rd.get(key))
+                df = f(*args, **kwargs)
+                df.to_redis(key, con=rd)
+                return df
+
+            return wrapper
+        return decorator
+    __all__+=["df_cache",]
+
 except:
     pass
 
