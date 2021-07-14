@@ -11,82 +11,85 @@ entries:
       url: /
     - output: web,pdf
       title: 03 Imports
-      url: /imports
+      url: imports.html
     - output: web,pdf
       title: Async
-      url: /async
+      url: async.html
     - output: web,pdf
       title: Tools on pandas dataframe
-      url: /df
+      url: df.html
     - output: web,pdf
       title: HTML operation
-      url: /html
+      url: html.html
     - output: web,pdf
       title: Interactive tools
-      url: /inter_widgets
+      url: inter_widgets.html
     - output: web,pdf
       title: spacy toolkit
-      url: /spacy
+      url: spacy.html
     - output: web,pdf
       title: FreeMap
-      url: /freemap
+      url: freemap.html
     - output: web,pdf
       title: Controllable loop process
-      url: /loop
+      url: loop.html
     - output: web,pdf
       title: ETL Helper
-      url: /etl
+      url: etl.html
     - output: web,pdf
       title: Get static file
-      url: /static_file
+      url: static_file.html
     - output: web,pdf
       title: 15 LoopStack
-      url: /loopstack
+      url: loopstack.html
     - output: web,pdf
       title: Config
-      url: /config
+      url: config.html
     - output: web,pdf
       title: Minimum
-      url: /minimum
+      url: minimum.html
     - output: web,pdf
       title: 01 A logged editable table
-      url: /traceable_edit_in_flask
+      url: traceable_edit_in_flask.html
     - output: web,pdf
       title: Dataframe filter
-      url: /df_filter
+      url: df_filter.html
     - output: web,pdf
       title: Hard drive files
-      url: /files
+      url: files.html
     - output: web,pdf
       title: Wild Tree and loss
-      url: /wild_tree_and_loss
+      url: wild_tree_and_loss.html
     - output: web,pdf
       title: Images
-      url: /widgets
+      url: widgets.html
     - output: web,pdf
       title: Categorical Transformation for DL
-      url: /category
+      url: category.html
+    - output: web,pdf
+      title: 'Cosine '
+      url: cosine_search.html
     - output: web,pdf
       title: CUDA GPU Management
-      url: /CUDA_GPU_Management
+      url: CUDA_GPU_Management.html
     - output: web,pdf
       title: Bert Visualize
-      url: /bert_visualize
+      url: bert_visualize.html
     - output: web,pdf
       title: NLP data
-      url: /bilstm-based-search-on-netflix-data
+      url: bilstm-based-search-on-netflix-data.html
     - output: web,pdf
       title: Create multi-task adjustment for cross-entropy
-      url: /cross_entropy_weighter
+      url: cross_entropy_weighter.html
     - output: web,pdf
       title: DataFrame PipeLine
-      url: /dataframe_pipeline
+      url: dataframe_pipeline.html
     - output: web,pdf
       title: Optimizer Mangement
-      url: /optimizers
+      url: optimizers.html
     - output: web,pdf
       title: 'Turbo '
-      url: /turbo
+      url: turbo.html
     output: web
     title: forgebox
   output: web

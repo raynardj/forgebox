@@ -116,6 +116,7 @@ class Subplots:
         figsize: Tuple, default (15, vertical_items*4)
         """
         from matplotlib import pyplot as plt
+
         self.i = 0
         self.size = list([math.ceil(float(total)/float(ncol)), ncol])
         self.ncol = ncol
