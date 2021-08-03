@@ -21,6 +21,7 @@
     "Images": "widgets.html",
     "Categorical Transformation for DL": "category.html",
     "Cosine ": "cosine_search.html",
+    "Lightning Callbacks": "thunder_callbacks.html",
     "CUDA GPU Management": "CUDA_GPU_Management.html",
     "Bert Visualize": "bert_visualize.html",
     "NLP data": "bilstm-based-search-on-netflix-data.html",
