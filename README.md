@@ -2,7 +2,7 @@
 > Data science comprehensive toolbox 🛠⚔️📦
 
 
-![forgebox logo](nbs/docs/logo.jpg)
+![forgebox logo](https://raw.githubusercontent.com/raynardj/forgebox/new_feature/docs/logo.jpg)
 
 ## Installation
 
