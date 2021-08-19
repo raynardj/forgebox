@@ -1,11 +1,13 @@
 {
   "forgebox": {
     "Overview": "/",
+    "Pandas Extra functions": "pandas_extra.html",
     "03 Imports": "imports.html",
     "Async": "async.html",
     "Tools on pandas dataframe": "df.html",
     "HTML operation": "html.html",
     "Interactive tools": "inter_widgets.html",
+    "Flatten": "flatten.html",
     "spacy toolkit": "spacy.html",
     "FreeMap": "freemap.html",
     "Controllable loop process": "loop.html",

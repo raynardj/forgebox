@@ -2,10 +2,13 @@
 
 title: 01 A logged editable table
 
+
 keywords: fastai
 sidebar: home_sidebar
 
 summary: "Traceable editable table in flask"
+description: "Traceable editable table in flask"
+nb_path: "nbs/30_traceable_edit_in_flask.ipynb"
 ---
 <!--
 
@@ -18,17 +21,22 @@ summary: "Traceable editable table in flask"
 -->
 
 <div class="container" id="notebook-container">
-    {% raw %}
         
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="k">import</span> <span class="n">Flask</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
 <span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
@@ -41,18 +49,23 @@ summary: "Traceable editable table in flask"
 </div>
 
 </div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Run-a-simple-applitcation">Run a simple applitcation<a class="anchor-link" href="#Run-a-simple-applitcation">&#182;</a></h2>
+<h2 id="Run-a-simple-applitcation">Run a simple applitcation<a class="anchor-link" href="#Run-a-simple-applitcation"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
+    {% endraw %}
 
-</div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -73,9 +86,17 @@ summary: "Traceable editable table in flask"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -96,6 +117,10 @@ summary: "Traceable editable table in flask"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -105,7 +130,7 @@ summary: "Traceable editable table in flask"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DefaultTemp" class="doc_header"><code>class</code> <code>DefaultTemp</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/editable.py#L25" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DefaultTemp</code>(<strong><code>source</code></strong>, <strong><code>block_start_string</code></strong>=<em><code>'{%'</code></em>, <strong><code>block_end_string</code></strong>=<em><code>'%}'</code></em>, <strong><code>variable_start_string</code></strong>=<em><code>'{{'</code></em>, <strong><code>variable_end_string</code></strong>=<em><code>'}}'</code></em>, <strong><code>comment_start_string</code></strong>=<em><code>'{#'</code></em>, <strong><code>comment_end_string</code></strong>=<em><code>'#}'</code></em>, <strong><code>line_statement_prefix</code></strong>=<em><code>None</code></em>, <strong><code>line_comment_prefix</code></strong>=<em><code>None</code></em>, <strong><code>trim_blocks</code></strong>=<em><code>False</code></em>, <strong><code>lstrip_blocks</code></strong>=<em><code>False</code></em>, <strong><code>newline_sequence</code></strong>=<em><code>'\n'</code></em>, <strong><code>keep_trailing_newline</code></strong>=<em><code>False</code></em>, <strong><code>extensions</code></strong>=<em><code>()</code></em>, <strong><code>optimized</code></strong>=<em><code>True</code></em>, <strong><code>undefined</code></strong>=<em><code>'Undefined'</code></em>, <strong><code>finalize</code></strong>=<em><code>None</code></em>, <strong><code>autoescape</code></strong>=<em><code>False</code></em>, <strong><code>enable_async</code></strong>=<em><code>False</code></em>) :: <code>Template</code></p>
+<h2 id="DefaultTemp" class="doc_header"><code>class</code> <code>DefaultTemp</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/editable.py#L25" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DefaultTemp</code>(<strong><code>source</code></strong>, <strong><code>block_start_string</code></strong>=<em><code>'{%'</code></em>, <strong><code>block_end_string</code></strong>=<em><code>'%}'</code></em>, <strong><code>variable_start_string</code></strong>=<em><code>'{{'</code></em>, <strong><code>variable_end_string</code></strong>=<em><code>'}}'</code></em>, <strong><code>comment_start_string</code></strong>=<em><code>'{#'</code></em>, <strong><code>comment_end_string</code></strong>=<em><code>'#}'</code></em>, <strong><code>line_statement_prefix</code></strong>=<em><code>None</code></em>, <strong><code>line_comment_prefix</code></strong>=<em><code>None</code></em>, <strong><code>trim_blocks</code></strong>=<em><code>False</code></em>, <strong><code>lstrip_blocks</code></strong>=<em><code>False</code></em>, <strong><code>newline_sequence</code></strong>=<em><code>'\n'</code></em>, <strong><code>keep_trailing_newline</code></strong>=<em><code>False</code></em>, <strong><code>extensions</code></strong>=<em><code>()</code></em>, <strong><code>optimized</code></strong>=<em><code>True</code></em>, <strong><code>undefined</code></strong>=<em><code>Undefined</code></em>, <strong><code>finalize</code></strong>=<em><code>None</code></em>, <strong><code>autoescape</code></strong>=<em><code>False</code></em>, <strong><code>enable_async</code></strong>=<em><code>False</code></em>) :: <code>Template</code></p>
 </blockquote>
 <p>Jinjia template with some default render config</p>
 
@@ -117,12 +142,23 @@ summary: "Traceable editable table in flask"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Create-sample-data">Create sample data<a class="anchor-link" href="#Create-sample-data">&#182;</a></h2>
+<h2 id="Create-sample-data">Create sample data<a class="anchor-link" href="#Create-sample-data"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -145,9 +181,10 @@ summary: "Traceable editable table in flask"
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
+    {% endraw %}
 
-</div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 
 <div class="output_wrapper">
@@ -168,12 +205,23 @@ summary: "Traceable editable table in flask"
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Testing-editable-frontend">Testing editable frontend<a class="anchor-link" href="#Testing-editable-frontend">&#182;</a></h2>
+<h2 id="Testing-editable-frontend">Testing editable frontend<a class="anchor-link" href="#Testing-editable-frontend"> </a></h2>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -190,97 +238,30 @@ summary: "Traceable editable table in flask"
          <span class="n">log_con</span><span class="o">=</span><span class="n">con</span>
         <span class="p">)</span>
 
-<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">port</span> <span class="o">=</span> <span class="mi">4242</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">,</span><span class="n">port</span> <span class="o">=</span> <span class="mi">4242</span><span class="p">,</span><span class="n">debug</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre> * Serving Flask app &#34;__main__&#34; (lazy loading)
- * Environment: production
-<span class="ansi-red-fg">   WARNING: This is a development server. Do not use it in a production deployment.</span>
-   Use a production WSGI server instead.
- * Debug mode: off
-</pre>
 </div>
-</div>
+    {% endraw %}
 
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre> * Running on http://127.0.0.1:4242/ (Press CTRL+C to quit)
-127.0.0.1 - - [21/Jun/2020 18:09:40] &#34;<span class="ansi-yellow-fg">GET /table1/workspace HTTP/1.1</span>&#34; 404 -
-127.0.0.1 - - [21/Jun/2020 18:09:43] &#34;<span class="ansi-white-fg">GET /table1 HTTP/1.1</span>&#34; 200 -
-127.0.0.1 - - [21/Jun/2020 18:09:43] &#34;<span class="ansi-white-fg">GET /table1/df_api?page=0&amp;where= HTTP/1.1</span>&#34; 200 -
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>SELECT * FROM sample_table 
-        ORDER BY id ASC LIMIT 0,20
-        
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>127.0.0.1 - - [21/Jun/2020 18:10:02] &#34;<span class="ansi-white-fg">POST /table1/save_api HTTP/1.1</span>&#34; 200 -
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>  idx    col valtype    original changed         ip    table_name  \
-0   0   name     str      Darrow  Reaper  127.0.0.1  sample_table   
-1   0  house     str  Andromedus  Rising  127.0.0.1  sample_table   
-2   0    age     int          20      21  127.0.0.1  sample_table   
-
-                          ts  \
-0 2020-06-21 18:10:02.067516   
-1 2020-06-21 18:10:02.071400   
-2 2020-06-21 18:10:02.072681   
-
-                                                 sql  
-0  UPDATE sample_table \n            SET name=&#39;Re...  
-1  UPDATE sample_table \n            SET house=&#39;R...  
-2  UPDATE sample_table \n            SET age=21 W...  
-SELECT * FROM sample_table 
-        ORDER BY id ASC LIMIT 0,20
-        
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Retrieve-the-log">Retrieve the log<a class="anchor-link" href="#Retrieve-the-log">&#182;</a></h3>
+<h3 id="Retrieve-the-log">Retrieve the log<a class="anchor-link" href="#Retrieve-the-log"> </a></h3>
 </div>
 </div>
 </div>
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.df</span> <span class="k">import</span> <span class="n">PandasDisplay</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">forgebox.df</span> <span class="kn">import</span> <span class="n">PandasDisplay</span>
 </pre></div>
 
     </div>
@@ -288,6 +269,10 @@ SELECT * FROM sample_table
 </div>
 
 </div>
+    {% endraw %}
+
+    {% raw %}
+    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 
@@ -301,91 +286,9 @@ SELECT * FROM sample_table
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-<div class="output_area">
-
-
-<div class="output_html rendered_html output_subarea ">
-<div>
-<style scoped>
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>idx</th>
-      <th>col</th>
-      <th>valtype</th>
-      <th>original</th>
-      <th>changed</th>
-      <th>ip</th>
-      <th>table_name</th>
-      <th>ts</th>
-      <th>sql</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>0</th>
-      <td>0</td>
-      <td>name</td>
-      <td>str</td>
-      <td>Darrow</td>
-      <td>Reaper</td>
-      <td>127.0.0.1</td>
-      <td>sample_table</td>
-      <td>2020-06-21 18:10:02.067516</td>
-      <td>UPDATE sample_table \n            SET name='Reaper' WHERE id=0\n</td>
-    </tr>
-    <tr>
-      <th>1</th>
-      <td>0</td>
-      <td>house</td>
-      <td>str</td>
-      <td>Andromedus</td>
-      <td>Rising</td>
-      <td>127.0.0.1</td>
-      <td>sample_table</td>
-      <td>2020-06-21 18:10:02.071400</td>
-      <td>UPDATE sample_table \n            SET house='Rising' WHERE id=0\n</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>0</td>
-      <td>age</td>
-      <td>int</td>
-      <td>20</td>
-      <td>21</td>
-      <td>127.0.0.1</td>
-      <td>sample_table</td>
-      <td>2020-06-21 18:10:02.072681</td>
-      <td>UPDATE sample_table \n            SET age=21 WHERE id=0\n</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
     {% endraw %}
+
 </div>
  
 
