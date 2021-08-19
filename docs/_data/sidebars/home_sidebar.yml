@@ -10,6 +10,9 @@ entries:
       title: Overview
       url: /
     - output: web,pdf
+      title: Pandas Extra functions
+      url: pandas_extra.html
+    - output: web,pdf
       title: 03 Imports
       url: imports.html
     - output: web,pdf
@@ -24,6 +27,9 @@ entries:
     - output: web,pdf
       title: Interactive tools
       url: inter_widgets.html
+    - output: web,pdf
+      title: Flatten
+      url: flatten.html
     - output: web,pdf
       title: spacy toolkit
       url: spacy.html
