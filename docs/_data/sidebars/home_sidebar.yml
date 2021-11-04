@@ -79,6 +79,12 @@ entries:
       title: Lightning Callbacks
       url: thunder_callbacks.html
     - output: web,pdf
+      title: Data parts for hf transformers
+      url: hf_transformer_data.html
+    - output: web,pdf
+      title: Pytorch Lighting training
+      url: pl_training.html
+    - output: web,pdf
       title: CUDA GPU Management
       url: CUDA_GPU_Management.html
     - output: web,pdf
