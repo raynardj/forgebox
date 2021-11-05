@@ -2,11 +2,13 @@
 
 title: ETL Helper
 
+
 keywords: fastai
 sidebar: home_sidebar
 
 summary: "A combined ETL tool sets"
 description: "A combined ETL tool sets"
+nb_path: "nbs/11_etl.ipynb"
 ---
 <!--
 
@@ -37,13 +39,6 @@ description: "A combined ETL tool sets"
     
 <div class="cell border-box-sizing code_cell rendered">
 
-</div>
-    {% endraw %}
-
-    {% raw %}
-    
-<div class="cell border-box-sizing code_cell rendered">
-
 <div class="output_wrapper">
 <div class="output">
 
@@ -51,7 +46,7 @@ description: "A combined ETL tool sets"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="NewFileScanner" class="doc_header"><code>class</code> <code>NewFileScanner</code><a href="" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NewFileScanner</code>(<strong><code>directory</code></strong>, <strong><code>new_file_filter</code></strong>:<code>Callable</code>=<em><code>None</code></em>, <strong><code>done_list_getter</code></strong>:<code>Callable</code>=<em><code>None</code></em>, <strong><code>stop_callback</code></strong>:<code>Callable</code>=<em><code>None</code></em>)</p>
+<h2 id="NewFileScanner" class="doc_header"><code>class</code> <code>NewFileScanner</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/etl.py#L12" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>NewFileScanner</code>(<strong><code>directory</code></strong>, <strong><code>new_file_filter</code></strong>:<code>Callable</code>=<em><code>None</code></em>, <strong><code>done_list_getter</code></strong>:<code>Callable</code>=<em><code>None</code></em>, <strong><code>stop_callback</code></strong>:<code>Callable</code>=<em><code>None</code></em>)</p>
 </blockquote>
 <p>Keep scannning a directory for new file
 if found any, callback processing the file</p>
@@ -65,6 +60,13 @@ new_file_scanner(lambda x:print(f"new file:{x} found"))s</p>
 
 </div>
 </div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
 
 </div>
     {% endraw %}
