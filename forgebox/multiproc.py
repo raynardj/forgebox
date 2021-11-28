@@ -131,11 +131,11 @@ class DataFrameRowling:
 
     def __getitem__(self, idx):
         global DataFrameRowling_df
-        return DataFrameRowling_df[list(DataFrameRowling_df.index[idx]]
+        return DataFrameRowling_df[list(DataFrameRowling_df.index)[idx]]
 
     def __next__(self):
         global DataFrameRowling_df
         global DataFrameRowling_ct
-        row = DataFrameRowling_df.loc[DataFrameRowling_df.index[DataFrameRowling_ct]]
+        row = DataFrameRowling_df.loc[list(DataFrameRowling_df.index)[DataFrameRowling_ct]]
         DataFrameRowling_ct+=1
         return row
