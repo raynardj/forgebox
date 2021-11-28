@@ -131,7 +131,7 @@ class DataFrameRowling:
 
     def __getitem__(self, idx):
         global DataFrameRowling_df
-        return DataFrameRowling_df[DataFrameRowling_df.index[idx]]
+        return DataFrameRowling_df[list(DataFrameRowling_df.index[idx]]
 
     def __next__(self):
         global DataFrameRowling_df
