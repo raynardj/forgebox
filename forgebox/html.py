@@ -103,7 +103,7 @@ def deeper(x):
         return list_group_kv(x)
     if type(x) in [int, str, float, bool]:
         return x
-    if type(x) in ImageClass.__subclasses__():
+    if type(x) == ImageClass:
         return img_dom(x)
     return x
 
