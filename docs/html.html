@@ -40,7 +40,7 @@ nb_path: "nbs/04_html.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h2 id="DOM" class="doc_header"><code>class</code> <code>DOM</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L8" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DOM</code>(<strong><code>txt</code></strong>, <strong><code>tag</code></strong>, <strong><code>kwargs</code></strong>=<em><code>{}</code></em>)</p>
+<h2 id="DOM" class="doc_header"><code>class</code> <code>DOM</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L9" class="source_link" style="float:right">[source]</a></h2><blockquote><p><code>DOM</code>(<strong><code>txt</code></strong>, <strong><code>tag</code></strong>, <strong><code>kwargs</code></strong>=<em><code>{}</code></em>)</p>
 </blockquote>
 
 </div>
@@ -353,7 +353,94 @@ nb_path: "nbs/04_html.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="deeper" class="doc_header"><code>deeper</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L64" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>deeper</code>(<strong><code>x</code></strong>)</p>
+<h4 id="image_to_base64" class="doc_header"><code>image_to_base64</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L69" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>image_to_base64</code>(<strong><code>img</code></strong>:<code>Image</code>)</p>
+</blockquote>
+<p>Transform PIL Image to base64 for API
+Return:</p>
+
+<pre><code>- base64 encoded image bytes</code></pre>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="data_url" class="doc_header"><code>data_url</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L84" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>data_url</code>(<strong><code>img</code></strong>:<code>Image</code>)</p>
+</blockquote>
+<p>Return:</p>
+
+<pre><code>- data url string,
+    can be used as the src value of &lt;img&gt;</code></pre>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="img_dom" class="doc_header"><code>img_dom</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L94" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>img_dom</code>(<strong><code>img</code></strong>:<code>Image</code>)</p>
+</blockquote>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+</div>
+    {% endraw %}
+
+    {% raw %}
+    
+<div class="cell border-box-sizing code_cell rendered">
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_markdown rendered_html output_subarea ">
+<h4 id="deeper" class="doc_header"><code>deeper</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L99" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>deeper</code>(<strong><code>x</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -377,7 +464,7 @@ nb_path: "nbs/04_html.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="list_group" class="doc_header"><code>list_group</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L71" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>list_group</code>(<strong><code>iterable</code></strong>)</p>
+<h4 id="list_group" class="doc_header"><code>list_group</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L111" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>list_group</code>(<strong><code>iterable</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -408,7 +495,7 @@ nb_path: "nbs/04_html.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="col_sm" class="doc_header"><code>col_sm</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L80" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>col_sm</code>(<strong><code>iterable</code></strong>, <strong><code>portions</code></strong>=<em><code>None</code></em>)</p>
+<h4 id="col_sm" class="doc_header"><code>col_sm</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L122" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>col_sm</code>(<strong><code>iterable</code></strong>, <strong><code>portions</code></strong>=<em><code>None</code></em>)</p>
 </blockquote>
 
 </div>
@@ -503,7 +590,7 @@ nb_path: "nbs/04_html.ipynb"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="list_group_kv" class="doc_header"><code>list_group_kv</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L90" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>list_group_kv</code>(<strong><code>data</code></strong>)</p>
+<h4 id="list_group_kv" class="doc_header"><code>list_group_kv</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L131" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>list_group_kv</code>(<strong><code>data</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -654,7 +741,7 @@ dom.className=dom.className+" text-danger"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="JS" class="doc_header"><code>JS</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L100" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>JS</code>(<strong><code>code</code></strong>)</p>
+<h4 id="JS" class="doc_header"><code>JS</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L141" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>JS</code>(<strong><code>code</code></strong>)</p>
 </blockquote>
 
 </div>
@@ -678,7 +765,7 @@ dom.className=dom.className+" text-danger"
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h4 id="JS_file" class="doc_header"><code>JS_file</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L103" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>JS_file</code>(<strong><code>path</code></strong>)</p>
+<h4 id="JS_file" class="doc_header"><code>JS_file</code><a href="https://github.com/raynardj/forgebox/tree/master/forgebox/html.py#L144" class="source_link" style="float:right">[source]</a></h4><blockquote><p><code>JS_file</code>(<strong><code>path</code></strong>)</p>
 </blockquote>
 <p>load javascript file</p>
 

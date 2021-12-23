@@ -37,6 +37,9 @@ entries:
       title: FreeMap
       url: freemap.html
     - output: web,pdf
+      title: Multiprocessing Helper
+      url: multiprocess.html
+    - output: web,pdf
       title: Controllable loop process
       url: loop.html
     - output: web,pdf
@@ -67,8 +70,8 @@ entries:
       title: Wild Tree and loss
       url: wild_tree_and_loss.html
     - output: web,pdf
-      title: Images
-      url: widgets.html
+      title: Image Widgets
+      url: image_widgets.html
     - output: web,pdf
       title: Categorical Transformation for DL
       url: category.html
