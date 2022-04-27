@@ -1,5 +1,10 @@
 # ForgeBox
 > Data science comprehensive toolbox
+[![PyPI version](https://img.shields.io/pypi/v/forgebox)](https://pypi.org/project/forgebox/)
+![Python version](https://img.shields.io/pypi/pyversions/forgebox)
+![License](https://img.shields.io/github/license/raynardj/forgebox)
+![PyPI Downloads](https://img.shields.io/pypi/dm/forgebox)
+[![pypi build](https://github.com/raynardj/forgebox/actions/workflows/publish.yml/badge.svg)](https://github.com/raynardj/forgebox/actions/workflows/publish.yml)
 
 ## Installation
 
