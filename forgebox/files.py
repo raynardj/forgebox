@@ -2,28 +2,28 @@
 
 __all__ = ['get_files', 'file_detail']
 
-# Cell
 from typing import Union, List
 from .imports import Path, pd
 
+
 def get_files(
     path: Path,
-    skip: Union[str, List[str]]=None
+    skip: Union[str, List[str]] = None
 ) -> pd.DataFrame:
     """Get all file paths from a directory"""
     path = Path(path).absolute()
     files = []
     if type(skip) == str:
-        def not_skipping(phrase)->bool:
+        def not_skipping(phrase) -> bool:
             return skip in phrase
     elif type(skip) == list:
-        def not_skipping(phrase)->bool:
+        def not_skipping(phrase) -> bool:
             for sk in skip:
                 if sk in phrase:
                     return True
             return False
     elif skip is None:
-        not_skipping = lambda x:True
+        def not_skipping(x): return True
     else:
         raise TypeError(
             f"type of skip not correct: {type(skip)}")
@@ -39,14 +39,16 @@ def get_files(
 
     return pd.DataFrame(dict(path=files))
 
+
 def file_detail(
     path: Path,
-    skip: Union[str, List[str]]=None
+    skip: Union[str, List[str]] = None
 ) -> pd.DataFrame:
     """
     Get detailed file information from a directory
     """
     file_df = get_files(path, skip=skip)
+
     def find_type(x):
         try:
             x = Path(x)

@@ -5,23 +5,25 @@ __all__ = ['PandasDisplay']
 # Cell
 import pandas as pd
 
+
 class PandasDisplay:
     """
-    Temporary pandas display config "with" hook
+    Temporary pandas display config "with" scope
     with PandasDisplay(max_colwidth = 0,max_rows=100):
         display(df)
     """
-    def __init__(self,**kwargs):
+
+    def __init__(self, **kwargs):
 
         self.kwargs = kwargs
         self.cache = dict()
 
     def __enter__(self):
-        for k,v in self.kwargs.items():
+        for k, v in self.kwargs.items():
             self.cache[k] = pd.get_option(f"display.{k}")
-            pd.set_option(f"display.{k}",v)
+            pd.set_option(f"display.{k}", v)
         return self
 
     def __exit__(self, type, value, tb):
-        for k,v in self.cache.items():
-            pd.set_option(f"display.{k}",v)
+        for k, v in self.cache.items():
+            pd.set_option(f"display.{k}", v)

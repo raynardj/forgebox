@@ -5,22 +5,22 @@ __all__ = ['display_df', 'search_box', 'paginate', 'make_hboxes', 'SingleButton'
 
 # Cell
 import pandas as pd
-import numpy as np
 from .df import PandasDisplay
-from .html import list_group, list_group_kv
+from .html import list_group, list_group_kv, display
 from typing import Callable, List, Tuple, Set, Dict, Any
 from ipywidgets import (
     IntSlider, FloatSlider, Text, Textarea, Layout,
     Output, HBox, VBox, Button,
-    Select, SelectMultiple,
-    Dropdown, Checkbox,
-    IntProgress, HTML, interact, interact_manual
+    Dropdown,
+    IntProgress,
+    HTML
 )
+import json
 
-# Cell
-def display_df(df):display(df)
+def display_df(df): display(df)
 
-def search_box(df,columns,manual = False,max_rows = 10,callback = display_df):
+
+def search_box(df, columns, manual=False, max_rows=10, callback=display_df):
     """
     create a search box based on dataframe
     df: pandas dataframe
@@ -31,42 +31,44 @@ def search_box(df,columns,manual = False,max_rows = 10,callback = display_df):
     callback: python callable, discribe the action you want to put on
         search result (a filtered dataframe), default is to display the dataframe
     """
-    from ipywidgets import interact,interact_manual
+    from ipywidgets import interact, interact_manual
     from IPython.display import HTML
 
     intera = interact_manual if manual else interact
 
     @intera
-    def search(KeyWord = "",):
+    def search(KeyWord="",):
         for col in columns:
             result = df[col].fillna("NaN Value").str.contains(KeyWord)
-            if sum(result)>0:
-                with PandasDisplay(max_colwidth=0,max_rows=max_rows):
-                    display(HTML(f"<h3>\"{KeyWord}\" matched on column:[{col}]</h3>"))
+            if sum(result) > 0:
+                with PandasDisplay(max_colwidth=0, max_rows=max_rows):
+                    display(
+                        HTML(f"<h3>\"{KeyWord}\" matched on column:[{col}]</h3>"))
                     callback(df[result].head(max_rows))
                     return
         print(f"Nothing found on any column on keyword:{KeyWord}")
         return
 
-# Cell
-def paginate(df,page_len = 20):
+
+def paginate(df, page_len=20):
     """
     Paginate dataframe in jupyter notebook interactively
     Like you can flip through the page
     """
-    from ipywidgets import interact,interact_manual
-    from IPython.display import display,HTML
+    from ipywidgets import interact, interact_manual
+    from IPython.display import display, HTML
     pages = len(df)//page_len
+
     @interact
-    def preview(page = (0,pages)):
+    def preview(page=(0, pages)):
         display(HTML(f"<h4>page:{page}/{pages}</4>"))
         end = (page+1)*page_len
         display(df.head(end).tail(page_len))
 
-# Cell
+
 def make_hboxes(
     *widgets,
-    sections: int=2
+    sections: int = 2
 ) -> List[HBox]:
     """
     Make a list of HBox, with each hbox
@@ -75,15 +77,16 @@ def make_hboxes(
     sections: int
     """
     hbox_list = []
-    hbox_inner=[]
+    hbox_inner = []
     for idx, widget in enumerate(widgets):
         hbox_inner.append(widget)
-        if idx%sections==sections-1:
+        if idx % sections == sections-1:
             hbox_list.append(HBox(hbox_inner))
-            hbox_inner=[]
-    if len(hbox_inner)>0:
+            hbox_inner = []
+    if len(hbox_inner) > 0:
         hbox_list.append(HBox(hbox_inner))
     return hbox_list
+
 
 class SingleButton:
     """
@@ -101,12 +104,13 @@ class SingleButton:
         return f"select * from {table} limit {limit}"
     ```
     """
+
     def __init__(
         self,
-        btn_text: str="Run",
-        btn_style: str="danger",
-        callback: Callable=lambda x:x,
-        sections: int=2,
+        btn_text: str = "Run",
+        btn_style: str = "danger",
+        callback: Callable = lambda x: x,
+        sections: int = 2,
     ):
         """
         btn_text: str, text appears on the button
@@ -118,8 +122,8 @@ class SingleButton:
         self.sections = sections
 
     def create_slider(
-        self, k: str,
-        anno: dict):
+            self, k: str,
+            anno: dict):
         """
         create int or float slider widget
         """
@@ -147,7 +151,7 @@ class SingleButton:
         create text area widget
         """
         if "textarea" in anno:
-            layout = Layout(width="100%", height="auto" )
+            layout = Layout(width="100%", height="auto")
             wi = Textarea(description=k, layout=layout)
         else:
             wi = Text(description=k)
@@ -176,7 +180,7 @@ class SingleButton:
                 create_func = self.create_dropdown
             else:
                 raise TypeError(f"type {atype} not found")
-            self.controls.update({k:create_func(k, anno)})
+            self.controls.update({k: create_func(k, anno)})
 
     def execute(self, btn):
         """
@@ -196,11 +200,12 @@ class SingleButton:
         def abc(...):
             ...
         """
-        self.f=f
+        self.f = f
         self.name = f.__name__
         self.anno_widgets()
-        def wrapper(*args,**kwargs):
-            rt = f(*args,**kwargs)
+
+        def wrapper(*args, **kwargs):
+            rt = f(*args, **kwargs)
             self.callback(rt)
             return rt
 
@@ -219,18 +224,21 @@ class SingleButton:
         return f
 
 # Cell
+
+
 class Labeler:
     """
     An interactive tool labeling pandas dataframe
         row by row
     """
+
     def __init__(
         self,
         df: pd.DataFrame,
         options_col: str,
-        result_col: str="label",
-        show_callback: Callable=None,
-        auto_fill_in: bool=True
+        result_col: str = "label",
+        show_callback: Callable = None,
+        auto_fill_in: bool = True
     ):
         """
         - df: pd.DataFrame, a dataframe prepared
@@ -245,13 +253,13 @@ class Labeler:
         self.options_col = options_col
 
         if auto_fill_in:
-            self.df.loc[:,self.result_col] = self.df[self.options_col]\
-                .apply(lambda x:x[0] if len(x)==1 else None)
+            self.df.loc[:, self.result_col] = self.df[self.options_col]\
+                .apply(lambda x: x[0] if len(x) == 1 else None)
         else:
-            self.df.loc[:,self.result_col] = [None,]*len(self.df)
+            self.df.loc[:, self.result_col] = [None, ]*len(self.df)
 
         self.out = Output()
-        show_dict = lambda idx,row:str(dict(row))
+        def show_dict(idx, row): return str(dict(row))
         self.show_callback = show_dict if show_callback is None else show_callback
 
     def get_progress_bar(self, idx) -> HBox:
@@ -262,7 +270,7 @@ class Labeler:
         return HBox([
             IntProgress(value=i, min=0, max=len(self.df)),
             HTML(f"{i+1}/{len(self.df)}")
-                    ])
+        ])
 
     def button_box(
         self,
@@ -274,9 +282,9 @@ class Labeler:
         """
         btns = []
         for o in options:
-            btn = Button(description = o,)
-            btn.value=o
-            btn.idx=idx
+            btn = Button(description=o,)
+            btn.value = o
+            btn.idx = idx
             btn.on_click(self.choice_cb)
             btns.append(btn)
         return HBox(btns)
@@ -285,18 +293,19 @@ class Labeler:
         with self.out:
             self.df.loc[option.idx, self.result_col] = option.value
         try:
-            idx,row = next(self.gen)
+            idx, row = next(self.gen)
         except StopIteration as e:
             self.out.clear_output()
             display(self.get_progress_bar(self.df.index[-1]))
             display(HTML("<h3>All Done</h3>"))
-            display(HTML("<h5>Thanks for all the labeling, now try self.df to see the result</h5>"))
+            display(
+                HTML("<h5>Thanks for all the labeling, now try self.df to see the result</h5>"))
             return
-        self.show_func(idx,row)
+        self.show_func(idx, row)
 
     def __iter__(self):
         for idx, row in self.df.iterrows():
-            if (row[self.result_col] is None) and (len(row[self.options_col]))>1:
+            if (row[self.result_col] is None) and (len(row[self.options_col])) > 1:
                 yield idx, row
 
     def __call__(self) -> None:
@@ -311,13 +320,13 @@ class Labeler:
         self.out.clear_output()
         with self.out:
             display(
-                    VBox([
-                        self.get_progress_bar(idx),
-                        HTML(self.show_callback(idx, row)),
-                        self.button_box(idx, row[self.options_col])
-                    ]))
+                VBox([
+                    self.get_progress_bar(idx),
+                    HTML(self.show_callback(idx, row)),
+                    self.button_box(idx, row[self.options_col])
+                ]))
 
-# Cell
+
 total_width = Layout(width="100%")
 
 
@@ -380,6 +389,7 @@ class EditableDict(VBox):
     You can add item to the dictionary
     Each added item has a remove button to remove such item
     """
+
     def __init__(self, data_dict: Dict[str, Any] = dict(), pretty_json: bool = True):
         super().__init__([], layout=total_width)
         self.pretty_json = pretty_json
@@ -436,7 +446,7 @@ class EditableDict(VBox):
         self.create_line(k, v)
 
     def __add__(self, kv):
-        for k,v in kv.items():
+        for k, v in kv.items():
             self.create_line(k, v)
         return self
 
@@ -444,9 +454,9 @@ class EditableDict(VBox):
         """
         Return the data of this dict
         """
-        return dict((x.key,x.data) for x in self.children)
+        return dict((x.key, x.data) for x in self.children)
 
-# Cell
+
 class LivingStep:
     """
     A step interactive for StepByStep
@@ -493,7 +503,7 @@ class StepByStep:
         self.footer: Output = Output()
         self.create_widget()
 
-    def rerun(self,**kwargs):
+    def rerun(self, **kwargs):
         """
         Rerun the current step function
         """
@@ -534,7 +544,7 @@ class StepByStep:
         )
         # assign action to first button
         first_btn: Button = list(self.progress_btns.values())[0]
-        first_btn.click: Callable = self.to_page_action(0)
+        first_btn.click = self.to_page_action(0)
         self.progress_bar = HBox(list(self.progress_btns.values()))
 
         # assemble the entire widget
@@ -580,14 +590,14 @@ class StepByStep:
         self.current: int = page_id
         key: str = self.step_keys[page_id]
         step: LivingStep = self.steps[key]
-        self.title.value: str = f"<h4 class='text-danger'>Step {page_id+1}: {key}</h4>"
+        self.title.value = f"<h4 class='text-danger'>Step {page_id+1}: {key}</h4>"
         self.page_output.clear_output()
 
         with self.page_output:
             display(step.output)
         if key not in self.execute_cache:
             rt = step(progress=self, **self.kwargs)
-            if hasattr(rt,"keys"):
+            if hasattr(rt, "keys"):
                 self.kwargs(rt)
             self.execute_cache[key] = True
 
