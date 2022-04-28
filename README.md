@@ -5,6 +5,7 @@
 ![License](https://img.shields.io/github/license/raynardj/forgebox)
 ![PyPI Downloads](https://img.shields.io/pypi/dm/forgebox)
 [![pypi build](https://github.com/raynardj/forgebox/actions/workflows/publish.yml/badge.svg)](https://github.com/raynardj/forgebox/actions/workflows/publish.yml)
+[![Test](https://github.com/raynardj/forgebox/actions/workflows/test.yml/badge.svg)](https://github.com/raynardj/forgebox/actions/workflows/test.yml)
 
 > Data science comprehensive toolbox
 
