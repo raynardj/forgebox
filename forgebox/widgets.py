@@ -6,7 +6,7 @@ __all__ = ['display_df', 'search_box', 'paginate', 'make_hboxes', 'SingleButton'
 # Cell
 import pandas as pd
 from .df import PandasDisplay
-from .html import list_group, list_group_kv, display
+from .html import list_group, list_group_kv
 from typing import Callable, List, Tuple, Set, Dict, Any
 from ipywidgets import (
     IntSlider, FloatSlider, Text, Textarea, Layout,
@@ -16,6 +16,11 @@ from ipywidgets import (
     HTML
 )
 import json
+
+try:
+    display(HTML(''''''))
+except:
+    display = print
 
 def display_df(df): display(df)
 
