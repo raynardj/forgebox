@@ -16,11 +16,13 @@ Easy simple installation in 1 line
 pip install forgebox
 ```
 
-If not specified, you need anaconda3 for most of the tools, python shold be at least >=3.6
+If not specified, you need anaconda3 for most of the tools.
+
+See [nbs](./nbs) for most of the applications
 
 ## Features 🚀 Briefing
 
-> This is a tool box with comprehensive **utilies**, to put it simply, I just hope most of my frequetyly used DIY tools in in place and can be easily installed and imported
+> This is a tool box with comprehensive **utilies**, to put it simply, I just hope most of my frequetyly used DIY tools in one place and can be easily **installed and imported**
 
 ### Lazy, fast imports 🤯
 
