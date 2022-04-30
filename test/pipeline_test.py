@@ -72,6 +72,7 @@ def test_config():
     config = Config(a=1, b=2, c=[1, "2"])
     config.save("test_config.json")
     config2 = Config.load("test_config.json")
+    os.remove("./test_config.json")
     assert config2.a == 1
     assert config2.b == 2
     assert config2.c == [1, "2"]
