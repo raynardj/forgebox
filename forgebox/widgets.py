@@ -22,6 +22,7 @@ try:
 except:
     display = print
 
+
 def display_df(df): display(df)
 
 
@@ -227,8 +228,6 @@ class SingleButton:
         self.vbox = VBox([*self.hboxes, *self.btn_boxes, self.out])
         display(self.vbox)
         return f
-
-# Cell
 
 
 class Labeler:
