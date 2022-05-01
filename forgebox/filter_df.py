@@ -9,7 +9,7 @@ from abc import ABC
 from typing import List, Callable
 
 try:
-    display(HTML(''''''))
+    display
 except:
     display = print
 
