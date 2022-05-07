@@ -4,7 +4,7 @@ __all__ = ['__all__']
 
 # Cell
 
-__all__ = ["pd", "np", "partial", "Path", "json", "Counter",
+__all__ = ["pd", "np", "partial", "Path", "json", "Counter", "Unpack",
            "plt", "os", "sys", "glob", "Image", ]
 
 # import enhanced version of pandas
@@ -14,6 +14,7 @@ from pathlib import Path
 import json
 from functools import partial
 from collections import Counter
+from .unpack import Unpack
 
 
 import os

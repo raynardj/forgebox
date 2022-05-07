@@ -86,3 +86,23 @@ def test_cosine_search():
     assert (cos(vec) == [2, 1, 0]).all()
     assert (cos(vec2) == [0, 1, 2]).all()
     assert (cos.search(vec) == [2, 1 ,0]).all()
+
+
+def test_unpack():
+    from forgebox.imports import Unpack
+    data = {
+        "info":{
+            "name": "Lisa", "age":12,
+            },
+        "grad":{
+            "math":{
+                "mid":98, "final":99
+                },
+            "history":{"mid":90, "final":95},
+            },
+        "date":"2022-01-01",
+        }
+    name, math_final, date = Unpack(data, False)(["info","name"],['grad','math','final'],'date')
+    assert name == "Lisa"
+    assert math_final == 99
+    assert date == "2022-01-01"
