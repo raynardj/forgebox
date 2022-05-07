@@ -1,4 +1,4 @@
-from typing import Tuple, Any
+from typing import Tuple, Any, Dict
 
 
 class Unpack:
@@ -19,6 +19,11 @@ class Unpack:
         }
     student = Unpack(data)
     name, final_math_score, date = student(["info","name"],['grad','math','final'],'date')
+
+    data = student.to_dict(name=['info','name'], final_math_score=['grad','math','final'], date='date')
+    data
+    [out]: {'name': 'Lisa', 'final_math_score': 99, 'date': '2022-01-01'}
+
     """
 
     def __init__(self, obj, raise_error: bool = False):
@@ -60,3 +65,10 @@ class Unpack:
             return rt[0]
         else:
             return tuple(rt)
+
+    def to_dict(self, **kwargs) -> Dict[str, Any]:
+        """
+        Return not tuple, but a dictionary
+        """
+        vals = list(self(*(kwargs.values())))
+        return dict(zip(kwargs.keys(), vals))
