@@ -1,2 +1,7 @@
 pytest
 pytest-mock
+jupyterlab_widgets
+ipywidgets
+pandas
+Pillow
+matplotlib
