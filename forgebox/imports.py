@@ -49,6 +49,9 @@ except:
     pass
 
 from glob import glob
-from PIL import Image
+try:
+    from PIL import Image
+except:
+    pass
 
 Path.ls = lambda x: os.listdir(x)
